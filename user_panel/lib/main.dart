@@ -6,6 +6,7 @@ import 'package:user_panel/Screens/splash_screen.dart';
 import 'package:user_panel/Screens/verification_screen.dart';
 
 import 'Screens/homepage_screen.dart';
+import 'Screens/profile_screeen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'User Panel',
-      home: HomePage(),
+      home: ProfileScreen(),
     );
   }
 }
