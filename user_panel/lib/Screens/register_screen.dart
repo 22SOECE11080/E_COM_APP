@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -8,7 +9,6 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  // This boolean controls the visibility of the password
   bool _isPasswordVisible = false;
 
   @override
@@ -21,22 +21,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: Container(
         height: screenHeight,
         width: screenWidth,
-        color: const Color(0xFFE7F2E4), // Background color for the top section
+        color: const Color(0xFFE7F2E4),
         child: Column(
           children: [
             Container(
-              height: screenHeight * 0.3, // Height of the top section
+              height: screenHeight * 0.3,
               width: screenWidth,
               decoration: const BoxDecoration(
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg', // Add your logo asset here
-                width: screenWidth * 0.6, // Adjust logo width as needed
+                'assets/images/SKR 1 (splash logo).jpg',
+                width: screenWidth * 0.6,
                 height: 100.0,
               ),
             ),
-            // Bottom section with SingleChildScrollView
             Expanded(
               child: Container(
                 width: screenWidth,
@@ -53,7 +52,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Small gray line above Sign Up text
                         Center(
                           child: Container(
                             width: 50.0,
@@ -62,8 +60,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             margin: const EdgeInsets.only(bottom: 20.0),
                           ),
                         ),
-
-                        // Sign Up text
                         const Center(
                           child: Text(
                             'Sign Up',
@@ -77,9 +73,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const Text(
                           "NAME",
                           style: TextStyle(
-                            color: Colors.grey, // Match the label color
-                            fontSize: 16, // Adjust the font size
-                            fontWeight: FontWeight.bold, // Bold text style
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         const SizedBox(height: 8.0),
@@ -89,6 +85,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -107,6 +105,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                           ),
                         ),
                         const SizedBox(height: 20.0),
@@ -119,14 +119,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 8.0),
-                        // Password field with visibility toggle
                         TextField(
-                          obscureText: !_isPasswordVisible, // Toggle visibility
+                          obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
                             hintText: 'Enter your password',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _isPasswordVisible
@@ -135,8 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  _isPasswordVisible =
-                                      !_isPasswordVisible; // Toggle visibility
+                                  _isPasswordVisible = !_isPasswordVisible;
                                 });
                               },
                             ),
@@ -149,8 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               // Handle Sign-Up logic here
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color(0xFFE7F2E4), // Button color
+                              backgroundColor: const Color(0xFFE7F2E4),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
@@ -162,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 'Sign Up',
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.black, // Button text color
+                                  color: Colors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -173,7 +172,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Center(
                           child: TextButton(
                             onPressed: () {
-                              // Navigate to login screen logic here
+                              // Navigate to the Register screen using Navigator.push
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()),
+                              );
                             },
                             child: const Text(
                               'I have an account',

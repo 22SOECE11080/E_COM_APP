@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:user_panel/Screens/forgot_password_screeen.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,41 +11,35 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // This boolean controls the visibility of the password
   bool _isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
-    // Use MediaQuery to get the size of the screen
     final size = MediaQuery.of(context).size;
-    final double screenHeight = size.height;
     final double screenWidth = size.width;
 
     return Scaffold(
-      body: Container(
-        height: screenHeight,
-        width: screenWidth,
-        color: const Color(0xFFE7F2E4), // Background color for the top section
-        child: Column(
-          children: [
-            // Top section with logo
-            Container(
-              height: screenHeight * 0.3, // 30% of screen height
-              width: screenWidth, // Full screen width
-              decoration: const BoxDecoration(
-                color: Color(0xFFE7F2E4),
-              ),
-              child: Center(
-                child: Image.asset(
-                  'assets/images/SKR 1 (splash logo).jpg', // Add your logo asset here
-                  width: screenWidth * 0.6, // Adjust logo width as needed
-                  height: 200.0,
-                ),
+      body: Column(
+        children: [
+          // Top section with logo
+          Container(
+            height: size.height * 0.3, // 30% of screen height
+            width: screenWidth,
+            decoration: const BoxDecoration(
+              color: Color(0xFFE7F2E4),
+            ),
+            child: Center(
+              child: Image.asset(
+                'assets/images/SKR 1 (splash logo).jpg',
+                width: screenWidth * 0.6,
+                height: 150.0,
               ),
             ),
-            // Bottom section with form
-            Container(
-              height: screenHeight * 0.7, // 70% of screen height
-              width: screenWidth, // Full screen width
+          ),
+          // Bottom section with form
+          Expanded(
+            child: Container(
+              width: screenWidth,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -53,12 +47,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Login title
+                    const SizedBox(height: 30),
+                    // gray line above the title
+                    Center(
+                      child: Container(
+                        width: 50.0,
+                        height: 3.0,
+                        color: Colors.grey,
+                        margin: const EdgeInsets.only(bottom: 20.0),
+                      ),
+                    ),
                     const Text(
                       'Login',
                       style: TextStyle(
@@ -68,64 +71,52 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 30),
-                    // Phone number field
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Phone Number', // Label text above the TextField
+                          'Phone Number',
                           style: TextStyle(
-                            color: Colors.grey[
-                                700], // Match the label color from the image
-                            fontSize:
-                                16, // Adjust the font size to match the image
-                            fontWeight: FontWeight
-                                .bold, // Bold text to match the image style
+                            color: Colors.grey[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                8.0), // Spacing between the label and the TextField
+                        const SizedBox(height: 8.0),
                         TextField(
                           decoration: InputDecoration(
-                            hintText:
-                                'Enter your phone number', // Placeholder text inside the TextField
+                            hintText: 'Enter your phone number',
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10.0), // Rounded corners
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                           ),
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 20),
-                    // Password field
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Password', // Label text above the TextField
+                          'Password',
                           style: TextStyle(
-                            color: Colors.grey[
-                                700], // Match the label color from the image
-                            fontSize:
-                                16, // Adjust the font size to match the image
-                            fontWeight: FontWeight
-                                .bold, // Bold text to match the image style
+                            color: Colors.grey[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                8.0), // Spacing between the label and the TextField
-                        // Password field with visibility toggle
+                        const SizedBox(height: 8.0),
                         TextField(
-                          obscureText: !_isPasswordVisible, // Toggle visibility
+                          obscureText: !_isPasswordVisible,
                           decoration: InputDecoration(
                             hintText: 'Enter your password',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _isPasswordVisible
@@ -134,8 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  _isPasswordVisible =
-                                      !_isPasswordVisible; // Toggle visibility
+                                  _isPasswordVisible = !_isPasswordVisible;
                                 });
                               },
                             ),
@@ -144,19 +134,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    // Login button
                     ElevatedButton(
                       onPressed: () {
                         // Handle login action
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(
-                            0xFFA3D3A2), // Background color for the button
+                        backgroundColor: const Color(0xFFA3D3A2),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 100, vertical: 15), // Button size
+                            horizontal: 100, vertical: 15),
                         shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(20), // Rounded corners
+                          borderRadius: BorderRadius.circular(20),
                         ),
                       ),
                       child: const Text(
@@ -168,13 +155,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    // Forgot Password and Register text
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                           onPressed: () {
-                            // Handle forgot password action
+                            // Navigate to the Register screen using Navigator.push
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ForgetScreen()),
+                            );
                           },
                           child: const Text(
                             'Forgot Password?',
@@ -183,11 +174,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20),
+                        const SizedBox(height: 10),
                         TextButton(
                           onPressed: () {
-                            // Navigate to the Register screen
-                            Get.off(() => const RegisterScreen());
+                            // Navigate to the Register screen using Navigator.push
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen()),
+                            );
                           },
                           child: const Text(
                             'New User? Register',
@@ -203,8 +198,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,31 +1,29 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
-import 'login_screen.dart';
+import 'login_screen.dart'; // Make sure this points to the correct login screen file
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
-
-  
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(const Duration(seconds: 2), () async {
-      // Obtain shared preferences.
-      Get.off(
-        const LoginScreen(),
+
+    // Set a timer to navigate to the login screen after 2 seconds
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,16 +43,15 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           // Push the "Created by" text to the bottom
           const Padding(
-            padding: EdgeInsets.only(
-                bottom: 20.0), // Adjust the padding if needed
+            padding: EdgeInsets.only(bottom: 20.0),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text(
                 'Created by NVR',
                 style: TextStyle(
-                  fontSize: 16, // Adjust the font size as needed
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black, // Adjust the text color if needed
+                  color: Colors.black,
                 ),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key}) : super(key: key);
+  const VerificationScreen({super.key});
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();
@@ -34,7 +34,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
               child: Image.asset(
                 'assets/images/SKR 1 (splash logo).jpg', // Add your logo asset here
                 width: screenWidth * 0.6, // Adjust logo width as needed
-                height: 200.0,
+                height: 100.0,
               ),
             ),
             // Bottom section for verification code
@@ -53,6 +53,15 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // gray line above the title
+                      Center(
+                        child: Container(
+                          width: 50.0,
+                          height: 3.0,
+                          color: Colors.grey,
+                          margin: const EdgeInsets.only(bottom: 20.0),
+                        ),
+                      ),
                       const SizedBox(height: 30.0),
                       const Text(
                         'Verification',

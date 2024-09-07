@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:user_panel/Screens/login_screen.dart'; // Import GetX package
 
-class Forgetscreen extends StatefulWidget {
-  const Forgetscreen({super.key});
+class ForgetScreen extends StatefulWidget {
+  const ForgetScreen({Key? key}) : super(key: key);
 
   @override
-  State<Forgetscreen> createState() => _ForgetScreenState();
+  State<ForgetScreen> createState() => _ForgetScreenState();
 }
 
-class _ForgetScreenState extends State<Forgetscreen> {
+class _ForgetScreenState extends State<ForgetScreen> {
   @override
   Widget build(BuildContext context) {
-    // Use MediaQuery to get the size of the screen
     final size = MediaQuery.of(context).size;
     final double screenHeight = size.height;
     final double screenWidth = size.width;
@@ -53,6 +54,15 @@ class _ForgetScreenState extends State<Forgetscreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // Small gray line above Sign Up text
+                    Center(
+                      child: Container(
+                        width: 50.0,
+                        height: 3.0,
+                        color: Colors.grey,
+                        margin: const EdgeInsets.only(bottom: 20.0),
+                      ),
+                    ),
                     // forget title
                     const Text(
                       'Forget Password',
@@ -70,62 +80,59 @@ class _ForgetScreenState extends State<Forgetscreen> {
                         Text(
                           'Phone Number', // Label text above the TextField
                           style: TextStyle(
-                            color: Colors.grey[
-                                700], // Match the label color from the image
-                            fontSize:
-                                16, // Adjust the font size to match the image
-                            fontWeight: FontWeight
-                                .bold, // Bold text to match the image style
+                            color: Colors.grey[700], // Label color
+                            fontSize: 16, // Label font size
+                            fontWeight: FontWeight.bold, // Label bold
                           ),
                         ),
-                        const SizedBox(
-                            height:
-                                8.0), // Spacing between the label and the TextField
+                        const SizedBox(height: 8.0), // Spacing
                         TextField(
                           decoration: InputDecoration(
-                            hintText:
-                                'Enter your phone number', // Placeholder text inside the TextField
+                            hintText: 'Enter your phone number', // Placeholder
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(
-                                  10.0), // Rounded corners
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
                           ),
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 20),
-                    // back to sign in field
+                    // Back to sign in field
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextButton(
                           onPressed: () {
-                            // Handle forgot password action
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
                           },
                           child: const Text(
-                            'Back to Sign in',
+                            'Back to Sign In',
                             style: TextStyle(
                               color: Colors.grey,
-                              fontSize:
-                                  20, // Increase the size to make the text larger
-                              fontWeight: FontWeight
-                                  .bold, // Optional: Make the text bold
+                              fontSize: 20, // Increase text size
+                              fontWeight: FontWeight.bold, // Bold text
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 30),
-                        // Login button
+                        // Send OTP button
                         ElevatedButton(
                           onPressed: () {
-                            // Handle forget password action
+                            // Handle forget password action (send OTP)
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(
-                                0xFFA3D3A2), // Background color for the button
+                            backgroundColor:
+                                const Color(0xFFA3D3A2), // Button color
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 100, vertical: 15), // Button size
+                              horizontal: 100,
+                              vertical: 15,
+                            ), // Button size
                             shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(20), // Rounded corners
