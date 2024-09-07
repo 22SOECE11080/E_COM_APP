@@ -6,6 +6,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.green[50],
       appBar: AppBar(
+        
         backgroundColor: Colors.green[50],
         elevation: 0,
         leading: IconButton(
