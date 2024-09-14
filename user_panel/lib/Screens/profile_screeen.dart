@@ -13,199 +13,162 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final double screenWidth = size.width;
 
     return Scaffold(
-      body: Column(
-        children: [
-          // Top section with profile logo
-          Container(
-            height: size.height * 0.3, // 30% of screen height
-            width: screenWidth,
-            decoration: const BoxDecoration(
-              color: Color(0xFFE7F2E4),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg', // Replace with actual image
-                width: screenWidth * 0.6,
-                height: 150.0,
-              ),
-            ),
+      backgroundColor: const Color(0xFFE7F2E4), // Light green background
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.green),
+          onPressed: () {
+            // Handle back action
+          },
+        ),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
           ),
-          // Bottom section with profile form
-          Expanded(
-            child: Container(
-              width: screenWidth,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50),
-                  topRight: Radius.circular(50),
-                ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            // Profile image
+            const Center(
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage(
+                    'assets/images/logo.png'), // Replace with your logo image
               ),
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 30),
-                    Center(
-                      child: Container(
-                        width: 50.0,
-                        height: 3.0,
-                        color: Colors.grey,
-                        margin: const EdgeInsets.only(bottom: 20.0),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  // Name field
+                  buildTextField(
+                    labelText: 'Name',
+                    hintText: 'Nishant',
+                    icon: Icons.person,
+                  ),
+                  const SizedBox(height: 20),
+                  // Email field
+                  buildTextField(
+                    labelText: 'Your Email',
+                    hintText: 'nishanttaliya@gmail.com',
+                    icon: Icons.email,
+                  ),
+                  const SizedBox(height: 20),
+                  // Phone Number field
+                  buildTextField(
+                    labelText: 'Phone Number',
+                    hintText: '9999999999',
+                    icon: Icons.phone,
+                  ),
+                  const SizedBox(height: 20),
+                  // Password field
+                  buildPasswordField(),
+                  const SizedBox(height: 30),
+                  // Save Changes button
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle save action
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA3D3A2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 100, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    const Text(
-                      'My Profile',
+                    child: const Text(
+                      'Save Changes',
                       style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 30),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Name',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter your name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Email',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter your email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Phone Number',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter your phone number',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Password',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          obscureText: !_isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: 'Enter your password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Handle save profile action
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFA3D3A2),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 100, vertical: 15),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: const Text(
-                        'Save Changes',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search, color: Colors.green),
+            label: '',
           ),
         ],
+      ),
+    );
+  }
+
+  // Helper function to build text fields
+  Widget buildTextField(
+      {required String labelText,
+      required String hintText,
+      required IconData icon}) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: Icon(icon, color: Colors.green),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    );
+  }
+
+  // Helper function to build the password field
+  Widget buildPasswordField() {
+    return TextField(
+      obscureText: !_isPasswordVisible,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        hintText: 'Enter your password',
+        prefixIcon: const Icon(Icons.lock, color: Colors.green),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.green,
+          ),
+          onPressed: () {
+            setState(() {
+              _isPasswordVisible = !_isPasswordVisible;
+            });
+          },
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        filled: true,
+        fillColor: Colors.white,
       ),
     );
   }

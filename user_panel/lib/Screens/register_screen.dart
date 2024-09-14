@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
+                'aassets/images/satvakrushi_logo.jpg',
                 width: screenWidth * 0.6,
                 height: 100.0,
               ),

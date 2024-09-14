@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:user_panel/Screens/login_screen.dart'; // Import GetX package
+import 'package:user_panel/Screens/login_screen.dart';
+import 'package:user_panel/Screens/verification_screen.dart'; // Import GetX package
 
 class ForgetScreen extends StatefulWidget {
-  const ForgetScreen({Key? key}) : super(key: key);
+  const ForgetScreen({super.key});
 
   @override
   State<ForgetScreen> createState() => _ForgetScreenState();
@@ -32,7 +32,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
               ),
               child: Center(
                 child: Image.asset(
-                  'assets/images/SKR 1 (splash logo).jpg', // Add your logo asset here
+                  'assets/images/satvakrushi_logo.jpg', // Add your logo asset here
                   width: screenWidth * 0.6, // Adjust logo width as needed
                   height: 200.0,
                 ),
@@ -125,6 +125,13 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         ElevatedButton(
                           onPressed: () {
                             // Handle forget password action (send OTP)
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const VerificationScreen(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:

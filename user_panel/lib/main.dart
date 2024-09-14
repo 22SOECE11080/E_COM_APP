@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/login_screen.dart';
-import 'package:user_panel/Screens/newpassword_screen.dart';
-import 'package:user_panel/Screens/register_screen.dart';
-import 'package:user_panel/Screens/splash_screen.dart';
-import 'package:user_panel/Screens/verification_screen.dart';
 
-import 'Screens/homepage_screen.dart';
-import 'Screens/profile_screeen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'User Panel',
-      home: ProfileScreen(),
+    return MaterialApp(
+      title: 'E-Commarce Application',
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+      ),
+      home: const LoginScreen(),
     );
   }
 }

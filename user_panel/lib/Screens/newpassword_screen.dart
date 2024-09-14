@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/register_screen.dart';
 
 class NewpasswordScreen extends StatefulWidget {
   const NewpasswordScreen({super.key});
@@ -28,7 +29,7 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
             ),
             child: Center(
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
+                'assets/images/satvakrushi_logo.jpg',
                 width: screenWidth * 0.5, // Adjust logo width as needed
                 height: screenWidth * 0.5, // Adjust logo height as needed
                 fit: BoxFit.contain, // Ensure the image fits properly
@@ -144,6 +145,12 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             // Handle Reset Password logic here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const RegisterScreen(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFE7F2E4),

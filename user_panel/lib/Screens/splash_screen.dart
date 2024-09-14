@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Expanded(
             child: Center(
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
+                'assets/images/satvakrushi_logo.jpg',
                 width: 150, // Adjust the width as needed
                 height: 150, // Adjust the height as needed
               ),
