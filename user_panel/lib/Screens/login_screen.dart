@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:user_panel/Screens/forgot_password_screeen.dart';
+import 'package:user_panel/Screens/homepage_screen.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,9 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             child: Center(
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
-                width: screenWidth * 0.6,
-                height: 150.0,
+                'assets/images/satvakrushi_logo.jpg',
+                width: screenWidth,
+                height: 800.0,
               ),
             ),
           ),
@@ -62,6 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         margin: const EdgeInsets.only(bottom: 20.0),
                       ),
                     ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
                     const Text(
                       'Login',
                       style: TextStyle(
@@ -70,7 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(
+                      height: 40.0,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -133,10 +138,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(
+                      height: 50.0,
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         // Handle login action
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFFA3D3A2),

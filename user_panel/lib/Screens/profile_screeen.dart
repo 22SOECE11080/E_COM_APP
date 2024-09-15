@@ -1,99 +1,174 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  bool _isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      backgroundColor: Colors.green[50],
+      backgroundColor: const Color(0xFFE7F2E4), // Light green background
       appBar: AppBar(
-        
-        backgroundColor: Colors.green[50],
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {},
+          icon: const Icon(Icons.arrow_back, color: Colors.green),
+          onPressed: () {
+            // Handle back action
+          },
         ),
-        title: Text(
-          "MY PROFILE",
-          style: TextStyle(color: Colors.black),
+        title: const Text(
+          'My Profile',
+          style: TextStyle(
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage(
-                  'assets/profile_logo.png'), // Replace with your image
-            ),
-            SizedBox(height: 20),
-            _buildTextField(label: "NAME", initialValue: "Nishant"),
-            SizedBox(height: 16),
-            _buildTextField(
-                label: "YOUR EMAIL", initialValue: "nishanttaliya@gmail.com"),
-            SizedBox(height: 16),
-            _buildTextField(label: "PHONE NUMBER", initialValue: "9999999999"),
-            SizedBox(height: 16),
-            _buildPasswordField(),
-            SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("Save Changes"),
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.black,
-                backgroundColor: Colors.green[200],
-                minimumSize: Size(double.infinity, 48),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
+            const SizedBox(height: 20),
+            // Profile image
+            const Center(
+              child: CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage(
+                    'assets/images/logo.png'), // Replace with your logo image
               ),
             ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                children: [
+                  // Name field
+                  buildTextField(
+                    labelText: 'Name',
+                    hintText: 'Nishant',
+                    icon: Icons.person,
+                  ),
+                  const SizedBox(height: 20),
+                  // Email field
+                  buildTextField(
+                    labelText: 'Your Email',
+                    hintText: 'nishanttaliya@gmail.com',
+                    icon: Icons.email,
+                  ),
+                  const SizedBox(height: 20),
+                  // Phone Number field
+                  buildTextField(
+                    labelText: 'Phone Number',
+                    hintText: '9999999999',
+                    icon: Icons.phone,
+                  ),
+                  const SizedBox(height: 20),
+                  // Password field
+                  buildPasswordField(),
+                  const SizedBox(height: 30),
+                  // Save Changes button
+                  ElevatedButton(
+                    onPressed: () {
+                      // Handle save action
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA3D3A2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 100, vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: const Text(
+                      'Save Changes',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (index) {},
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search, color: Colors.green),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search, color: Colors.green),
+            label: '',
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildTextField(
-      {required String label, required String initialValue}) {
+  // Helper function to build text fields
+  Widget buildTextField(
+      {required String labelText,
+      required String hintText,
+      required IconData icon}) {
     return TextField(
       decoration: InputDecoration(
-        labelText: label,
+        labelText: labelText,
+        hintText: hintText,
+        prefixIcon: Icon(icon, color: Colors.green),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
       ),
-      controller: TextEditingController(text: initialValue),
     );
   }
 
-  Widget _buildPasswordField() {
+  // Helper function to build the password field
+  Widget buildPasswordField() {
     return TextField(
-      obscureText: true,
+      obscureText: !_isPasswordVisible,
       decoration: InputDecoration(
-        labelText: 'PASSWORD',
+        labelText: 'Password',
+        hintText: 'Enter your password',
+        prefixIcon: const Icon(Icons.lock, color: Colors.green),
+        suffixIcon: IconButton(
+          icon: Icon(
+            _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.green,
+          ),
+          onPressed: () {
+            setState(() {
+              _isPasswordVisible = !_isPasswordVisible;
+            });
+          },
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
         filled: true,
         fillColor: Colors.white,
-        suffixIcon: Icon(Icons.visibility_off),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/newpassword_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -32,7 +33,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg', // Add your logo asset here
+                'assets/images/satvakrushi_logo.jpg', // Add your logo asset here
                 width: screenWidth * 0.6, // Adjust logo width as needed
                 height: 100.0,
               ),
@@ -123,6 +124,12 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       ElevatedButton(
                         onPressed: () {
                           // Logic to verify the entered code
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const NewpasswordScreen(),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
