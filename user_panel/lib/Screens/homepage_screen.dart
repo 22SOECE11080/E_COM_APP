@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
               top: 0,
               bottom: 0,
               child: Image.asset(
-                'assets/images/SKR_logo.png', // Add the logo to the banner
+                'assets/images/homepage.png', // Add the logo to the banner
                 width: 100,
               ),
             ),
@@ -153,9 +153,9 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildCategoryChip(
-                  "Pesticides", "assets/images/pesticide_icon.png"),
-              _buildCategoryChip("Grains", "assets/images/grains_icon.png"),
-              _buildCategoryChip("Herbs", "assets/images/herbs_icon.png"),
+                  "Pesticides", "assets/images/pestiside.png"),
+              _buildCategoryChip("Grains", "assets/images/grains.png"),
+              _buildCategoryChip("Herbs", "assets/images/herbales.png"),
             ],
           ),
         ],
