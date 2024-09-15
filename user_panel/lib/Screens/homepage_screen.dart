@@ -92,18 +92,18 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Are you a Farmer?",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Get your Products here",
-                    style: TextStyle(fontSize: 16, color: Colors.black87),
-                  ),
+                  // Text(
+                  //   "Are you a Farmer?",
+                  //   style: TextStyle(
+                  //     fontSize: 18,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 5),
+                  // Text(
+                  //   "Get your Products here",
+                  //   style: TextStyle(fontSize: 16, color: Colors.black87),
+                  // ),
                 ],
               ),
             ),
@@ -114,6 +114,7 @@ class _HomePageState extends State<HomePage> {
               child: Image.asset(
                 'assets/images/homepage.png', // Add the logo to the banner
                 width: 100,
+                height: 150,
               ),
             ),
           ],
@@ -229,7 +230,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'assets/images/elegant.png', // Add the logo to the product card
+              'assets/images/cyclops.png', // Add the logo to the product card
               height: 100,
               width: 100,
             ),
