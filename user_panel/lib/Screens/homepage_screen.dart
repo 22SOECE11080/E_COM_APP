@@ -229,7 +229,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'assets/images/SKR_logo.png', // Add the logo to the product card
+              'assets/images/elegant.png', // Add the logo to the product card
               height: 100,
               width: 100,
             ),
