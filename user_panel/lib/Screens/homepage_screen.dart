@@ -92,18 +92,18 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Are you a Farmer?",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Get your Products here",
-                    style: TextStyle(fontSize: 16, color: Colors.black87),
-                  ),
+                  // Text(
+                  //   "Are you a Farmer?",
+                  //   style: TextStyle(
+                  //     fontSize: 18,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 5),
+                  // Text(
+                  //   "Get your Products here",
+                  //   style: TextStyle(fontSize: 16, color: Colors.black87),
+                  // ),
                 ],
               ),
             ),
@@ -112,8 +112,9 @@ class _HomePageState extends State<HomePage> {
               top: 0,
               bottom: 0,
               child: Image.asset(
-                'assets/images/SKR_logo.png', // Add the logo to the banner
+                'assets/images/homepage.png', // Add the logo to the banner
                 width: 100,
+                height: 150,
               ),
             ),
           ],
@@ -153,9 +154,9 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildCategoryChip(
-                  "Pesticides", "assets/images/pesticide_icon.png"),
-              _buildCategoryChip("Grains", "assets/images/grains_icon.png"),
-              _buildCategoryChip("Herbs", "assets/images/herbs_icon.png"),
+                  "Pesticides", "assets/images/pestiside.png"),
+              _buildCategoryChip("Grains", "assets/images/grains.png"),
+              _buildCategoryChip("Herbs", "assets/images/herbales.png"),
             ],
           ),
         ],
@@ -229,7 +230,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'assets/images/SKR_logo.png', // Add the logo to the product card
+              'assets/images/cyclops.png', // Add the logo to the product card
               height: 100,
               width: 100,
             ),
