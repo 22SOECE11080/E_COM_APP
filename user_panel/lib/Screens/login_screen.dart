@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Center(
               child: Image.asset(
                 'assets/images/satvakrushi_logo.jpg',
-                width: screenWidth,
-                height: 800.0,
+                width: screenWidth * 1.5,
+                height: 1000.0,
               ),
             ),
           ),

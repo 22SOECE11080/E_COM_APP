@@ -33,11 +33,11 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/images/SKR_logo.png', // Add the logo here
-              width: 40,
-              height: 40,
-            ),
+            // Image.asset(
+            //   'assets/images/SKR_logo.png', // Add the logo here
+            //   width: 40,
+            //   height: 40,
+            // ),
             const SizedBox(width: 10),
             Expanded(
               child: Container(
@@ -113,8 +113,8 @@ class _HomePageState extends State<HomePage> {
               bottom: 0,
               child: Image.asset(
                 'assets/images/homepage.png', // Add the logo to the banner
-                width: 100,
-                height: 150,
+                width: 400,
+                height: 400,
               ),
             ),
           ],
