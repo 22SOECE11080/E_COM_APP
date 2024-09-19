@@ -10,7 +10,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xFFE7F2E4),
       appBar: AppBar(
@@ -31,13 +30,20 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+<<<<<<< HEAD
             // Image.asset(
             //   'assets/images/SKR_logo.png', // Add the logo here
             //   width: 40,
             //   height: 40,
             // ),
+=======
+            Image.asset(
+              'assets/images/SKR 1 (splash logo).jpg', // Add the logo here
+              width: 40,
+              height: 40,
+            ),
+>>>>>>> c3ec42c6aae1a35df26b6a0c5db7cbb12807133a
             const SizedBox(width: 10),
             Expanded(
               child: Container(
@@ -86,27 +92,6 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Stack(
           children: [
-            const Positioned(
-              top: 20,
-              left: 20,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Text(
-                  //   "Are you a Farmer?",
-                  //   style: TextStyle(
-                  //     fontSize: 18,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
-                  // SizedBox(height: 5),
-                  // Text(
-                  //   "Get your Products here",
-                  //   style: TextStyle(fontSize: 16, color: Colors.black87),
-                  // ),
-                ],
-              ),
-            ),
             Positioned(
               right: 0,
               top: 0,
@@ -153,8 +138,7 @@ class _HomePageState extends State<HomePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildCategoryChip(
-                  "Pesticides", "assets/images/pestiside.png"),
+              _buildCategoryChip("Pesticides", "assets/images/pestiside.png"),
               _buildCategoryChip("Grains", "assets/images/grains.png"),
               _buildCategoryChip("Herbs", "assets/images/herbales.png"),
             ],
@@ -178,7 +162,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Product Grid Section with Logo
+  // Product Grid Section with centered content
   Widget _buildProductGrid(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -199,7 +183,7 @@ class _HomePageState extends State<HomePage> {
             itemCount: 4,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.75,
+              childAspectRatio: 0.85, // Adjusted aspect ratio
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
             ),
@@ -212,8 +196,10 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // Product Card centered with fitting size
   Widget _buildProductCard() {
     return Container(
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
@@ -226,19 +212,20 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset(
-              'assets/images/cyclops.png', // Add the logo to the product card
-              height: 100,
-              width: 100,
-            ),
+          Image.asset(
+            'assets/images/cyclops.png', // Add the logo to the product card
+            height: 100,
+            width: 100,
+            fit: BoxFit.cover,
           ),
+          const SizedBox(height: 10),
           const Text(
             "Elegant",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
+          const SizedBox(height: 5),
           const Text("\$99", style: TextStyle(color: Colors.green)),
         ],
       ),
