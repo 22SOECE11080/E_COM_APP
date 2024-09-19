@@ -49,11 +49,13 @@ class _ForgetScreenState extends State<ForgetScreen> {
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: Padding(
+              child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                  const SizedBox(height: 30),
+
                     // Small gray line above Sign Up text
                     Center(
                       child: Container(
@@ -72,7 +74,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 80),
                     // Phone number field
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

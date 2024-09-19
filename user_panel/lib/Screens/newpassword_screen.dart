@@ -76,10 +76,17 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                          Text(
+                            'Enter New Password',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         TextField(
                           obscureText: !_isNewPasswordVisible,
                           decoration: InputDecoration(
-                            labelText: 'Enter New Password',
                             hintText: 'Enter New Password',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -108,11 +115,18 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                            'Enter Conform Password',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         TextField(
                           obscureText: !_isConfirmPasswordVisible,
                           decoration: InputDecoration(
-                            labelText: 'Confirm Password',
-                            hintText: 'Confirm Password',
+                            hintText: 'Confrom Password',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -137,36 +151,36 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                     
                     const SizedBox(height: 30.0),
                     
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // Handle reset password logic here
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA3D3A2), // Button color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 100.0, vertical: 15.0),
-                          child: Text(
-                            'Reset Password',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                   Center(
+  child: ElevatedButton(
+    onPressed: () {
+      // Handle reset password logic here
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RegisterScreen(),
+        ),
+      );
+    },
+    style: ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFFA3D3A2), // Button color
+      padding: const EdgeInsets.symmetric(
+        horizontal: 80, // Adjust width as needed
+        vertical: 15,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20), // Rounded corners
+      ),
+    ),
+    child: const Text(
+      'Reset Password',
+      style: TextStyle(
+        fontSize: 18,
+        color: Colors.black,
+      ),
+    ),
+  ),
+),
                   ],
                 ),
               ),
