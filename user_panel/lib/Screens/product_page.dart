@@ -4,7 +4,7 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50],
+      backgroundColor: Colors.green[100],
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
