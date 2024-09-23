@@ -133,7 +133,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color(0xFFE7F2E4), // Button color
+                                const Color(0xFFA3D3A2), // Button color
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
@@ -146,7 +146,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black, // Button text color
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

@@ -32,8 +32,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               child: Image.asset(
                 'assets/images/satvakrushi_logo.jpg',
-                width: screenWidth * 0.6,
-                height: 100.0,
+                width: screenWidth * 1.5,
+                height: 1000.0,
               ),
             ),
             Expanded(
@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const Text(
-                          "NAME",
+                          "Name",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -91,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 20.0),
                         const Text(
-                          "YOUR EMAIL",
+                          "Your E-mail",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -111,7 +111,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         const SizedBox(height: 20.0),
                         const Text(
-                          "PASSWORD",
+                          "Password",
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 16,
@@ -149,7 +149,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               // Handle Sign-Up logic here
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFE7F2E4),
+                              backgroundColor:const Color(0xFFA3D3A2),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
@@ -160,9 +160,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: Text(
                                 'Sign Up',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 18,
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
