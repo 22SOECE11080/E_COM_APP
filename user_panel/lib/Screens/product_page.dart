@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
+  const ProductPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,9 +179,9 @@ class ProductPage extends StatelessWidget {
             style: TextStyle(color: Colors.grey, fontSize: 12),
           ),
           const SizedBox(height: 5),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
+            children: [
               Text(
                 "\$99",
                 style: TextStyle(
