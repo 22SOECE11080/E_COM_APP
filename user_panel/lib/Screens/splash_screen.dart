@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE7F2E4), // Set the background color
+      backgroundColor: Colors.white, // Set the background color
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -35,9 +35,9 @@ class _SplashScreenState extends State<SplashScreen> {
           Expanded(
             child: Center(
               child: Image.asset(
-                'assets/images/satvakrushi_logo.jpg',
-                width: 150, // Adjust the width as needed
-                height: 150, // Adjust the height as needed
+                'assets/images/SKR.png',
+                width: 300, // Adjust the width as needed
+                height: 300, // Adjust the height as needed
               ),
             ),
           ),
@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Text(
                 'Created by NVR',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
