@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
+  const DashboardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // AppBar section with search bar
       appBar: AppBar(
-        backgroundColor: Color(0xFFE9F5EC),
+        backgroundColor: const Color(0xFFE9F5EC),
         elevation: 0,
         title: TextField(
           decoration: InputDecoration(
             hintText: 'Hinted search text',
-            prefixIcon: Icon(Icons.search),
+            prefixIcon: const Icon(Icons.search),
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(
@@ -22,7 +24,7 @@ class DashboardScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle, color: Colors.black),
+            icon: const Icon(Icons.account_circle, color: Colors.black),
             onPressed: () {},
           ),
         ],
@@ -38,11 +40,11 @@ class DashboardScreen extends StatelessWidget {
               child: Image.asset('assets/images/satvakrushi_logo.jpg'),
             ),
             ListTile(
-              leading: Icon(Icons.dashboard, color: Colors.green),
-              title: Text('Dashboard'),
+              leading: const Icon(Icons.dashboard, color: Colors.green),
+              title: const Text('Dashboard'),
               onTap: () {},
             ),
-            ExpansionTile(
+            const ExpansionTile(
               leading:
                   Icon(Icons.production_quantity_limits, color: Colors.green),
               title: Text('Products'),
@@ -50,43 +52,43 @@ class DashboardScreen extends StatelessWidget {
                 ListTile(title: Text('Product List')),
               ],
             ),
-            ExpansionTile(
+            const ExpansionTile(
               leading: Icon(Icons.receipt_long, color: Colors.green),
               title: Text('Order List'),
               children: [
                 ListTile(title: Text('Orders')),
               ],
             ),
-            ExpansionTile(
+            const ExpansionTile(
               leading: Icon(Icons.shopping_cart, color: Colors.green),
               title: Text('Current Orders'),
               children: [
                 ListTile(title: Text('Current Orders')),
               ],
             ),
-            ExpansionTile(
+            const ExpansionTile(
               leading: Icon(Icons.people, color: Colors.green),
               title: Text('Customer'),
               children: [
                 ListTile(title: Text('Customer List')),
               ],
             ),
-            ExpansionTile(
+            const ExpansionTile(
               leading: Icon(Icons.analytics, color: Colors.green),
               title: Text('Analytics'),
               children: [
                 ListTile(title: Text('Reports')),
               ],
             ),
-            Divider(),
+            const Divider(),
             ListTile(
-              leading: Icon(Icons.help, color: Colors.green),
-              title: Text('Help'),
+              leading: const Icon(Icons.help, color: Colors.green),
+              title: const Text('Help'),
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(Icons.logout, color: Colors.green),
-              title: Text('Logout'),
+              leading: const Icon(Icons.logout, color: Colors.green),
+              title: const Text('Logout'),
               onTap: () {},
             ),
           ],
@@ -100,12 +102,12 @@ class DashboardScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Dashboard title
-              Text(
+              const Text(
                 'Dashboard',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               // Recent Product Table and Recent Sell Table
               Expanded(
                 child: ListView(
@@ -113,7 +115,7 @@ class DashboardScreen extends StatelessWidget {
                     Center(
                         child: _buildTableSection(
                             'Recent Product', _buildProductDataTable())),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Center(
                         child: _buildTableSection(
                             'Recent Sell', _buildSellDataTable())),
@@ -129,8 +131,8 @@ class DashboardScreen extends StatelessWidget {
         onPressed: () {
           // Add new item action
         },
-        label: Text('Create new'),
-        icon: Icon(Icons.add),
+        label: const Text('Create new'),
+        icon: const Icon(Icons.add),
         backgroundColor: Colors.green,
       ),
     );
@@ -143,10 +145,10 @@ class DashboardScreen extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         table,
       ],
     );
@@ -167,84 +169,84 @@ class DashboardScreen extends StatelessWidget {
         ],
         rows: <DataRow>[
           DataRow(cells: <DataCell>[
-            DataCell(Text('Elegant')),
-            DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
-            DataCell(Text('#25426')),
-            DataCell(Text('Nov 8th, 2023')),
-            DataCell(Text('500')),
-            DataCell(Text('₹200.00')),
+            const DataCell(Text('Elegant')),
+            const DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
+            const DataCell(Text('#25426')),
+            const DataCell(Text('Nov 8th, 2023')),
+            const DataCell(Text('500')),
+            const DataCell(Text('₹200.00')),
             DataCell(Row(
               children: [
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Edit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         Colors.lightBlue, // Light blue color for Edit
                   ),
+                  child: const Text('Edit'),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Delete'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         Colors.redAccent[100], // Light red color for Delete
                   ),
+                  child: const Text('Delete'),
                 ),
               ],
             )),
           ]),
           DataRow(cells: <DataCell>[
-            DataCell(Text('Elegant')),
-            DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
-            DataCell(Text('#25425')),
-            DataCell(Text('Nov 7th, 2023')),
-            DataCell(Text('450')),
-            DataCell(Text('₹200.00')),
+            const DataCell(Text('Elegant')),
+            const DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
+            const DataCell(Text('#25425')),
+            const DataCell(Text('Nov 7th, 2023')),
+            const DataCell(Text('450')),
+            const DataCell(Text('₹200.00')),
             DataCell(Row(
               children: [
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Edit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.lightBlue,
                   ),
+                  child: const Text('Edit'),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Delete'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent[100],
                   ),
+                  child: const Text('Delete'),
                 ),
               ],
             )),
           ]),
           DataRow(cells: <DataCell>[
-            DataCell(Text('Elegant')),
-            DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
-            DataCell(Text('#25424')),
-            DataCell(Text('Nov 6th, 2023')),
-            DataCell(Text('700')),
-            DataCell(Text('₹200.00')),
+            const DataCell(Text('Elegant')),
+            const DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
+            const DataCell(Text('#25424')),
+            const DataCell(Text('Nov 6th, 2023')),
+            const DataCell(Text('700')),
+            const DataCell(Text('₹200.00')),
             DataCell(Row(
               children: [
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Edit'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.lightBlue,
                   ),
+                  child: const Text('Edit'),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: null,
-                  child: Text('Delete'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent[100],
                   ),
+                  child: const Text('Delete'),
                 ),
               ],
             )),

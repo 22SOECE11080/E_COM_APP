@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFE9F5EC), // Light green background color
+      backgroundColor: const Color(0xFFE9F5EC), // Light green background color
       body: Center(
         child: Container(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
               maxWidth: 1000), // Limits max width for responsiveness
           padding: const EdgeInsets.all(20.0),
           child: Row(
@@ -26,14 +28,14 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       _buildFeatureRow(
                           Icons.local_florist, 'Organic Groceries'),
-                      SizedBox(height: 20), // Spacing between items
+                      const SizedBox(height: 20), // Spacing between items
                       _buildFeatureRow(
                           Icons.restaurant, 'Whole foods and vegetables'),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       _buildFeatureRow(Icons.delivery_dining, 'Fast Delivery'),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       _buildFeatureRow(Icons.refresh, 'Easy Refund and Return'),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       _buildFeatureRow(Icons.security, 'Secure and Safe'),
                     ],
                   ),
@@ -58,61 +60,61 @@ class LoginScreen extends StatelessWidget {
                       // Logo and Header Section
                       Image.asset('assets/images/satvakrushi_logo.jpg',
                           height: 80), // Adjusted logo size
-                      SizedBox(height: 20),
-                      Text(
+                      const SizedBox(height: 20),
+                      const Text(
                         'Login with SATTVA KRUSHI',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Enter your number we will send 6 digit OTP on this number',
                         style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       // Phone Number Input
                       TextField(
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
                           labelText: 'Phone Number',
-                          prefixIcon: Icon(Icons.phone),
-                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                          prefixIcon: const Icon(Icons.phone),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       // Password Input
                       TextField(
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: Icon(Icons.visibility_off),
-                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                          prefixIcon: const Icon(Icons.lock),
+                          suffixIcon: const Icon(Icons.visibility_off),
+                          contentPadding: const EdgeInsets.symmetric(vertical: 15.0),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       // Login Button
                       ElevatedButton(
                         onPressed: () {
                           // Add login action here
                         },
-                        child: Text('Login'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(
+                          backgroundColor: const Color(
                               0xFFB8DABA), // Button color similar to the image
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 14.0, horizontal: 60.0),
                         ),
+                        child: const Text('Login'),
                       ),
                     ],
                   ),
@@ -130,10 +132,10 @@ class LoginScreen extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, color: Colors.green, size: 28), // Slightly larger icons
-        SizedBox(width: 15),
+        const SizedBox(width: 15),
         Text(
           feature,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ],
     );
