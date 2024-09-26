@@ -34,15 +34,15 @@ class _HomePageState extends State<HomePage> {
         ],
         title: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
-                width: 40,
-                height: 40,
-                fit: BoxFit.cover,
-              ),
-            ),
+            // ClipRRect(
+            //   borderRadius: BorderRadius.circular(20.0),
+            //   child: Image.asset(
+            //     'assets/images/SKR 1 (splash logo).jpg',
+            //     width: 40,
+            //     height: 40,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             const SizedBox(width: 10),
             Expanded(
               child: Container(
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
             child: DropdownButton<String>(
               isExpanded: true,
               value: 'Select Language',
-              items: ['Select Language', 'English', 'Hindi', 'Spanish']
+              items: ['Select Language', 'English', 'Hindi', 'Gujarati']
                   .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
@@ -188,7 +188,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
-        height: 240,
+        height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
           color: const Color(0xFFD6E8D4),
@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color:const Color(0xFF005843),
                 ),
               ),
               GestureDetector(
@@ -240,7 +240,7 @@ class _HomePageState extends State<HomePage> {
                   "View All >",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.green,
+                   color:const Color(0xFF005843),
                   ),
                 ),
               ),

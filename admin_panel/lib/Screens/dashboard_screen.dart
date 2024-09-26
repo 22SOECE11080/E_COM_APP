@@ -17,8 +17,9 @@ class DashboardScreen extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(26),
               borderSide: BorderSide.none,
+          
             ),
           ),
         ),
@@ -35,9 +36,10 @@ class DashboardScreen extends StatelessWidget {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.green[100],
+                color:Colors.white,
               ),
               child: Image.asset('assets/images/satvakrushi_logo.jpg'),
+              
             ),
             ListTile(
               leading: const Icon(Icons.dashboard, color: Colors.green),
