@@ -34,16 +34,6 @@ class _HomePageState extends State<HomePage> {
         ],
         title: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.asset(
-                'assets/images/SKR 1 (splash logo).jpg',
-                width: 40,
-                height: 40,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(width: 10),
             Expanded(
               child: Container(
                 height: 40,
@@ -233,7 +223,8 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ProductPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const ProductPage()),
                   );
                 },
                 child: const Text(
@@ -341,14 +332,16 @@ class _HomePageState extends State<HomePage> {
         children: [
           Stack(
             children: [
+              // Ensure the image is properly resized and fits the container
               Container(
-                height: 120,
+                height: 100, // Adjust the height to be smaller
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: const DecorationImage(
-                    image: AssetImage('assets/images/product_image.png'),
-                    fit: BoxFit.cover,
+                    image: AssetImage(
+                        'assets/images/cyclops.png'), // Ensure path is correct
+                    fit: BoxFit.contain, // Adjust fit for better appearance
                   ),
                 ),
               ),
@@ -388,6 +381,10 @@ class _HomePageState extends State<HomePage> {
         // Handle navigation logic
       },
       selectedItemColor: Colors.green,
+      unselectedItemColor:
+          Colors.grey, // Optional: Different color for unselected items
+      elevation: 10, // Adds a shadow effect
+      type: BottomNavigationBarType.fixed, // Keeps labels visible for all tabs
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
