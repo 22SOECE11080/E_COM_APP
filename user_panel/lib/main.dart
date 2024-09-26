@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:user_panel/Screens/login_screen.dart';
+import 'package:user_panel/Screens/landing_screen.dart';
 import 'package:user_panel/Screens/splash_screen.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const SplashScreen(),
+      home: SplashScreen(),
     );
   }
 }
