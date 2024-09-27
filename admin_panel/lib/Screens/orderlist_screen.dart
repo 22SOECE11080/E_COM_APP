@@ -107,7 +107,7 @@ class OrderListScreen extends StatelessWidget {
             crossAxisAlignment:
                 CrossAxisAlignment.center, // Center align horizontally
             children: [
-              Center(
+              const Center(
                 child: Text(
                   'Orders List',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

@@ -106,7 +106,7 @@ class OrderDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Order Details',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
@@ -118,12 +118,12 @@ class OrderDetailsScreen extends StatelessWidget {
               const SizedBox(height: 20),
               DataTable(
                 columnSpacing: 15,
-                dataRowColor: MaterialStateProperty.resolveWith<Color?>(
-                  (Set<MaterialState> states) {
+                dataRowColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
                     return Colors.white; // Set body rows to white
                   },
                 ),
-                headingRowColor: MaterialStateColor.resolveWith(
+                headingRowColor: WidgetStateColor.resolveWith(
                     (states) => Colors.green.shade100),
                 border: TableBorder.all(color: Colors.grey),
                 columns: const <DataColumn>[
@@ -137,14 +137,14 @@ class OrderDetailsScreen extends StatelessWidget {
                 ],
                 rows: <DataRow>[
                   DataRow(cells: <DataCell>[
-                    DataCell(Center(child: Text('Elegant'))),
+                    const DataCell(Center(child: Text('Elegant'))),
                     DataCell(Center(
                         child: Image.asset('assets/images/cyclops.png',
                             width: 40))),
-                    DataCell(Center(child: Text('#25426'))),
-                    DataCell(Center(child: Text('Nov 8th, 2023'))),
-                    DataCell(Center(child: Text('Nishant'))),
-                    DataCell(
+                    const DataCell(Center(child: Text('#25426'))),
+                    const DataCell(Center(child: Text('Nov 8th, 2023'))),
+                    const DataCell(Center(child: Text('Nishant'))),
+                    const DataCell(
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -156,17 +156,17 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(Center(child: Text('₹200.00'))),
+                    const DataCell(Center(child: Text('₹200.00'))),
                   ]),
                   DataRow(cells: <DataCell>[
-                    DataCell(Center(child: Text('Supreme'))),
+                    const DataCell(Center(child: Text('Supreme'))),
                     DataCell(Center(
                         child: Image.asset('assets/images/cyclops.png',
                             width: 40))),
-                    DataCell(Center(child: Text('#25427'))),
-                    DataCell(Center(child: Text('Nov 9th, 2023'))),
-                    DataCell(Center(child: Text('Rohit'))),
-                    DataCell(
+                    const DataCell(Center(child: Text('#25427'))),
+                    const DataCell(Center(child: Text('Nov 9th, 2023'))),
+                    const DataCell(Center(child: Text('Rohit'))),
+                    const DataCell(
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -178,17 +178,17 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(Center(child: Text('₹350.00'))),
+                    const DataCell(Center(child: Text('₹350.00'))),
                   ]),
                   DataRow(cells: <DataCell>[
-                    DataCell(Center(child: Text('Classic'))),
+                    const DataCell(Center(child: Text('Classic'))),
                     DataCell(Center(
                         child: Image.asset('assets/images/cyclops.png',
                             width: 40))),
-                    DataCell(Center(child: Text('#25428'))),
-                    DataCell(Center(child: Text('Nov 10th, 2023'))),
-                    DataCell(Center(child: Text('Aditi'))),
-                    DataCell(
+                    const DataCell(Center(child: Text('#25428'))),
+                    const DataCell(Center(child: Text('Nov 10th, 2023'))),
+                    const DataCell(Center(child: Text('Aditi'))),
+                    const DataCell(
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -200,17 +200,17 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(Center(child: Text('₹250.00'))),
+                    const DataCell(Center(child: Text('₹250.00'))),
                   ]),
                   DataRow(cells: <DataCell>[
-                    DataCell(Center(child: Text('Modern'))),
+                    const DataCell(Center(child: Text('Modern'))),
                     DataCell(Center(
                         child: Image.asset('assets/images/cyclops.png',
                             width: 40))),
-                    DataCell(Center(child: Text('#25429'))),
-                    DataCell(Center(child: Text('Nov 11th, 2023'))),
-                    DataCell(Center(child: Text('Karan'))),
-                    DataCell(
+                    const DataCell(Center(child: Text('#25429'))),
+                    const DataCell(Center(child: Text('Nov 11th, 2023'))),
+                    const DataCell(Center(child: Text('Karan'))),
+                    const DataCell(
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -222,17 +222,17 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(Center(child: Text('₹0.00'))),
+                    const DataCell(Center(child: Text('₹0.00'))),
                   ]),
                   DataRow(cells: <DataCell>[
-                    DataCell(Center(child: Text('Vogue'))),
+                    const DataCell(Center(child: Text('Vogue'))),
                     DataCell(Center(
                         child: Image.asset('assets/images/cyclops.png',
                             width: 40))),
-                    DataCell(Center(child: Text('#25430'))),
-                    DataCell(Center(child: Text('Nov 12th, 2023'))),
-                    DataCell(Center(child: Text('Megha'))),
-                    DataCell(
+                    const DataCell(Center(child: Text('#25430'))),
+                    const DataCell(Center(child: Text('Nov 12th, 2023'))),
+                    const DataCell(Center(child: Text('Megha'))),
+                    const DataCell(
                       Center(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -244,7 +244,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(Center(child: Text('₹180.00'))),
+                    const DataCell(Center(child: Text('₹180.00'))),
                   ]),
                 ],
               ),

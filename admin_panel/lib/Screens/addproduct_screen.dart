@@ -221,7 +221,7 @@ class AddProductScreen extends StatelessWidget {
             fillColor: Colors.grey.shade100,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: Colors.grey),
+              borderSide: const BorderSide(color: Colors.grey),
             ),
             contentPadding: const EdgeInsets.all(10), // Added padding
           ),
@@ -233,6 +233,8 @@ class AddProductScreen extends StatelessWidget {
 }
 
 class DottedBorderBox extends StatelessWidget {
+  const DottedBorderBox({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -258,6 +260,8 @@ class DottedBorderBox extends StatelessWidget {
 }
 
 class ProductThumbnailList extends StatelessWidget {
+  const ProductThumbnailList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
