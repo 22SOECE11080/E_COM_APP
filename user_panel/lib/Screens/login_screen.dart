@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Login',
                           style: TextStyle(
                             fontSize: 18,
-                            color: const Color(0xFF005843),
+                            color: Color(0xFF005843),
                           ),
                         ),
                       ),
@@ -203,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               'New User? Register',
                               style: TextStyle(
-                            color: const Color(0xFF005843),
+                            color: Color(0xFF005843),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
