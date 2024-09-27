@@ -37,8 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Center(
               child: Image.asset(
                 'assets/images/SKR.png',
-                width: 300, // Adjust the width as needed
-                height: 300, // Adjust the height as needed
+                width: 400, // Adjust the width as needed
+                height: 400, // Adjust the height as needed
               ),
             ),
           ),

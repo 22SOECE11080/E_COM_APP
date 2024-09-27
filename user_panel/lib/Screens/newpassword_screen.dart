@@ -163,20 +163,21 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
       );
     },
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFFA3D3A2), // Button color
+      backgroundColor:  const Color(0xFFE7F2E4), // Button color
       padding: const EdgeInsets.symmetric(
         horizontal: 80, // Adjust width as needed
         vertical: 15,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20), // Rounded corners
+        borderRadius: BorderRadius.circular(20),
+         side: const BorderSide(color: Color(0xFFCEC9C9)),
       ),
     ),
     child: const Text(
       'Reset Password',
       style: TextStyle(
         fontSize: 18,
-        color: Colors.black,
+        color: const Color(0xFF005843),
       ),
     ),
   ),

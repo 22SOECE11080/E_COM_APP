@@ -62,18 +62,20 @@ class LandingPage extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
-                        Colors.green[300], // Adjust the button color as needed
+                     const Color(0xFFE7F2E4), // Button color
                     padding: const EdgeInsets.symmetric(
                         horizontal: 50, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
+                     side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                     ),
                   ),
                   child: const Text(
                     'Get Started >',
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white, // Text color for the button
+                      color: const Color(0xFF005843) , // Text color for the button
                     ),
                   ),
                 ),
