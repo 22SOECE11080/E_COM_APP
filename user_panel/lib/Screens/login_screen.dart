@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/satvakrushi_logo.jpg',
+                'assets/images/satvakrushi_logo.png',
                 width: screenWidth * 0.8, // Adjusted width to fit within the screen
                 height: screenHeight * 0.25, // Adjusted height to fit properly
                 fit: BoxFit.contain, // Maintains the aspect ratio of the image
