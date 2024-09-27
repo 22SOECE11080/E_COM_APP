@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Container(
                           width: 50.0,
                           height: 3.0,
-                          color: Colors.grey,
+                          color: const Color(0xFFDBBF9D),
                           margin: const EdgeInsets.only(bottom: 20.0),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Login',
                           style: TextStyle(
                             fontSize: 18,
-                            color: const Color(0xFF005843),
+                            color: Color(0xFF005843),
                           ),
                         ),
                       ),
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 12),
                           TextButton(
                             onPressed: () {
                               // Navigate to the Register screen
@@ -203,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               'New User? Register',
                               style: TextStyle(
-                            color: const Color(0xFF005843),
+                            color: Color(0xFF005843),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

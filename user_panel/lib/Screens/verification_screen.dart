@@ -49,25 +49,26 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     topRight: Radius.circular(50),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+               child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // gray line above the title
+                      const SizedBox(height: 30),
+                      // Gray line above the title
                       Center(
                         child: Container(
                           width: 50.0,
                           height: 3.0,
-                          color: Colors.grey,
+                          color: const Color(0xFFDBBF9D),
                           margin: const EdgeInsets.only(bottom: 20.0),
                         ),
                       ),
-                      const SizedBox(height: 30.0),
+                      const SizedBox( height: 20.0),
                       const Text(
                         'Verification',
                         style: TextStyle(
-                          fontSize: 24.0,
+                          fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -133,24 +134,22 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFE7F2E4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 100, vertical: 15),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            side: const BorderSide(color: Color(0xFFCEC9C9)), 
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                           ),
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 100.0, vertical: 15.0),
-                          child: Text(
-                            'Verify Now',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: const Color(0xFF005843), // Button text color
-                            ),
+                        child: const Text(
+                          'Verify Now',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF005843),
                           ),
                         ),
-                      ),
-                    ],
+                      ),                    ],
                   ),
                 ),
               ),

@@ -12,7 +12,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+   // final Size= MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE7F2E4), // Light green background

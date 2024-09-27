@@ -61,10 +61,12 @@ class _ForgetScreenState extends State<ForgetScreen> {
                       child: Container(
                         width: 50.0,
                         height: 3.0,
-                        color: Colors.grey,
+                        color: const Color(0xFFDBBF9D),
                         margin: const EdgeInsets.only(bottom: 20.0),
                       ),
                     ),
+                    const SizedBox(height: 20.0),
+
                     // forget title
                     const Text(
                       'Forget Password',
@@ -117,7 +119,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             'Back to Sign In',
                             style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 20, // Increase text size
+                              fontSize: 18, // Increase text size
                               fontWeight: FontWeight.bold, // Bold text
                             ),
                           ),
@@ -151,7 +153,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             'Send OTP',
                             style: TextStyle(
                               fontSize: 18,
-                              color: const Color(0xFF005843),
+                              color: Color(0xFF005843),
                             ),
                           ),
                         ),
