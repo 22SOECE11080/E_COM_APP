@@ -57,7 +57,7 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                       child: Container(
                         width: 50.0,
                         height: 3.0,
-                        color: Colors.grey,
+                        color: const Color(0xFFDBBF9D),
                         margin: const EdgeInsets.only(bottom: 20.0),
                       ),
                     ),

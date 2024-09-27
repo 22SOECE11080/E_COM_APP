@@ -47,37 +47,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Center(
-                          child: Container(
-                            width: 50.0,
-                            height: 3.0,
-                            color: Colors.grey,
-                            margin: const EdgeInsets.only(bottom: 20.0),
-                          ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    crossAxisAlignment:CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 30),
+                      // Gray line above the title
+                      Center(
+                        child: Container(
+                          width: 50.0,
+                          height: 3.0,
+                          color: const Color(0xFFDBBF9D),
+                          margin: const EdgeInsets.only(bottom: 20.0),
                         ),
+                      ),
+                      const SizedBox( height: 20.0),
                         const Center(
                           child: Text(
                             'Sign Up',
                             style: TextStyle(
-                              fontSize: 22.0,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
                           ),
                         ),
-                        const Text(
-                          "Name",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                         Text(
+                            'Name',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
                         const SizedBox(height: 8.0),
                         TextField(
                           decoration: InputDecoration(
@@ -90,14 +92,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        const Text(
-                          "Your E-mail",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                       Text(
+                            'Your E-mail',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
                         const SizedBox(height: 8.0),
                         TextField(
                           decoration: InputDecoration(
@@ -110,14 +112,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         const SizedBox(height: 20.0),
-                        const Text(
-                          "Password",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                        Text(
+                            'Password',
+                            style: TextStyle(
+                              color: Colors.grey[700],
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
                         const SizedBox(height: 8.0),
                         TextField(
                           obscureText: !_isPasswordVisible,
@@ -148,26 +150,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onPressed: () {
                               // Handle Sign-Up logic here
                             },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:const Color(0xFFE7F2E4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                                side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+                           style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFE7F2E4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 100, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
 
-                              ),
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 100.0, vertical: 15.0),
-                              child: Text(
-                                'Register',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF005843),
-                                ),
-                              ),
-                            ),
                           ),
+                        ),
+                        child: const Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF005843),
+                          ),
+                        ),
+                      ),
                         ),
                         const SizedBox(height: 20.0),
                         Center(
@@ -194,7 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
               ),
-            ),
+            
           ],
         ),
       ),

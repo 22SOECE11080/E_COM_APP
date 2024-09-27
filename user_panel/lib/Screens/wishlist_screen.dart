@@ -37,12 +37,20 @@ class _WishlistScreenState extends State<WishlistScreen> {
     }
   }
 
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+           backgroundColor: const Color(0xFFFFFFFF), 
+        elevation: 1, // Light elevation for subtle shadow effect
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(100),
+          ),
+        ), // Rounded bottom border
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF2E7D32)), // Green back arrow
           onPressed: () {
             // Navigate to the Home page when clicking on the back arrow
             Navigator.pushReplacement(
@@ -51,9 +59,13 @@ class _WishlistScreenState extends State<WishlistScreen> {
             );
           },
         ),
-        title: const Center(
-          child: Text('Wishlist'),
+        title: const Text(
+          'Wishlist',
+          style: TextStyle(
+            color: Color(0xFF2E7D32), // Green text color
+          ),
         ),
+        centerTitle: true, // Center the title
       ),
       body: Container(
         color:
@@ -67,8 +79,8 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 child: ListTile(
                   leading: Image.asset(
                     index == 0
-                        ? 'assets/images/SKR 1 (splash logo).jpg'
-                        : 'assets/images/SKR 1 (splash logo).jpg',
+                        ? 'assets/images/cyclops.png'
+                        : 'assets/images/cyclops.png',
                   ),
                   title: Text(index == 0 ? 'Cyclops' : 'Colban 20'),
                   subtitle: const Text('1 L, 500 ml.'),
@@ -77,7 +89,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.green, // Green background
+                          color:  Color(0xFF2E7D32), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
@@ -93,7 +105,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                           width: 8), // Add some spacing between buttons
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.green, // Green background
+                          color:  Color(0xFF2E7D32), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
@@ -114,31 +126,31 @@ class _WishlistScreenState extends State<WishlistScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home', // Add label for accessibility
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.mail),
-            label: 'Mail', // Add label for accessibility
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart', // Add label for accessibility
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile', // Add label for accessibility
-          ),
-        ],
-        currentIndex: _selectedIndex, // Highlight the selected tab
-        selectedItemColor:
-            Colors.green, // Change the color of the selected item
-        unselectedItemColor:
-            Colors.grey, // Change the color of unselected items
-        onTap: _onItemTapped, // Handle tap events
-      ),
+          selectedItemColor:const Color(0xFF2E7D32), // Matches the color scheme in your image
+  unselectedItemColor: Colors.grey, // Unselected items in grey
+  elevation: 10, // Adds shadow effect
+  type: BottomNavigationBarType.fixed, // Keeps labels visible
+  items: const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home), // Home icon
+      label: 'Home', // Home label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_bag), // Products icon (you can use a custom icon here)
+      label: 'Products', // Products label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_cart), // Cart icon
+      label: 'Cart', // Cart label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person), // Account icon
+      label: 'Account', // Account label
+    ),
+  ],
+    ),
+
+
     );
   }
 }

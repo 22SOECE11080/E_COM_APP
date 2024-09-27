@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/product_page.dart';
-//import 'package:user_panel/screens/product_page.dart';
+import 'package:user_panel/Screens/wishlist_screen.dart';
+import 'package:user_panel/screens/cart_screen.dart';
+import 'package:user_panel/Screens/profile_screeen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,18 +20,25 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: const Color(0xFFE7F2E4),
         leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black),
+          icon: const Icon(Icons.menu, color:  Color(0xFF2E7D32)),
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.favorite_border, color: Colors.black),
-            onPressed: () {},
+            icon: const Icon(Icons.favorite_border, color:  Color(0xFF2E7D32)),
+            onPressed: () 
+            {
+               Navigator.push(
+               context,
+                MaterialPageRoute(
+                builder: (context) => const WishlistScreen()),
+                );
+            },
           ),
           IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black),
+            icon: const Icon(Icons.shopping_cart_outlined, color:  Color(0xFF2E7D32)),
             onPressed: () {},
           ),
         ],
@@ -55,6 +64,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      
       drawer: _buildDrawer(context),
       body: SingleChildScrollView(
         child: Column(
@@ -217,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: Color(0xFF2E7D32),
                 ),
               ),
               GestureDetector(
@@ -232,8 +242,8 @@ class _HomePageState extends State<HomePage> {
                   "View All >",
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.green,
-                  ),
+                   color: Color(0xFF2E7D32),                  
+                   ),
                 ),
               ),
             ],
@@ -381,29 +391,28 @@ class _HomePageState extends State<HomePage> {
       onTap: (int index) {
         // Handle navigation logic
       },
-      selectedItemColor: Colors.green,
-      unselectedItemColor:
-          Colors.grey, // Optional: Different color for unselected items
-      elevation: 10, // Adds a shadow effect
-      type: BottomNavigationBarType.fixed, // Keeps labels visible for all tabs
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_bag),
-          label: 'Shop',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite),
-          label: 'Wishlist',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Account',
-        ),
-      ],
+      selectedItemColor:const Color(0xFF2E7D32), // Matches the color scheme in your image
+  unselectedItemColor: Colors.grey, // Unselected items in grey
+  elevation: 10, // Adds shadow effect
+  type: BottomNavigationBarType.fixed, // Keeps labels visible
+  items: const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home), // Home icon
+      label: 'Home', // Home label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_bag), // Products icon (you can use a custom icon here)
+      label: 'Products', // Products label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.shopping_cart), // Cart icon
+      label: 'Cart', // Cart label
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person), // Account icon
+      label: 'Account', // Account label
+    ),
+  ],
     );
   }
 }
