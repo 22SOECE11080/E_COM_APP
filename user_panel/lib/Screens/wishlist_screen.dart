@@ -43,12 +43,11 @@ class _WishlistScreenState extends State<WishlistScreen> {
     return Scaffold(
 
       appBar: AppBar(
-        
-          backgroundColor: const Color(0xFFFFFFFF), 
-        elevation: 1, // Light elevation for subtle shadow effect
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(100),
+        flexibleSpace: Container(
+        decoration: BoxDecoration(
+          color:Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+          
           ),
         ), // Rounded bottom border
         leading: IconButton(
@@ -61,6 +60,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
             );
           },
         ),
+        
         title: const Text(
           'Wishlist',
           style: TextStyle(

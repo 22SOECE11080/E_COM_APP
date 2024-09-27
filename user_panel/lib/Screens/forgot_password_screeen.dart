@@ -32,7 +32,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
               ),
               child: Center(
                 child: Image.asset(
-                  'assets/images/satvakrushi_logo.jpg', // Add your logo asset here
+                  'assets/images/satvakrushi_logo.png', // Add your logo asset here
                   width: screenWidth, // Adjust logo width as needed
                   height: 800.0,
                 ),

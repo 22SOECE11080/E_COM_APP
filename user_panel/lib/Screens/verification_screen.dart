@@ -33,7 +33,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/satvakrushi_logo.jpg', // Add your logo asset here
+                'assets/images/satvakrushi_logo.png', // Add your logo asset here
                 width: screenWidth * 0.6, // Adjust logo width as needed
                 height: 100.0,
               ),

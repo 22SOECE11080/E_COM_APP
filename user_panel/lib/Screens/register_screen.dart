@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 color: Color(0xFFE7F2E4),
               ),
               child: Image.asset(
-                'assets/images/satvakrushi_logo.jpg',
+                'assets/images/satvakrushi_logo.png',
                 width: screenWidth * 1.5,
                 height: 1000.0,
               ),
@@ -64,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox( height: 20.0),
                         const Center(
                           child: Text(
-                            'Sign Up',
+                            'Register',
                             style: TextStyle(
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
