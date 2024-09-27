@@ -41,8 +41,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
-           backgroundColor: const Color(0xFFFFFFFF), 
+        
+          backgroundColor: const Color(0xFFFFFFFF), 
         elevation: 1, // Light elevation for subtle shadow effect
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -89,7 +91,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:  Color(0xFF2E7D32), // Green background
+                          color:  const Color(0xFF2E7D32), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
@@ -105,7 +107,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                           width: 8), // Add some spacing between buttons
                       Container(
                         decoration: BoxDecoration(
-                          color:  Color(0xFF2E7D32), // Green background
+                          color:  const Color(0xFF2E7D32), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
