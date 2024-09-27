@@ -149,19 +149,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               // Handle Sign-Up logic here
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor:const Color(0xFFA3D3A2),
+                              backgroundColor:const Color(0xFFE7F2E4),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.0),
+                                side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                               ),
                             ),
                             child: const Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 100.0, vertical: 15.0),
                               child: Text(
-                                'Sign Up',
+                                'Register',
                                 style: TextStyle(
                                   fontSize: 18,
-                                  color: Colors.black,
+                                  color: const Color(0xFF005843),
                                 ),
                               ),
                             ),

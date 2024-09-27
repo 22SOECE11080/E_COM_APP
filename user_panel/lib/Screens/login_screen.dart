@@ -153,18 +153,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA3D3A2),
+                          backgroundColor: const Color(0xFFE7F2E4),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 100, vertical: 15),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
+                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                           ),
                         ),
                         child: const Text(
                           'Login',
                           style: TextStyle(
                             fontSize: 18,
-                            color: Colors.black,
+                            color: const Color(0xFF005843),
                           ),
                         ),
                       ),
@@ -201,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: const Text(
                               'New User? Register',
                               style: TextStyle(
-                                color: Colors.black,
+                            color: const Color(0xFF005843),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

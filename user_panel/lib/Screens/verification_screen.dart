@@ -132,10 +132,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                                const Color(0xFFA3D3A2), // Button color
+                          backgroundColor: const Color(0xFFE7F2E4),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
+                            side: const BorderSide(color: Color(0xFFCEC9C9)), 
                           ),
                         ),
                         child: const Padding(
@@ -145,7 +145,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             'Verify Now',
                             style: TextStyle(
                               fontSize: 16,
-                              color: Colors.black, // Button text color
+                              color: const Color(0xFF005843), // Button text color
                             ),
                           ),
                         ),

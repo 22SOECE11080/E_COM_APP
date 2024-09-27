@@ -136,22 +136,22 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color(0xFFA3D3A2), // Button color
+                            backgroundColor: const Color(0xFFE7F2E4),// Button color
                             padding: const EdgeInsets.symmetric(
                               horizontal: 100,
                               vertical: 15,
                             ), // Button size
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                                  BorderRadius.circular(20), // Rounded corners
+                                  BorderRadius.circular(20), 
+                                  side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
                             ),
                           ),
                           child: const Text(
                             'Send OTP',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.black,
+                              color: const Color(0xFF005843),
                             ),
                           ),
                         ),
