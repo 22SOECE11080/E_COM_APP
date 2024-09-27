@@ -16,25 +16,28 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final double screenWidth = size.width;
+    final double screenHeight = size.height;
 
     return Scaffold(
-      body: Column(
-        children: [
-          // Top section with logo
-          Container(
-            height: size.height * 0.3, // 30% of screen height
-            width: screenWidth,
-            decoration: const BoxDecoration(
-              color: Color(0xFFE7F2E4),
-            ),
-            child: Center(
+      body: Container(
+        height: screenHeight, // Use the screenHeight here
+        width: screenWidth,
+        color: const Color(0xFFE7F2E4),
+        child: Column(
+          children: [
+            Container(
+              height: screenHeight * 0.3,
+              width: screenWidth,
+              decoration: const BoxDecoration(
+                color: Color(0xFFE7F2E4),
+              ),
               child: Image.asset(
-                'assets/images/satvakrushi_logo.jpg',
-                width: screenWidth,
-                height: 800.0, // Adjust size for proper fit
+                'assets/images/satvakrushi_logo.png',
+                width: screenWidth * 0.8, // Adjusted width to fit within the screen
+                height: screenHeight * 0.25, // Adjusted height to fit properly
+                fit: BoxFit.contain, // Maintains the aspect ratio of the image
               ),
             ),
-          ),
           // Bottom section with form
           Expanded(
             child: Container(
@@ -57,7 +60,7 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
                       child: Container(
                         width: 50.0,
                         height: 3.0,
-                        color: Colors.grey,
+                        color: const Color(0xFFDBBF9D),
                         margin: const EdgeInsets.only(bottom: 20.0),
                       ),
                     ),
@@ -189,6 +192,7 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
           ),
         ],
       ),
+    ),
     );
   }
 }

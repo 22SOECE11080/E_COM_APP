@@ -32,7 +32,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
               ),
               child: Center(
                 child: Image.asset(
-                  'assets/images/satvakrushi_logo.jpg', // Add your logo asset here
+                  'assets/images/satvakrushi_logo.png', // Add your logo asset here
                   width: screenWidth, // Adjust logo width as needed
                   height: 800.0,
                 ),
@@ -61,10 +61,12 @@ class _ForgetScreenState extends State<ForgetScreen> {
                       child: Container(
                         width: 50.0,
                         height: 3.0,
-                        color: Colors.grey,
+                        color: const Color(0xFFDBBF9D),
                         margin: const EdgeInsets.only(bottom: 20.0),
                       ),
                     ),
+                    const SizedBox(height: 20.0),
+
                     // forget title
                     const Text(
                       'Forget Password',
@@ -117,7 +119,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             'Back to Sign In',
                             style: TextStyle(
                               color: Colors.grey,
-                              fontSize: 20, // Increase text size
+                              fontSize: 18, // Increase text size
                               fontWeight: FontWeight.bold, // Bold text
                             ),
                           ),
