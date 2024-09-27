@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/product_page.dart';
+//import 'package:user_panel/screens/product_page.dart';
+import 'package:user_panel/Screens/product_detail_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -178,7 +180,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
-        height: 240,
+        height: 200,
         width: double.infinity,
         decoration: BoxDecoration(
           color: const Color(0xFFD6E8D4),
