@@ -1,0 +1,257 @@
+import 'package:flutter/material.dart';
+
+class OrderDetailsScreen extends StatelessWidget {
+  const OrderDetailsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFE9F5EC), // Light green background
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFE9F5EC), // Light green AppBar
+        elevation: 0,
+        title: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              width: 300,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search Orders',
+                  prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                ),
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle, color: Colors.black),
+            onPressed: () {
+              // Handle profile action
+            },
+          ),
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Center(
+                child: Image.asset('assets/images/satvakrushi_logo.jpg'),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.dashboard, color: Colors.green),
+              title: const Text('Dashboard'),
+              onTap: () {},
+            ),
+            const ExpansionTile(
+              leading:
+                  Icon(Icons.production_quantity_limits, color: Colors.green),
+              title: Text('Products'),
+              children: [
+                ListTile(title: Text('Product List')),
+              ],
+            ),
+            const ExpansionTile(
+              leading: Icon(Icons.receipt_long, color: Colors.green),
+              title: Text('Order List'),
+              children: [
+                ListTile(title: Text('Orders')),
+                ListTile(title: Text('Order Details')),
+              ],
+            ),
+            const ExpansionTile(
+              leading: Icon(Icons.people, color: Colors.green),
+              title: Text('Customer'),
+              children: [
+                ListTile(title: Text('Customer List')),
+              ],
+            ),
+            const ExpansionTile(
+              leading: Icon(Icons.analytics, color: Colors.green),
+              title: Text('Analytics'),
+              children: [
+                ListTile(title: Text('Reports')),
+              ],
+            ),
+            const Divider(),
+            ListTile(
+              leading: const Icon(Icons.help, color: Colors.green),
+              title: const Text('Help'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Colors.green),
+              title: const Text('Logout'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Order Details',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Home > Order Details',
+                style: TextStyle(color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+              DataTable(
+                columnSpacing: 15,
+                dataRowColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) {
+                    return Colors.white; // Set body rows to white
+                  },
+                ),
+                headingRowColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.green.shade100),
+                border: TableBorder.all(color: Colors.grey),
+                columns: const <DataColumn>[
+                  DataColumn(label: Center(child: Text('Product'))),
+                  DataColumn(label: Center(child: Text('Product Image'))),
+                  DataColumn(label: Center(child: Text('Order ID'))),
+                  DataColumn(label: Center(child: Text('Date'))),
+                  DataColumn(label: Center(child: Text('Customer Name'))),
+                  DataColumn(label: Center(child: Text('Status'))),
+                  DataColumn(label: Center(child: Text('Amount'))),
+                ],
+                rows: <DataRow>[
+                  DataRow(cells: <DataCell>[
+                    DataCell(Center(child: Text('Elegant'))),
+                    DataCell(Center(
+                        child: Image.asset('assets/images/cyclops.png',
+                            width: 40))),
+                    DataCell(Center(child: Text('#25426'))),
+                    DataCell(Center(child: Text('Nov 8th, 2023'))),
+                    DataCell(Center(child: Text('Nishant'))),
+                    DataCell(
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 5),
+                            Text('Pending'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    DataCell(Center(child: Text('₹200.00'))),
+                  ]),
+                  DataRow(cells: <DataCell>[
+                    DataCell(Center(child: Text('Supreme'))),
+                    DataCell(Center(
+                        child: Image.asset('assets/images/cyclops.png',
+                            width: 40))),
+                    DataCell(Center(child: Text('#25427'))),
+                    DataCell(Center(child: Text('Nov 9th, 2023'))),
+                    DataCell(Center(child: Text('Rohit'))),
+                    DataCell(
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 5),
+                            Text('Completed'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    DataCell(Center(child: Text('₹350.00'))),
+                  ]),
+                  DataRow(cells: <DataCell>[
+                    DataCell(Center(child: Text('Classic'))),
+                    DataCell(Center(
+                        child: Image.asset('assets/images/cyclops.png',
+                            width: 40))),
+                    DataCell(Center(child: Text('#25428'))),
+                    DataCell(Center(child: Text('Nov 10th, 2023'))),
+                    DataCell(Center(child: Text('Aditi'))),
+                    DataCell(
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 5),
+                            Text('Shipped'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    DataCell(Center(child: Text('₹250.00'))),
+                  ]),
+                  DataRow(cells: <DataCell>[
+                    DataCell(Center(child: Text('Modern'))),
+                    DataCell(Center(
+                        child: Image.asset('assets/images/cyclops.png',
+                            width: 40))),
+                    DataCell(Center(child: Text('#25429'))),
+                    DataCell(Center(child: Text('Nov 11th, 2023'))),
+                    DataCell(Center(child: Text('Karan'))),
+                    DataCell(
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 5),
+                            Text('Cancelled'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    DataCell(Center(child: Text('₹0.00'))),
+                  ]),
+                  DataRow(cells: <DataCell>[
+                    DataCell(Center(child: Text('Vogue'))),
+                    DataCell(Center(
+                        child: Image.asset('assets/images/cyclops.png',
+                            width: 40))),
+                    DataCell(Center(child: Text('#25430'))),
+                    DataCell(Center(child: Text('Nov 12th, 2023'))),
+                    DataCell(Center(child: Text('Megha'))),
+                    DataCell(
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.check_circle, color: Colors.green),
+                            SizedBox(width: 5),
+                            Text('Pending'),
+                          ],
+                        ),
+                      ),
+                    ),
+                    DataCell(Center(child: Text('₹180.00'))),
+                  ]),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

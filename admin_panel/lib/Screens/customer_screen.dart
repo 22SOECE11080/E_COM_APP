@@ -7,9 +7,8 @@ class CustomerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFE9F5EC),
-      // AppBar section with search bar
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE9F5EC), // Light green shade
+        backgroundColor: const Color(0xFFE9F5EC),
         elevation: 0,
         title: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -98,7 +97,6 @@ class CustomerScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Screen title (centered)
             const Center(
               child: Text(
                 'Customer List',
@@ -116,7 +114,6 @@ class CustomerScreen extends StatelessWidget {
           ],
         ),
       ),
-      // Floating action button for "Add new customer"
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           // Add new customer action
@@ -143,67 +140,112 @@ class CustomerScreen extends StatelessWidget {
     );
   }
 
-  // Customer Data Table
+  // Updated Customer Data Table with dashboard-style design
   Widget _buildCustomerDataTable() {
     return Center(
-      child: DataTable(
-        columnSpacing: 20.0,
+      child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 2,
+              spreadRadius: 3,
               blurRadius: 5,
               offset: const Offset(0, 3),
             ),
           ],
         ),
-        columns: const <DataColumn>[
-          DataColumn(label: Text('Customer Name')),
-          DataColumn(label: Text('Contact')),
-          DataColumn(label: Text('Email')),
-          DataColumn(label: Text('Address')),
-          DataColumn(label: Text('Actions')),
-        ],
-        rows: <DataRow>[
-          DataRow(cells: <DataCell>[
-            const DataCell(Text('John Doe')),
-            const DataCell(Text('+91-9876543210')),
-            const DataCell(Text('john.doe@example.com')),
-            const DataCell(Text('New Delhi, India')),
-            DataCell(_buildActionButtons()),
-          ]),
-          DataRow(cells: <DataCell>[
-            const DataCell(Text('Jane Smith')),
-            const DataCell(Text('+91-9876543211')),
-            const DataCell(Text('jane.smith@example.com')),
-            const DataCell(Text('Mumbai, India')),
-            DataCell(_buildActionButtons()),
-          ]),
-          DataRow(cells: <DataCell>[
-            const DataCell(Text('Alice Johnson')),
-            const DataCell(Text('+91-9876543212')),
-            const DataCell(Text('alice.johnson@example.com')),
-            const DataCell(Text('Bangalore, India')),
-            DataCell(_buildActionButtons()),
-          ]),
-          DataRow(cells: <DataCell>[
-            const DataCell(Text('Bob Brown')),
-            const DataCell(Text('+91-9876543213')),
-            const DataCell(Text('bob.brown@example.com')),
-            const DataCell(Text('Chennai, India')),
-            DataCell(_buildActionButtons()),
-          ]),
-          DataRow(cells: <DataCell>[
-            const DataCell(Text('Charlie Green')),
-            const DataCell(Text('+91-9876543214')),
-            const DataCell(Text('charlie.green@example.com')),
-            const DataCell(Text('Hyderabad, India')),
-            DataCell(_buildActionButtons()),
-          ]),
-        ],
+        child: DataTable(
+          // headingRowColor:
+          //     WidgetStateProperty.all(Colors.green), // Header background color
+          // headingTextStyle: const TextStyle(
+          //   color: Colors.white, // Header text color
+          //   fontWeight: FontWeight.bold,
+          // ),
+          // dataRowColor: WidgetStateProperty.all(
+          //     Colors.white), // Body rows background color
+          // headingRowHeight: 50.0, // Adjust row height for better visuals
+          // columnSpacing: 30.0, // Spacing between columns
+          // decoration: BoxDecoration(
+          //   border: Border.all(color: Colors.green), // Border around the table
+          //   borderRadius: BorderRadius.circular(8),
+          // ),
+          columnSpacing: 15,
+          dataRowColor: WidgetStateProperty.resolveWith<Color?>((
+            Set<WidgetState> states,
+          ) {
+            return Colors.white; // Set body rows to white
+          }),
+          headingRowColor: WidgetStateColor.resolveWith(
+            (states) => Colors.green.shade100,
+          ),
+          border: TableBorder.all(color: Colors.grey),
+          columns: const <DataColumn>[
+            DataColumn(
+              label: Text(
+                'Customer Name',
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Contact',
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Email',
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Address',
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                'Actions',
+              ),
+            ),
+          ],
+          rows: <DataRow>[
+            DataRow(cells: <DataCell>[
+              const DataCell(Text('John Doe')),
+              const DataCell(Text('+91-9876543210')),
+              const DataCell(Text('john.doe@example.com')),
+              const DataCell(Text('New Delhi, India')),
+              DataCell(_buildActionButtons()),
+            ]),
+            DataRow(cells: <DataCell>[
+              const DataCell(Text('Jane Smith')),
+              const DataCell(Text('+91-9876543211')),
+              const DataCell(Text('jane.smith@example.com')),
+              const DataCell(Text('Mumbai, India')),
+              DataCell(_buildActionButtons()),
+            ]),
+            DataRow(cells: <DataCell>[
+              const DataCell(Text('Alice Johnson')),
+              const DataCell(Text('+91-9876543212')),
+              const DataCell(Text('alice.johnson@example.com')),
+              const DataCell(Text('Bangalore, India')),
+              DataCell(_buildActionButtons()),
+            ]),
+            DataRow(cells: <DataCell>[
+              const DataCell(Text('Bob Brown')),
+              const DataCell(Text('+91-9876543213')),
+              const DataCell(Text('bob.brown@example.com')),
+              const DataCell(Text('Chennai, India')),
+              DataCell(_buildActionButtons()),
+            ]),
+            DataRow(cells: <DataCell>[
+              const DataCell(Text('Charlie Green')),
+              const DataCell(Text('+91-9876543214')),
+              const DataCell(Text('charlie.green@example.com')),
+              const DataCell(Text('Hyderabad, India')),
+              DataCell(_buildActionButtons()),
+            ]),
+          ],
+        ),
       ),
     );
   }

@@ -11,11 +11,10 @@ class OrderListScreen extends StatelessWidget {
         backgroundColor: const Color(0xFFE9F5EC), // Light green AppBar
         elevation: 0,
         title: Center(
-          // Centering the search bar horizontally
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: SizedBox(
-              width: 300, // Set a width to center the search bar
+              width: 300,
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Hinted search text',
@@ -109,25 +108,9 @@ class OrderListScreen extends StatelessWidget {
                 CrossAxisAlignment.center, // Center align horizontally
             children: [
               Center(
-                child: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center align the header
-                  children: [
-                    const Center(
-                      child: Text(
-                        'Orders List',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      icon: const Icon(Icons.more_vert),
-                      onPressed: () {
-                        // More actions
-                      },
-                    ),
-                  ],
+                child: Text(
+                  'Orders List',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(height: 8),
@@ -150,10 +133,16 @@ class OrderListScreen extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
-        columnSpacing: 20.0, // Adjust space between columns
-        headingRowColor: WidgetStateProperty.all(Colors.grey[200]),
-        dataRowColor: WidgetStateProperty.all(Colors.white),
-        border: TableBorder.all(color: Colors.grey, width: 1),
+        columnSpacing: 15,
+        dataRowColor: WidgetStateProperty.resolveWith<Color?>((
+          Set<WidgetState> states,
+        ) {
+          return Colors.white; // Set body rows to white
+        }),
+        headingRowColor: WidgetStateColor.resolveWith(
+          (states) => Colors.green.shade100,
+        ),
+        border: TableBorder.all(color: Colors.grey),
         columns: const <DataColumn>[
           DataColumn(label: Center(child: Text('Product'))),
           DataColumn(label: Center(child: Text('Product Image'))),

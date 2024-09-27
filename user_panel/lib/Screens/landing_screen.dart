@@ -75,7 +75,7 @@ class LandingPage extends StatelessWidget {
                     'Get Started >',
                     style: TextStyle(
                       fontSize: 18,
-                      color: const Color(0xFF005843) , // Text color for the button
+                      color: Color(0xFF005843) , // Text color for the button
                     ),
                   ),
                 ),

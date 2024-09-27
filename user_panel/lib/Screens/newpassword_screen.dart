@@ -177,7 +177,7 @@ class _NewpasswordScreenState extends State<NewpasswordScreen> {
       'Reset Password',
       style: TextStyle(
         fontSize: 18,
-        color: const Color(0xFF005843),
+        color: Color(0xFF005843),
       ),
     ),
   ),

@@ -1,3 +1,6 @@
+import 'package:admin_panel/Screens/addproduct_screen.dart';
+import 'package:admin_panel/Screens/customer_screen.dart';
+import 'package:admin_panel/Screens/orderdetails_screen.dart';
 import 'package:admin_panel/Screens/orderlist_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Ecommarce app Admin Pannel',
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const OrderListScreen(),
+      home: AddProductScreen(),
     );
   }
 }

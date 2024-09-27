@@ -10,7 +10,7 @@ class DashboardScreen extends StatelessWidget {
       // AppBar section with search bar
       appBar: AppBar(
         backgroundColor: const Color(0xFFE9F5EC),
-        elevation: 1,
+        elevation: 0,
         title: Padding(
           padding: const EdgeInsets.all(160.0),
           child: TextField(
@@ -162,9 +162,19 @@ class DashboardScreen extends StatelessWidget {
   Widget _buildProductDataTable() {
     return Center(
       child: DataTable(
+        columnSpacing: 15,
+        dataRowColor: WidgetStateProperty.resolveWith<Color?>((
+          Set<WidgetState> states,
+        ) {
+          return Colors.white; // Set body rows to white
+        }),
+        headingRowColor: WidgetStateColor.resolveWith(
+          (states) => Colors.green.shade100,
+        ),
+        border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[
           DataColumn(label: Text('Product')),
-          DataColumn(label: Text('Product_image')),
+          DataColumn(label: Text('Image')),
           DataColumn(label: Text('P_id')),
           DataColumn(label: Text('Date')),
           DataColumn(label: Text('Quantity')),
@@ -179,27 +189,7 @@ class DashboardScreen extends StatelessWidget {
             const DataCell(Text('Nov 8th, 2023')),
             const DataCell(Text('500')),
             const DataCell(Text('₹200.00')),
-            DataCell(Row(
-              children: [
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Colors.lightBlue, // Light blue color for Edit
-                  ),
-                  child: const Text('Edit'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Colors.redAccent[100], // Light red color for Delete
-                  ),
-                  child: const Text('Delete'),
-                ),
-              ],
-            )),
+            DataCell(_buildActionButtons()),
           ]),
           DataRow(cells: <DataCell>[
             const DataCell(Text('Elegant')),
@@ -208,52 +198,16 @@ class DashboardScreen extends StatelessWidget {
             const DataCell(Text('Nov 7th, 2023')),
             const DataCell(Text('450')),
             const DataCell(Text('₹200.00')),
-            DataCell(Row(
-              children: [
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlue,
-                  ),
-                  child: const Text('Edit'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent[100],
-                  ),
-                  child: const Text('Delete'),
-                ),
-              ],
-            )),
+            DataCell(_buildActionButtons()),
           ]),
           DataRow(cells: <DataCell>[
-            const DataCell(Text('Elegant')),
+            const DataCell(Text('Royal Gold')),
             const DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
-            const DataCell(Text('#25424')),
-            const DataCell(Text('Nov 6th, 2023')),
-            const DataCell(Text('700')),
-            const DataCell(Text('₹200.00')),
-            DataCell(Row(
-              children: [
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlue,
-                  ),
-                  child: const Text('Edit'),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent[100],
-                  ),
-                  child: const Text('Delete'),
-                ),
-              ],
-            )),
+            const DataCell(Text('#25430')),
+            const DataCell(Text('Nov 10th, 2023')),
+            const DataCell(Text('600')),
+            const DataCell(Text('₹250.00')),
+            DataCell(_buildActionButtons()),
           ]),
         ],
       ),
@@ -264,9 +218,19 @@ class DashboardScreen extends StatelessWidget {
   Widget _buildSellDataTable() {
     return Center(
       child: DataTable(
+        columnSpacing: 15,
+        dataRowColor: WidgetStateProperty.resolveWith<Color?>((
+          Set<WidgetState> states,
+        ) {
+          return Colors.white; // Set body rows to white
+        }),
+        headingRowColor: WidgetStateColor.resolveWith(
+          (states) => Colors.green.shade100,
+        ),
+        border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[
           DataColumn(label: Text('Product')),
-          DataColumn(label: Text('Product_image')),
+          DataColumn(label: Text('Image')),
           DataColumn(label: Text('Order ID')),
           DataColumn(label: Text('Date')),
           DataColumn(label: Text('Customer Name')),
@@ -293,16 +257,49 @@ class DashboardScreen extends StatelessWidget {
             DataCell(Text('₹200.00')),
           ]),
           DataRow(cells: <DataCell>[
-            DataCell(Text('Elegant')),
+            DataCell(Text('Royal Gold')),
             DataCell(ImageIcon(AssetImage('assets/images/cyclops.png'))),
-            DataCell(Text('#25424')),
-            DataCell(Text('Nov 6th, 2023')),
+            DataCell(Text('#25430')),
+            DataCell(Text('Nov 10th, 2023')),
             DataCell(Text('Nishant')),
             DataCell(Text('Delivered')),
-            DataCell(Text('₹200.00')),
+            DataCell(Text('₹250.00')),
           ]),
         ],
       ),
+    );
+  }
+
+  // Build action buttons with colors
+  Widget _buildActionButtons() {
+    return Row(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            // Edit action
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.lightBlue, // Add color to Edit button
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+          ),
+          child: const Text('Edit'),
+        ),
+        const SizedBox(width: 10),
+        ElevatedButton(
+          onPressed: () {
+            // Delete action
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red, // Add color to Delete button
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
+          ),
+          child: const Text('Delete'),
+        ),
+      ],
     );
   }
 }

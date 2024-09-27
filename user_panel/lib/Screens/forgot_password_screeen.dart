@@ -151,7 +151,7 @@ class _ForgetScreenState extends State<ForgetScreen> {
                             'Send OTP',
                             style: TextStyle(
                               fontSize: 18,
-                              color: const Color(0xFF005843),
+                              color: Color(0xFF005843),
                             ),
                           ),
                         ),

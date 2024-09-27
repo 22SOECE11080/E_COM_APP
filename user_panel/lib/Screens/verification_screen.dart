@@ -145,7 +145,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                             'Verify Now',
                             style: TextStyle(
                               fontSize: 16,
-                              color: const Color(0xFF005843), // Button text color
+                              color: Color(0xFF005843), // Button text color
                             ),
                           ),
                         ),
