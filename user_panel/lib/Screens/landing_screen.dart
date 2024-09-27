@@ -69,7 +69,7 @@ class LandingPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Get Started >',
                     style: TextStyle(
                       fontSize: 18,

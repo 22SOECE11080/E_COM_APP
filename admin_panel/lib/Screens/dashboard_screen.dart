@@ -6,20 +6,23 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE9F5EC),
       // AppBar section with search bar
       appBar: AppBar(
         backgroundColor: const Color(0xFFE9F5EC),
-        elevation: 0,
-        title: TextField(
-          decoration: InputDecoration(
-            hintText: 'Hinted search text',
-            prefixIcon: const Icon(Icons.search),
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(26),
-              borderSide: BorderSide.none,
-          
+        elevation: 1,
+        title: Padding(
+          padding: const EdgeInsets.all(160.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: 'Hinted search text',
+              prefixIcon: const Icon(Icons.search),
+              filled: true,
+              fillColor: Colors.white,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(26),
+                borderSide: BorderSide.none,
+              ),
             ),
           ),
         ),
@@ -35,11 +38,10 @@ class DashboardScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color:Colors.white,
+              decoration: const BoxDecoration(
+                color: Colors.white,
               ),
               child: Image.asset('assets/images/satvakrushi_logo.jpg'),
-              
             ),
             ListTile(
               leading: const Icon(Icons.dashboard, color: Colors.green),
