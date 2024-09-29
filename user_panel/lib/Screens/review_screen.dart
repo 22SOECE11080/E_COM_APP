@@ -3,26 +3,29 @@ import 'package:flutter/material.dart';
 class ReviewPage extends StatelessWidget {
   const ReviewPage({super.key});
 
-  @override
+   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFE7F2E4), // Set background color
-      appBar: AppBar(
-        backgroundColor: Colors.lightGreen[50],
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: const Color(0xFFE7F2E4),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFE7F2E4),
+          elevation: 0,
+          title: const Text(
+            'Review Your products',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF2E7D32)), // Changed color to black
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)), // Changed color to black
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          centerTitle: true,
         ),
-        title: const Text(
-          'Review Your products',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-      ),
-      body: const SingleChildScrollView(
+        body: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0),
           child: Column(
@@ -30,16 +33,16 @@ class ReviewPage extends StatelessWidget {
             children: [
               StepIndicator(),
               SizedBox(height: 20),
-              Divider(color: Color(0xFF008054)), // Set divider color to #008054
+              Divider(color: Color(0xFF2E7D32)), // Set divider color to #008054
               EstimatedDelivery(),
-              Divider(color: Color(0xFF008054)),
+              Divider(color: Color(0xFF2E7D32)),
               SizedBox(height: 20),
               ProductDetails(), // Product details card
               SizedBox(height: 20),
-              Divider(color: Color(0xFF008054)),
+              Divider(color: Color(0xFF2E7D32)),
               DeliveryAddress(),
               SizedBox(height: 20),
-              Divider(color: Color(0xFF008054)),
+              Divider(color: Color(0xFF2E7D32)),
               PriceDetails(),
               SizedBox(height: 20),
               DiscountMessage(), // Separate discount message card
@@ -49,6 +52,7 @@ class ReviewPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: const BottomBar(),
+    ),
     );
   }
 }
@@ -90,14 +94,14 @@ class StepCircle extends StatelessWidget {
         CircleAvatar(
           radius: 15,
           backgroundColor: isActive
-              ? Colors.green
+              ? Color(0xFF2E7D32)
               : Colors.grey, // Active step is green, inactive is gray
           child: const Icon(Icons.check,
               color: Colors.white, size: 16), // Step icon
         ),
         const SizedBox(height: 8),
         Text(label,
-            style: TextStyle(color: isActive ? Colors.green : Colors.grey)),
+            style: TextStyle(color: isActive ? Color(0xFF2E7D32) : Colors.grey)),
       ],
     );
   }
@@ -111,7 +115,7 @@ class EstimatedDelivery extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.local_shipping, color: Colors.green),
+        const Icon(Icons.local_shipping, color: Color(0xFF2E7D32)),
         const SizedBox(width: 8),
         Text(
           'Estimated Delivery on Monday, 09th Sep',
@@ -165,7 +169,7 @@ class ProductDetails extends StatelessWidget {
                         IconButton(
                           onPressed: () {},
                           icon: const Icon(Icons.add_circle_outline,
-                              color: Color(0xFF008054)),
+                              color: Color(0xFF2E7D32)),
                         ),
                       ],
                     ),
@@ -198,7 +202,7 @@ class DiscountMessage extends StatelessWidget {
         child: Center(
           child: Text(
             'Yay! Your Total Discount is \$9',
-            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+            style: TextStyle(color: Color(0xFF2E7D32), fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -223,7 +227,7 @@ class DeliveryAddress extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Icon(Icons.location_on, color: Colors.green),
+            const Icon(Icons.location_on, color: Color(0xFF2E7D32)),
             const SizedBox(width: 10),
             const Expanded(
               child: Column(
@@ -261,12 +265,12 @@ class PriceDetails extends StatelessWidget {
           'Price Details (1 Item)',
           style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Color(0xFF008054)), // Updated color to match
+              color: Color(0xFF2E7D32)), // Updated color to match
         ),
-        Divider(color: Color(0xFF008054)), // Updated color to match
+        Divider(color: Color(0xFF2E7D32)), // Updated color to match
         PriceRow(title: 'Total Product Price', value: '\$99'),
         PriceRow(title: 'Total Discount', value: '- \$9'),
-        Divider(color: Color(0xFF008054)), // Updated color to match
+        Divider(color: Color(0xFF2E7D32)), // Updated color to match
         PriceRow(title: 'Order Total', value: '\$90'),
       ],
     );
@@ -337,7 +341,7 @@ class _BottomBarState extends State<BottomBar> {
               child: const Text(
                 'Continue',
                 style: TextStyle(
-                    color: Colors.black), // Set text color for better contrast
+                    color: Color(0xFF005843)), // Set text color for better contrast
               ),
             ),
           ),

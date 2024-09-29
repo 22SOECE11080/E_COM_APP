@@ -86,6 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.grey[700],
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
+                              
                             ),
                           ),
                           const SizedBox(height: 8.0),
@@ -94,9 +95,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               hintText: 'Enter your phone number',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10.0),
+
                               ),
                               filled: true,
                               fillColor: Colors.grey[200],
+
                             ),
                           ),
                         ],

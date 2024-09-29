@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/product_page.dart';
 //import 'package:user_panel/screens/product_page.dart';
-import 'package:user_panel/Screens/product_detail_screen.dart';
+import 'package:user_panel/Screens/wishlist_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

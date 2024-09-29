@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/orderdetail_screen.dart';
+import 'package:user_panel/Screens/payment_screen.dart';
+import 'package:user_panel/Screens/profile_screeen.dart';
+import 'package:user_panel/Screens/review_screen.dart';
 
 void main() {
   runApp(const MyApp());

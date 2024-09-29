@@ -44,14 +44,14 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
       appBar: AppBar(
         flexibleSpace: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color:Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
           
           ),
         ), // Rounded bottom border
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFF2E7D32)), // Green back arrow
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF005843)), // Green back arrow
           onPressed: () {
             // Navigate to the Home page when clicking on the back arrow
             Navigator.pushReplacement(
@@ -64,7 +64,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
         title: const Text(
           'Wishlist',
           style: TextStyle(
-            color: Color(0xFF2E7D32), // Green text color
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF005843), // Green text color
           ),
         ),
         centerTitle: true, // Center the title
@@ -91,7 +93,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          color:  const Color(0xFF2E7D32), // Green background
+                          color:  const Color(0xFF005843), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
@@ -107,7 +109,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                           width: 8), // Add some spacing between buttons
                       Container(
                         decoration: BoxDecoration(
-                          color:  const Color(0xFF2E7D32), // Green background
+                          color:  const Color(0xFF005843), // Green background
                           borderRadius:
                               BorderRadius.circular(8), // Rounded edges
                         ),
@@ -128,7 +130,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor:const Color(0xFF2E7D32), // Matches the color scheme in your image
+          selectedItemColor:const Color(0xFF005843), // Matches the color scheme in your image
   unselectedItemColor: Colors.grey, // Unselected items in grey
   elevation: 10, // Adds shadow effect
   type: BottomNavigationBarType.fixed, // Keeps labels visible

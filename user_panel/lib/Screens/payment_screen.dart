@@ -17,10 +17,12 @@ class PaymentPage extends StatelessWidget {
           elevation: 0,
           title: const Text(
             'Payment',
-            style: TextStyle(color: Colors.black), // Changed color to black
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF2E7D32)), // Changed color to black
           ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.black), // Changed color to black
+            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)), // Changed color to black
             onPressed: () {
               Navigator.pop(context);
             },
@@ -34,12 +36,11 @@ class PaymentPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 StepIndicator(),
-                Divider(color: Colors.grey), // Changed color to grey
+                Divider(color: Color(0xFF2E7D32)), // Changed color to grey
                 SizedBox(height: 20),
                 Text(
                   'Select Payment Method',
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
                     fontSize: 16,
                     color: Colors.black, // Changed color to black
                   ),
@@ -110,7 +111,7 @@ class StepCircle extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 15,
-          backgroundColor: isActive ? Colors.green : Colors.grey,
+          backgroundColor: isActive ? const Color(0xFF2E7D32) : Colors.grey,
           child: Icon(
             isActive ? Icons.check : Icons.circle,
             color: Colors.white,
@@ -121,7 +122,7 @@ class StepCircle extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: isActive ? Colors.green : Colors.grey,
+            color: isActive ? const Color(0xFF2E7D32) : Colors.grey,
             fontSize: 12,
           ),
         ),
@@ -153,7 +154,7 @@ class PaymentOption extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: isSelected ? Colors.green : Colors.grey, // Light grey border
+          color: isSelected ? Colors.black: Colors.grey, // Light grey border
           width: 1,
         ),
         borderRadius: BorderRadius.circular(10.0),
@@ -206,7 +207,7 @@ class PaymentOption extends StatelessWidget {
                 const Spacer(),
                 Icon(
                   isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                  color: isSelected ? Colors.green : Colors.grey,
+                  color: isSelected ? const Color(0xFF2E7D32) : Colors.grey,
                 ),
               ],
             ),
@@ -220,12 +221,12 @@ class PaymentOption extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.local_offer, color: Colors.green),
+                    const Icon(Icons.local_offer, color: Color(0xFF2E7D32)),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         discount!,
-                        style: const TextStyle(color: Colors.green),
+                        style: const TextStyle(color: Color(0xFF2E7D32)),
                       ),
                     ),
                   ],
@@ -323,17 +324,18 @@ class _BottomBarState extends State<BottomBar> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: isHovering
-                    ? Colors.green // Change color on hover
+                    ? const Color(0xFF2E7D32) // Change color on hover
                     : const Color(0xFFE7F2E4), // Default background color
                 padding:
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 elevation: 8, // Elevation for a raised effect
-                shadowColor: Colors.black, // Optional: Set shadow color
+                shadowColor: Colors.black,
+                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
               ),
               child: Text(
                 'Place Order',
                 style: TextStyle(
-                  color: isHovering ? Colors.white : Colors.black,
+                  color: isHovering ? Colors.white : const Color(0xFF005843),
                 ), // Set text color for better contrast
               ),
             ),

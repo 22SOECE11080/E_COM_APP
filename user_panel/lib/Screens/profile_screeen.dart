@@ -20,7 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.green),
+          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF005843)),
           onPressed: () {
             // Handle back action
           },
@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: const Text(
           'My Profile',
           style: TextStyle(
-            color: Colors.green,
+            color: Color(0xFF005843),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -81,18 +81,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       // Handle save action
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA3D3A2),
+                      backgroundColor:  Colors.white,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 100, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                       ),
                     ),
                     child: const Text(
                       'Save Changes',
                       style: TextStyle(
                         fontSize: 18,
-                        color: Colors.black,
+                        color: Color(0xFF005843),
                       ),
                     ),
                   ),
@@ -106,19 +108,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.green),
+            icon: Icon(Icons.home, color: Color(0xFF005843)),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: Colors.green),
+            icon: Icon(Icons.shopping_cart,  color: Color(0xFF005843)),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.green),
+            icon: Icon(Icons.search,  color: Color(0xFF005843)),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.green),
+            icon: Icon(Icons.search,  color: Color(0xFF005843)),
             label: '',
           ),
         ],
@@ -135,9 +137,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-        prefixIcon: Icon(icon, color: Colors.green),
+        prefixIcon: Icon(icon,  color: Color(0xFF005843)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
+
         ),
         filled: true,
         fillColor: Colors.white,
@@ -152,11 +155,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'Enter your password',
-        prefixIcon: const Icon(Icons.lock, color: Colors.green),
+        prefixIcon: const Icon(Icons.lock, color: Color(0xFF005843)),
         suffixIcon: IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-            color: Colors.green,
+            color: Color(0xFF005843),
           ),
           onPressed: () {
             setState(() {
