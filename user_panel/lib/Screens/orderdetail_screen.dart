@@ -13,10 +13,14 @@ class OrderDetailsApp extends StatelessWidget {
           elevation: 0,
           title: const Text(
             'Order Details',
-            style: TextStyle(color: Colors.green),
+            style: TextStyle(
+              fontWeight:FontWeight.bold,
+              color: Color(0xFF2E7D32)
+
+               ),
           ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Colors.green),
+            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
             onPressed: () {
               // Add navigation logic here if needed
             },
@@ -50,7 +54,7 @@ class OrderDetailsPage extends StatelessWidget {
                   'Order ID: 3354654654526',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
+                    color: Color(0xFF2E7D32),
                   ),
                 ),
                 SizedBox(height: 8),
@@ -70,7 +74,7 @@ class OrderDetailsPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Colors.green,
+              color: Color(0xFF2E7D32),
             ),
           ),
           const SizedBox(height: 8),
@@ -110,7 +114,7 @@ class OrderDetailsPage extends StatelessWidget {
                     Text(
                       '\$99',
                       style: TextStyle(
-                        color: Colors.green,
+                        color: Color(0xFF2E7D32),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -143,7 +147,7 @@ class OrderDetailsPage extends StatelessWidget {
                 // Order Confirmed Status
                 const Row(
                   children: [
-                    Icon(Icons.check_circle, color: Colors.green),
+                    Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
                     SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +156,7 @@ class OrderDetailsPage extends StatelessWidget {
                           'Order Confirmed',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: Color(0xFF2E7D32),
                           ),
                         ),
                         Text(
@@ -168,12 +172,12 @@ class OrderDetailsPage extends StatelessWidget {
                   margin: const EdgeInsets.only(left: 14),
                   height: 40,
                   width: 2,
-                  color: Colors.green,
+                  color: const Color(0xFF2E7D32),
                 ),
                 // Shipped Status with Tick
                 const Row(
                   children: [
-                    Icon(Icons.check_circle, color: Colors.green),
+                    Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
                     SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -182,7 +186,7 @@ class OrderDetailsPage extends StatelessWidget {
                           'Shipped',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: Color(0xFF2E7D32),
                           ),
                         ),
                         Text(
@@ -198,12 +202,12 @@ class OrderDetailsPage extends StatelessWidget {
                   margin: const EdgeInsets.only(left: 14),
                   height: 40,
                   width: 2,
-                  color: Colors.green,
+                  color: const Color(0xFF2E7D32),
                 ),
                 // Delivered Status with Empty Circle
                 const Row(
                   children: [
-                    Icon(Icons.radio_button_unchecked, color: Colors.green),
+                    Icon(Icons.radio_button_unchecked, color: Color(0xFF2E7D32)),
                     SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,7 +216,7 @@ class OrderDetailsPage extends StatelessWidget {
                           'Delivered',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.green,
+                            color: Color(0xFF2E7D32),
                           ),
                         ),
                         Text(
@@ -249,11 +253,11 @@ class OrderDetailsPage extends StatelessWidget {
                   'Order Summary',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
+                    color: Color(0xFF2E7D32),
                   ),
                 ),
                 SizedBox(height: 8),
-                Divider(color: Colors.green),
+                Divider(color: Color(0xFF2E7D32)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -285,7 +289,7 @@ class OrderDetailsPage extends StatelessWidget {
                     Text('\$221.88'),
                   ],
                 ),
-                Divider(color: Colors.green),
+                Divider(color: Color(0xFF2E7D32)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -299,7 +303,7 @@ class OrderDetailsPage extends StatelessWidget {
                       '\$0.00',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.green,
+                        color: Color(0xFF2E7D32),
                       ),
                     ),
                   ],
