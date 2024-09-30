@@ -41,12 +41,6 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
                     const Expanded(
                       child: Center(
                         child: Text(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/orderdetail_screen.dart';
 
-void main() {
-  runApp(const PaymentPage());
-}
-
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
 
@@ -326,7 +322,7 @@ class _BottomBarState extends State<BottomBar> {
                  Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const OrderDetailsPage()),);
+                                    builder: (context) => const OrderDetailScreen()),);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: isHovering

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
 import 'package:user_panel/Screens/product_page.dart';
+import 'package:user_panel/Screens/profile_screeen.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
-//import 'package:user_panel/screens/product_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,17 +12,39 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0; // State to manage the selected index
+
+  // List of pages corresponding to the bottom navigation bar
+  final List<Widget> _pages = [
+    const HomeContent(),
+    const ProductPage(), // Adjust this to your ProductPage or relevant widget
+    const CartScreen(), // Adjust this to your Cart or relevant widget
+    const ProfileScreen(), // Create this AccountScreen if it doesn't exist
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; // Update the selected index
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: _buildDrawer(context),
       backgroundColor: const Color(0xFFE7F2E4),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFFE7F2E4),
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Color(0xFF2E7D32)),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu, color: Color(0xFF2E7D32)),
+              onPressed: () {
+                // Open the drawer using the builder's context
+                Scaffold.of(context).openDrawer();
+              },
+            );
           },
         ),
         actions: [
@@ -33,11 +56,6 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => const WishlistScreen()),
               );
             },
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined,
-                color: Color(0xFF2E7D32)),
-            onPressed: () {},
           ),
         ],
         title: Row(
@@ -62,18 +80,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      drawer: _buildDrawer(context),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildBannerSection(),
-            _buildCategorySection(),
-            _buildProductGrid("Trending"),
-          ],
-        ),
+      body: _pages[_selectedIndex], // Display the selected page
+      bottomNavigationBar: CustomBottomNavigationBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+        pages: _pages,
       ),
-      bottomNavigationBar: _buildModernBottomNavigationBar(),
     );
   }
 
@@ -93,62 +105,40 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.white,
               child: Icon(Icons.person, size: 50, color: Colors.green),
             ),
-            otherAccountsPictures: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.grey[200],
-                ),
-                onPressed: () {
-                  // Logout action
-                },
-                child: const Text(
-                  'Logout',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ],
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Account'),
             onTap: () {},
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.shopping_bag),
             title: const Text('Orders'),
             onTap: () {},
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Wishlist'),
             onTap: () {},
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.location_on),
             title: const Text('Address'),
             onTap: () {},
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.message),
             title: const Text('Message'),
             onTap: () {},
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.shopping_cart),
             title: const Text('Recommendation'),
-            onTap: () {},
-          ),
-          const Divider(),
-          ListTile(
-            title: const Text('About Us'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text('Support'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text('Terms and Conditions'),
             onTap: () {},
           ),
           const Divider(),
@@ -169,6 +159,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
+          const Divider(),
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),
@@ -181,8 +172,57 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // Modern Bottom Navigation Bar
+  Widget _buildModernBottomNavigationBar() {
+    return BottomNavigationBar(
+      currentIndex: _selectedIndex, // Use the selected index
+      onTap: _onItemTapped, // Handle navigation
+      selectedItemColor: const Color(0xFF2E7D32),
+      unselectedItemColor: Colors.grey,
+      elevation: 10,
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_bag),
+          label: 'Products',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.shopping_cart),
+          label: 'Cart',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Account',
+        ),
+      ],
+    );
+  }
+}
+
+// Define the HomeContent widget separately to avoid duplication
+class HomeContent extends StatelessWidget {
+  const HomeContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildBannerSection(),
+          _buildCategorySection(),
+          _buildProductGrid("Trending"),
+        ],
+      ),
+    );
+  }
+
   // Banner Section
-  Widget _buildBannerSection() {
+  static Widget _buildBannerSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Container(
@@ -210,7 +250,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Category Section
-  Widget _buildCategorySection() {
+  static Widget _buildCategorySection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -229,11 +269,7 @@ class _HomePageState extends State<HomePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProductPage()),
-                  );
+                  // Add navigation to View All Categories if needed
                 },
                 child: const Text(
                   "View All >",
@@ -260,7 +296,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Category Chips
-  Widget _buildCategoryChips(String label, String imagePath) {
+  static Widget _buildCategoryChips(String label, String imagePath) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
@@ -286,8 +322,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Product Grid Section
-  Widget _buildProductGrid(String title) {
+  // Product Grid
+  static Widget _buildProductGrid(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -298,19 +334,20 @@ class _HomePageState extends State<HomePage> {
             style: const TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
+              color: Color(0xFF2E7D32),
             ),
           ),
           const SizedBox(height: 10),
           GridView.builder(
+            physics: const NeverScrollableScrollPhysics(), // Prevent scrolling
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: 4,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.85,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
+              childAspectRatio: 0.75,
             ),
+            itemCount: 4, // Set the number of items to display
             itemBuilder: (context, index) {
               return _buildProductCard();
             },
@@ -320,8 +357,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // Product Card
-  Widget _buildProductCard() {
+  static _buildProductCard() {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -340,78 +376,66 @@ class _HomePageState extends State<HomePage> {
         children: [
           Stack(
             children: [
-              // Ensure the image is properly resized and fits the container
-              Container(
-                height: 100, // Adjust the height to be smaller
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  image: const DecorationImage(
-                    image: AssetImage(
-                        'assets/images/cyclops.png'), // Ensure path is correct
-                    fit: BoxFit.contain, // Adjust fit for better appearance
-                  ),
+              Center(
+                child: Image.asset(
+                  'assets/images/cyclops.png', // Example product image
+                  height: 100,
+                  width: 100,
+                  fit: BoxFit.cover,
                 ),
               ),
               Positioned(
-                top: 5,
-                right: 5,
+                top: 0,
+                left: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(5),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  child: const Icon(Icons.favorite_border, color: Colors.black),
+                  child: const Text(
+                    '15% OFF',
+                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
           const Text(
-            "Product Name",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            "Elegant",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          const Text("₹250"),
+          const SizedBox(height: 5),
+          const Text(
+            "Flonicamid 50% WG\n500 gm, 250gm",
+            style: TextStyle(color: Colors.grey, fontSize: 12),
+          ),
+          const SizedBox(height: 5),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "\$99",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2E7D32),
+                ),
+              ),
+              Text(
+                "\$500",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.red,
+                  decoration: TextDecoration.lineThrough,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
-    );
-  }
-
-  // Modern Bottom Navigation Bar
-  Widget _buildModernBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: 0, // The index of the current selected tab
-      onTap: (int index) {
-        // Handle navigation logic
-      },
-      selectedItemColor:
-          const Color(0xFF2E7D32), // Matches the color scheme in your image
-      unselectedItemColor: Colors.grey, // Unselected items in grey
-      elevation: 10, // Adds shadow effect
-      type: BottomNavigationBarType.fixed, // Keeps labels visible
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home), // Home icon
-          label: 'Home', // Home label
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons
-              .shopping_bag), // Products icon (you can use a custom icon here)
-          label: 'Products', // Products label
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart), // Cart icon
-          label: 'Cart', // Cart label
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person), // Account icon
-          label: 'Account', // Account label
-        ),
-      ],
     );
   }
 }

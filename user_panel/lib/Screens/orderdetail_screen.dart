@@ -1,315 +1,252 @@
 import 'package:flutter/material.dart';
 
-class OrderDetailsApp extends StatelessWidget {
-  const OrderDetailsApp({super.key});
-
+class OrderDetailScreen extends StatelessWidget {
+  const OrderDetailScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: const Color(0xFFE7F2E4),
-        appBar: AppBar(
-          backgroundColor: const Color(0xFFE7F2E4),
-          elevation: 0,
-          title: const Text(
-            'Order Details',
-            style: TextStyle(
-              fontWeight:FontWeight.bold,
-              color: Color(0xFF2E7D32)
+    // Use MediaQuery to get screen height
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-               ),
+    return Scaffold(
+      backgroundColor: Colors.green.shade100,
+      body: Column(
+        children: [
+          SizedBox(height: 10.0),
+          // Top AppBar-like Container
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+            child: Container(
+              height: 60.0,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_ios,
+                        color: Color(0xFF2E7D32)),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'Detail Page',
+                        style: TextStyle(
+                          color: Color(0xFF2E7D32),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
-            onPressed: () {
-              // Add navigation logic here if needed
-            },
+          // Upper Green Section with Asset Image
+          Container(
+            height: screenHeight * 0.4, // Takes 40% of the screen height
+            width: screenWidth,
+            color: Colors.green.shade100,
+            child: Center(
+              child: Image.asset(
+                'assets/images/cyclops.png', // Updated to load from assets
+                height: 150,
+              ),
+            ),
           ),
-          centerTitle: true,
+
+          // Lower White Section
+          Expanded(
+            child: Container(
+              width: screenWidth,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 20),
+                      // Product Title
+                      const Text(
+                        "Cyclops",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Pricing
+                      Row(
+                        children: const [
+                          Text(
+                            "\$500",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "\$99",
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "1% off",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      // Description
+                      const Text(
+                        "Used for better growth and to kill worms.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black54,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      // Discount info
+                      const Text(
+                        "\$14 off | Discount for Rajkot",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.green,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Buy Now Button
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: Colors.green, // foreground
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 60, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          child: const Text(
+                            "Buy Now",
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      // Related Products Section
+                      const Text(
+                        "Related Products",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        height: 150,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            relatedProductCard("Elegant", "\$99", "15% off"),
+                            relatedProductCard("Elegant", "\$99", "15% off"),
+                            relatedProductCard("Elegant", "\$99", "15% off"),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green,
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          child: const Text(
+            "Add to Cart",
+            style: TextStyle(fontSize: 18, color: Colors.white),
+          ),
         ),
-        body: const OrderDetailsPage(),
       ),
     );
   }
-}
 
-class OrderDetailsPage extends StatelessWidget {
-  const OrderDetailsPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16.0),
+  Widget relatedProductCard(String title, String price, String discount) {
+    return Container(
+      width: 120,
+      margin: const EdgeInsets.only(right: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 5,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Order Information Section with Dividers
-          Divider(color: Colors.green.shade900, thickness: 2),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Order ID: 3354654654526',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2E7D32),
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text('Payment Method: Cash on Delivery'),
-                SizedBox(height: 8),
-                Text('Order date: Feb 16, 2022'),
-              ],
-            ),
+          Image.asset(
+            'assets/images/cyclops.png', // Image for related product
+            height: 80,
           ),
-          Divider(color: Colors.green.shade900, thickness: 2),
-
-          const SizedBox(height: 16),
-
-          // Product Details Section
-          const Text(
-            'Product Details',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2E7D32),
-            ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(height: 8),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/images/cyclops.png',
-                  width: 80,
-                  height: 80,
-                ),
-                const SizedBox(width: 16),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Cyclops',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text('Qty: 10'),
-                    Text(
-                      '\$99',
-                      style: TextStyle(
-                        color: Color(0xFF2E7D32),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 4),
-                    Text('All Issue Easy to Returns'),
-                  ],
-                ),
-              ],
-            ),
+          Text(
+            price,
+            style: const TextStyle(fontSize: 14, color: Colors.green),
           ),
-          const SizedBox(height: 16),
-
-          // Order Status Section Container
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Order Confirmed Status
-                const Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
-                    SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Order Confirmed',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2E7D32),
-                          ),
-                        ),
-                        Text(
-                          'Your order has been placed.',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                // Connecting Line
-                Container(
-                  margin: const EdgeInsets.only(left: 14),
-                  height: 40,
-                  width: 2,
-                  color: const Color(0xFF2E7D32),
-                ),
-                // Shipped Status with Tick
-                const Row(
-                  children: [
-                    Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
-                    SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Shipped',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2E7D32),
-                          ),
-                        ),
-                        Text(
-                          'Expected By Feb 18',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                // Connecting Line
-                Container(
-                  margin: const EdgeInsets.only(left: 14),
-                  height: 40,
-                  width: 2,
-                  color: const Color(0xFF2E7D32),
-                ),
-                // Delivered Status with Empty Circle
-                const Row(
-                  children: [
-                    Icon(Icons.radio_button_unchecked, color: Color(0xFF2E7D32)),
-                    SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Delivered',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF2E7D32),
-                          ),
-                        ),
-                        Text(
-                          'Not Delivered Yet',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-
-          // Order Summary Section
-          Container(
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Order Summary',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF2E7D32),
-                  ),
-                ),
-                SizedBox(height: 8),
-                Divider(color: Color(0xFF2E7D32)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Discount'),
-                    Text('\$5554'),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Discount (20%)'),
-                    Text('\$1109.40'),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Delivery'),
-                    Text('\$0.00'),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Tax'),
-                    Text('\$221.88'),
-                  ],
-                ),
-                Divider(color: Color(0xFF2E7D32)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '\$0.00',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2E7D32),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Text(
+            discount,
+            style: const TextStyle(fontSize: 12, color: Colors.red),
           ),
         ],
       ),
