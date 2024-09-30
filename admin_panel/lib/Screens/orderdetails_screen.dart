@@ -6,9 +6,9 @@ class OrderDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE9F5EC), // Light green background
+      backgroundColor: const Color(0xFFE7F2E4), // Light green background
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE9F5EC), // Light green AppBar
+        backgroundColor: const Color(0xFFE7F2E4), // Light green AppBar
         elevation: 0,
         title: Center(
           child: Container(
@@ -46,41 +46,47 @@ class OrderDetailsScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: const BoxDecoration(color: Colors.white),
-              child: Center(
-                child: Image.asset('assets/images/satvakrushi_logo.jpg'),
+              decoration: const BoxDecoration(
+                color: Colors.white,
               ),
+              child: Image.asset('assets/images/satvakrushi_logo.jpg'),
             ),
             ListTile(
-              leading: const Icon(Icons.dashboard, color: Colors.green),
+              leading: const Icon(Icons.dashboard, color: Color(0xFF2E7D32)),
               title: const Text('Dashboard'),
               onTap: () {},
             ),
             const ExpansionTile(
               leading:
-                  Icon(Icons.production_quantity_limits, color: Colors.green),
+                  Icon(Icons.production_quantity_limits, color:Color(0xFF2E7D32)),
               title: Text('Products'),
               children: [
                 ListTile(title: Text('Product List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.receipt_long, color: Colors.green),
+              leading: Icon(Icons.receipt_long, color:Color(0xFF2E7D32)),
               title: Text('Order List'),
               children: [
                 ListTile(title: Text('Orders')),
-                ListTile(title: Text('Order Details')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.people, color: Colors.green),
+              leading: Icon(Icons.shopping_cart, color:Color(0xFF2E7D32)),
+              title: Text('Current Orders'),
+              children: [
+                ListTile(title: Text('Current Orders')),
+              ],
+            ),
+            const ExpansionTile(
+              leading: Icon(Icons.people, color:Color(0xFF2E7D32)),
               title: Text('Customer'),
               children: [
                 ListTile(title: Text('Customer List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.analytics, color: Colors.green),
+              leading: Icon(Icons.analytics, color: Color(0xFF2E7D32)),
               title: Text('Analytics'),
               children: [
                 ListTile(title: Text('Reports')),
@@ -88,12 +94,12 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.help, color: Colors.green),
+              leading: const Icon(Icons.help, color:Color(0xFF2E7D32)),
               title: const Text('Help'),
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.logout, color: Colors.green),
+              leading: const Icon(Icons.logout, color: Color(0xFF2E7D32)),
               title: const Text('Logout'),
               onTap: () {},
             ),
@@ -149,7 +155,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check_circle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
                             SizedBox(width: 5),
                             Text('Pending'),
                           ],
@@ -171,9 +177,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check_circle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Colors.orange),
                             SizedBox(width: 5),
-                            Text('Completed'),
+                            Text('Canceled'),
                           ],
                         ),
                       ),
@@ -193,9 +199,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check_circle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Color(0xFF2E7D32)),
                             SizedBox(width: 5),
-                            Text('Shipped'),
+                            Text('pending'),
                           ],
                         ),
                       ),
@@ -215,7 +221,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check_circle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Colors.orange),
                             SizedBox(width: 5),
                             Text('Cancelled'),
                           ],
@@ -237,9 +243,9 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.check_circle, color: Colors.green),
+                            Icon(Icons.check_circle, color: Colors.orange),
                             SizedBox(width: 5),
-                            Text('Pending'),
+                            Text('Canceled'),
                           ],
                         ),
                       ),
