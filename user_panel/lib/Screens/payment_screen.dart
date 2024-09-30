@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/orderdetail_screen.dart';
 
 void main() {
   runApp(const PaymentPage());
@@ -321,7 +322,12 @@ class _BottomBarState extends State<BottomBar> {
               isHovering = false;
             }),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const OrderDetailsPage()),);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: isHovering
                     ? const Color(0xFF2E7D32) // Change color on hover

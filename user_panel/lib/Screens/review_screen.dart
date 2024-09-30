@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/payment_screen.dart';
 
 class ReviewPage extends StatelessWidget {
   const ReviewPage({super.key});
@@ -94,14 +95,14 @@ class StepCircle extends StatelessWidget {
         CircleAvatar(
           radius: 15,
           backgroundColor: isActive
-              ? Color(0xFF2E7D32)
+              ? const Color(0xFF2E7D32)
               : Colors.grey, // Active step is green, inactive is gray
           child: const Icon(Icons.check,
               color: Colors.white, size: 16), // Step icon
         ),
         const SizedBox(height: 8),
         Text(label,
-            style: TextStyle(color: isActive ? Color(0xFF2E7D32) : Colors.grey)),
+            style: TextStyle(color: isActive ? const Color(0xFF2E7D32) : Colors.grey)),
       ],
     );
   }
@@ -330,7 +331,12 @@ class _BottomBarState extends State<BottomBar> {
               isHovering = false;
             }),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PaymentPage()),);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFE7F2E4),
                 padding:
