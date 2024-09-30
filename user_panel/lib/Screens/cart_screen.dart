@@ -18,7 +18,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[50], // light green background
+      backgroundColor: const Color(0xFFE7F2E4), // light green background
       body: SafeArea(
         child: Column(
           children: [
@@ -42,7 +42,7 @@ class _CartScreenState extends State<CartScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.green),
+                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Text(
                           'My Cart',
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Color(0xFF2E7D32),
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
@@ -81,7 +81,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Row(
                           children: [
                             Image.asset(
-                              'assets/images/SKR 1 (splash logo).jpg', // Image asset for product
+                              'assets/images/cyclops.png', // Image asset for product
                               width: 50,
                               height: 50,
                             ),
@@ -95,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
-                                      color: Colors.black, // Text color set to black
+                                      color: Color(0xFF2E7D32), // Text color set to black
                                     ),
                                   ),
                                   Text(
@@ -114,7 +114,7 @@ class _CartScreenState extends State<CartScreen> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
-                                    color: Colors.green,
+                                    color: Color(0xFF2E7D32),
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -133,7 +133,7 @@ class _CartScreenState extends State<CartScreen> {
                                     IconButton(
                                       icon: const Icon(
                                         Icons.add_circle_outline,
-                                        color: Colors.green,
+                                        color: Color(0xFF2E7D32),
                                       ),
                                       onPressed: () {
                                         // Increase quantity action
@@ -171,7 +171,7 @@ class _CartScreenState extends State<CartScreen> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.green,
+                          color: Color(0xFF2E7D32),
                         ),
                       ),
                       Text(
@@ -184,13 +184,15 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: Color(0xFFE7F2E4),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
                         vertical: 12,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
+                        side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+
                       ),
                     ),
                     onPressed: () {
@@ -200,7 +202,7 @@ class _CartScreenState extends State<CartScreen> {
                       'Proceed to Buy (2 Items)',
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: Color(0xFF005843),
                       ),
                     ),
                   ),

@@ -6,95 +6,127 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[100],
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context); // Handle back button press
-          },
-        ),
-        title: const Text(
-          'CATOGARY',
-          style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Row(
-        children: [
-          // Sidebar for categories
-          Container(
-            width: 90,
-            color: Colors.white,
-            child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              children: [
-                _buildCategoryItem(
-                    'Pesticides', 'assets/images/pesticides.png'),
-                _buildCategoryItem('Grains', 'assets/images/grains.png'),
-                _buildCategoryItem('Herbs', 'assets/images/herbs.png'),
-                _buildCategoryItem('Veggies', 'assets/images/veggies.png'),
-              ],
-            ),
-          ),
-          // Main content with products and sort button
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Sort dropdown and other header items
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Sort',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      DropdownButton<String>(
-                        value: 'Sort',
-                        items: [
-                          'Sort',
-                          'Price: Low to High',
-                          'Price: High to Low'
-                        ].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (newValue) {
-                          // Handle sort value change
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  // Grid of product cards
-                  Expanded(
-                    child: GridView.builder(
-                      itemCount: 6,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 0.7,
-                      ),
-                      itemBuilder: (context, index) {
-                        return _buildProductCard();
+      backgroundColor: const Color(0xFFE7F2E4), // light green background
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Top AppBar-like Container
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjusted padding
+              child: Container(
+                height: 60.0,
+                decoration: BoxDecoration(
+                  color: Colors.white, // White background for the header
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(12), // Rounded corners for a more modern look
+                ),
+                child: Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
+                      onPressed: () {
+                        Navigator.pop(context);
                       },
+                    ),
+                    const Expanded(
+                      child: Center(
+                        child: Text(
+                          'Products',
+                          style: TextStyle(
+                            color: Color(0xFF2E7D32),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: Row(
+                children: [
+                  // Sidebar for categories
+                  Container(
+                    width: 90,
+                    color: Colors.white,
+                    child: ListView(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      children: [
+                        _buildCategoryItem('Pesticides', 'assets/images/pestiside.png'),
+                        _buildCategoryItem('Grains', 'assets/images/grains.png'),
+                        _buildCategoryItem('Herbs', 'assets/images/herbales.png'),
+                        _buildCategoryItem('Veggies', 'assets/images/vegg.png'),
+                      ],
+                    ),
+                  ),
+                  // Main content with products and sort button
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Sort dropdown and other header items
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // const Text(
+                              //   'Sort',
+                              //   style: TextStyle(
+                              //     fontSize: 18, 
+                              //     fontWeight: FontWeight.bold
+                              //   ),
+                              // ),
+                              DropdownButton<String>(
+                                value: 'Sort', // This needs to be tied to state in a StatefulWidget
+                                items: ['Sort', '', '']
+                                    .map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                                onChanged: (newValue) {
+                                  // Handle sort value change
+                                },
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          // Grid of product cards
+                          Expanded(
+                            child: GridView.builder(
+                              itemCount: 6,
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
+                                childAspectRatio: 0.7,
+                              ),
+                              itemBuilder: (context, index) {
+                                return _buildProductCard();
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       // Bottom navigation bar
       bottomNavigationBar: _buildModernBottomNavigationBar(),
@@ -154,8 +186,7 @@ class ProductPage extends StatelessWidget {
                 top: 0,
                 left: 0,
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(5),
@@ -185,16 +216,18 @@ class ProductPage extends StatelessWidget {
               Text(
                 "\$99",
                 style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green),
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2E7D32),
+                ),
               ),
               Text(
                 "\$500",
                 style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.red,
-                    decoration: TextDecoration.lineThrough),
+                  fontSize: 14,
+                  color: Colors.red,
+                  decoration: TextDecoration.lineThrough,
+                ),
               ),
             ],
           ),
@@ -208,7 +241,7 @@ class ProductPage extends StatelessWidget {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: Colors.white,
-      selectedItemColor: Colors.green,
+      selectedItemColor: Color(0xFF2E7D32),
       unselectedItemColor: Colors.grey,
       showSelectedLabels: true,
       showUnselectedLabels: true,
@@ -230,8 +263,7 @@ class ProductPage extends StatelessWidget {
           label: 'Profile',
         ),
       ],
-      currentIndex:
-          0, // Change the currentIndex value according to your navigation logic
+      currentIndex: 0, // Change this logic based on navigation index
       onTap: (index) {
         // Handle bottom navigation tap
       },
