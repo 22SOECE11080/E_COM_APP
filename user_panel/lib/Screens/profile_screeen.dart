@@ -37,7 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.green),
+                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -47,7 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Text(
                           'Profile',
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Color(0xFF2E7D32),
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                           ),
@@ -137,19 +137,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Color(0xFF005843)),
+            icon: Icon(Icons.home, color: Color(0xFF2E7D32)),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: Color(0xFF005843)),
+            icon: Icon(Icons.shopping_cart, color: Color(0xFF2E7D32)),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Color(0xFF005843)),
+            icon: Icon(Icons.search, color: Color(0xFF2E7D32)),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Color(0xFF005843)),
+            icon: Icon(Icons.person, color: Color(0xFF2E7D32)),
             label: 'Profile',
           ),
         ],
@@ -188,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-        prefixIcon: Icon(icon, color: const Color(0xFF005843)),
+        prefixIcon: Icon(icon, color: const Color(0xFF2E7D32)),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -205,11 +205,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: 'Password',
         hintText: 'Enter your password',
-        prefixIcon: const Icon(Icons.lock, color: Color(0xFF005843)),
+        prefixIcon: const Icon(Icons.lock, color: Color(0xFF2E7D32)),
         suffixIcon: IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-            color: const Color(0xFF005843),
+            color: const Color(0xFF2E7D32),
           ),
           onPressed: () {
             setState(() {
