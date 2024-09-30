@@ -44,7 +44,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
       appBar: AppBar(
         flexibleSpace: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color:Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
           
