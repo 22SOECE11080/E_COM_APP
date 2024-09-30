@@ -11,31 +11,24 @@ class ProductDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: const Center(
           child: Text(
+            
             'Cyclops',
             style: TextStyle(
-              color: Colors.green,
+              color: Color(0xFF005843),
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.share, color: Colors.black),
-            onPressed: () {
-              // Handle share action
-            },
-          ),
-        ],
+                centerTitle: true,
+
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -48,7 +41,7 @@ class ProductDetailScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: Image.asset(
-                      'assets/images/SKR 1 (splash logo).jpg', // Replaced with requested splash logo
+                      'assets/images/cyclops.png', // Replaced with requested splash logo
                       height: screenWidth *
                           0.4, // Adjust height to 40% of the screen width
                       width: screenWidth *

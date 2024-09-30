@@ -183,18 +183,18 @@ class AddProductScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Colors.grey),
                   ),
-                  child: Column(
+                  child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         'Product Gallery',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       DottedBorderBox(),
-                      const SizedBox(height: 10),
+                      SizedBox(height: 10),
                       ProductThumbnailList(),
                     ],
                   ),
