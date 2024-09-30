@@ -47,7 +47,7 @@ class _CartScreenState extends State<CartScreen> {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'My Cart',

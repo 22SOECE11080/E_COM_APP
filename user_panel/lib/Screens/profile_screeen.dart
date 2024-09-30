@@ -42,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'Profile',

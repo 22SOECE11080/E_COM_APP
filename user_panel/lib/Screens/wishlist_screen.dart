@@ -48,7 +48,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
 
       appBar: AppBar(
         flexibleSpace: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color:Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
           
@@ -196,7 +196,7 @@ class CartScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'MY CART',
@@ -216,9 +216,9 @@ class CartScreen extends StatelessWidget {
             // Cart Items
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   CartItem(),
-                  const Divider(thickness: 1, color: Colors.green),
+                  Divider(thickness: 1, color: Colors.green),
                   CartItem(),
                 ],
               ),
@@ -231,6 +231,8 @@ class CartScreen extends StatelessWidget {
 }
 
 class CartItem extends StatelessWidget {
+  const CartItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
