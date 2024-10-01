@@ -12,7 +12,8 @@ class ProductPage extends StatelessWidget {
           children: [
             // Top AppBar-like Container
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0), // Adjusted padding
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0, vertical: 8.0), // Adjusted padding
               child: Container(
                 height: 60.0,
                 decoration: BoxDecoration(
@@ -25,17 +26,12 @@ class ProductPage extends StatelessWidget {
                       offset: const Offset(0, 3),
                     ),
                   ],
-                  borderRadius: BorderRadius.circular(12), // Rounded corners for a more modern look
+                  borderRadius: BorderRadius.circular(
+                      12), // Rounded corners for a more modern look
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    const Expanded(
+                    Expanded(
                       child: Center(
                         child: Text(
                           'Products',
@@ -62,9 +58,12 @@ class ProductPage extends StatelessWidget {
                     child: ListView(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       children: [
-                        _buildCategoryItem('Pesticides', 'assets/images/pestiside.png'),
-                        _buildCategoryItem('Grains', 'assets/images/grains.png'),
-                        _buildCategoryItem('Herbs', 'assets/images/herbales.png'),
+                        _buildCategoryItem(
+                            'Pesticides', 'assets/images/pestiside.png'),
+                        _buildCategoryItem(
+                            'Grains', 'assets/images/grains.png'),
+                        _buildCategoryItem(
+                            'Herbs', 'assets/images/herbales.png'),
                         _buildCategoryItem('Veggies', 'assets/images/vegg.png'),
                       ],
                     ),
@@ -83,14 +82,14 @@ class ProductPage extends StatelessWidget {
                               // const Text(
                               //   'Sort',
                               //   style: TextStyle(
-                              //     fontSize: 18, 
+                              //     fontSize: 18,
                               //     fontWeight: FontWeight.bold
                               //   ),
                               // ),
                               DropdownButton<String>(
-                                value: 'Sort', // This needs to be tied to state in a StatefulWidget
-                                items: ['Sort', '', '']
-                                    .map((String value) {
+                                value:
+                                    'Sort', // This needs to be tied to state in a StatefulWidget
+                                items: ['Sort', '', ''].map((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value),
@@ -107,7 +106,8 @@ class ProductPage extends StatelessWidget {
                           Expanded(
                             child: GridView.builder(
                               itemCount: 6,
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 mainAxisSpacing: 10,
                                 crossAxisSpacing: 10,
@@ -128,8 +128,6 @@ class ProductPage extends StatelessWidget {
           ],
         ),
       ),
-      // Bottom navigation bar
-      bottomNavigationBar: _buildModernBottomNavigationBar(),
     );
   }
 
@@ -186,7 +184,8 @@ class ProductPage extends StatelessWidget {
                 top: 0,
                 left: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                   decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.circular(5),
@@ -233,40 +232,6 @@ class ProductPage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  // Bottom navigation bar widget
-  Widget _buildModernBottomNavigationBar() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.white,
-      selectedItemColor: Color(0xFF2E7D32),
-      unselectedItemColor: Colors.grey,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border),
-          label: 'Favorites',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart_outlined),
-          label: 'Cart',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          label: 'Profile',
-        ),
-      ],
-      currentIndex: 0, // Change this logic based on navigation index
-      onTap: (index) {
-        // Handle bottom navigation tap
-      },
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:user_panel/Screens/payment_screen.dart';
 class ReviewPage extends StatelessWidget {
   const ReviewPage({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -15,11 +15,12 @@ class ReviewPage extends StatelessWidget {
           title: const Text(
             'Review Your products',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2E7D32)), // Changed color to black
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2E7D32)), // Changed color to black
           ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)), // Changed color to black
+            icon: const Icon(Icons.arrow_back_ios,
+                color: Color(0xFF2E7D32)), // Changed color to black
             onPressed: () {
               Navigator.pop(context);
             },
@@ -27,33 +28,34 @@ class ReviewPage extends StatelessWidget {
           centerTitle: true,
         ),
         body: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              StepIndicator(),
-              SizedBox(height: 20),
-              Divider(color: Color(0xFF2E7D32)), // Set divider color to #008054
-              EstimatedDelivery(),
-              Divider(color: Color(0xFF2E7D32)),
-              SizedBox(height: 20),
-              ProductDetails(), // Product details card
-              SizedBox(height: 20),
-              Divider(color: Color(0xFF2E7D32)),
-              DeliveryAddress(),
-              SizedBox(height: 20),
-              Divider(color: Color(0xFF2E7D32)),
-              PriceDetails(),
-              SizedBox(height: 20),
-              DiscountMessage(), // Separate discount message card
-              SizedBox(height: 10),
-            ],
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                StepIndicator(),
+                SizedBox(height: 20),
+                Divider(
+                    color: Color(0xFF2E7D32)), // Set divider color to #008054
+                EstimatedDelivery(),
+                Divider(color: Color(0xFF2E7D32)),
+                SizedBox(height: 20),
+                ProductDetails(), // Product details card
+                SizedBox(height: 20),
+                Divider(color: Color(0xFF2E7D32)),
+                DeliveryAddress(),
+                SizedBox(height: 20),
+                Divider(color: Color(0xFF2E7D32)),
+                PriceDetails(),
+                SizedBox(height: 20),
+                DiscountMessage(), // Separate discount message card
+                SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
+        bottomNavigationBar: const BottomBar(),
       ),
-      bottomNavigationBar: const BottomBar(),
-    ),
     );
   }
 }
@@ -102,7 +104,8 @@ class StepCircle extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(label,
-            style: TextStyle(color: isActive ? const Color(0xFF2E7D32) : Colors.grey)),
+            style: TextStyle(
+                color: isActive ? const Color(0xFF2E7D32) : Colors.grey)),
       ],
     );
   }
@@ -203,7 +206,8 @@ class DiscountMessage extends StatelessWidget {
         child: Center(
           child: Text(
             'Yay! Your Total Discount is \$9',
-            style: TextStyle(color: Color(0xFF2E7D32), fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: Color(0xFF2E7D32), fontWeight: FontWeight.bold),
           ),
         ),
       ),
@@ -332,10 +336,10 @@ class _BottomBarState extends State<BottomBar> {
             }),
             child: ElevatedButton(
               onPressed: () {
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const PaymentPage()),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PaymentPage()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFE7F2E4),
@@ -347,7 +351,8 @@ class _BottomBarState extends State<BottomBar> {
               child: const Text(
                 'Continue',
                 style: TextStyle(
-                    color: Color(0xFF005843)), // Set text color for better contrast
+                    color: Color(
+                        0xFF005843)), // Set text color for better contrast
               ),
             ),
           ),

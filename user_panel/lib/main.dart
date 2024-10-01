@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/cart_screen.dart';
-import 'package:user_panel/Screens/homepage_screen.dart';
 import 'package:user_panel/Screens/orderdetail_screen.dart';
 import 'package:user_panel/Screens/product_page.dart';
 import 'package:user_panel/Screens/review_screen.dart';
-import 'package:user_panel/Screens/splash_screen.dart';
 //import 'package:user_panel/Screens/try.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
 //import 'package:user_panel/Screens/review_screen.dart';
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const HomePage(),
+      home: const ProductPage(),
     );
   }
 }

@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3),
+                      offset: const Offset(0, 3),
                     ),
                   ],
                   borderRadius: BorderRadius.circular(12), // Rounded corners for a more modern look
@@ -30,12 +30,12 @@ class CartScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.green),
+                      icon: const Icon(Icons.arrow_back, color: Colors.green),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'MYCART',
@@ -51,11 +51,11 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             // Cart Items
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   CartItem(),
                   Divider(thickness: 1, color: Colors.green),
                   CartItem(),
@@ -70,12 +70,14 @@ class CartScreen extends StatelessWidget {
 }
 
 class CartItem extends StatelessWidget {
+  const CartItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -84,7 +86,7 @@ class CartItem extends StatelessWidget {
               color: Colors.grey.withOpacity(0.3),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -97,7 +99,7 @@ class CartItem extends StatelessWidget {
               height: 60,
               width: 60,
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             // Product Info
             Expanded(
               child: Column(
@@ -133,18 +135,18 @@ class CartItem extends StatelessWidget {
                     color: Colors.green[800],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Quantity Selector
                 Row(
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.remove_circle_outline, color: Colors.red),
+                      icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
                     ),
-                    Text('1'),
+                    const Text('1'),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.add_circle_outline, color: Colors.green),
+                      icon: const Icon(Icons.add_circle_outline, color: Colors.green),
                     ),
                   ],
                 ),
@@ -153,7 +155,7 @@ class CartItem extends StatelessWidget {
             // Delete Icon
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.delete_outline, color: Colors.grey),
+              icon: const Icon(Icons.delete_outline, color: Colors.grey),
             ),
           ],
         ),

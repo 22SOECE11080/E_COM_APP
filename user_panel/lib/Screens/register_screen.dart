@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
-                    crossAxisAlignment:CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(height: 30),
                       // Gray line above the title
@@ -61,144 +61,145 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           margin: const EdgeInsets.only(bottom: 20.0),
                         ),
                       ),
-                      const SizedBox( height: 20.0),
-                        const Center(
-                          child: Text(
+                      const SizedBox(height: 20.0),
+                      const Center(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Name',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter your name',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Text(
+                        'Your E-mail',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
+                      TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Enter your email',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 8.0),
+                      TextField(
+                        obscureText: !_isPasswordVisible,
+                        decoration: InputDecoration(
+                          hintText: 'Enter your password',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _isPasswordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isPasswordVisible = !_isPasswordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 30.0),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Handle login action
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE7F2E4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 100, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: const BorderSide(
+                                  color: Color(0xFFCEC9C9)), // Set border color
+                            ),
+                          ),
+                          child: const Text(
                             'Register',
                             style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                              fontSize: 18,
+                              color: Color(0xFF005843),
                             ),
                           ),
                         ),
-                         Text(
-                            'Name',
+                      ),
+                      const SizedBox(height: 20.0),
+                      Center(
+                        child: TextButton(
+                          onPressed: () {
+                            // Navigate to the Register screen using Navigator.push
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
+                          },
+                          child: const Text(
+                            'I have an account',
                             style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 16,
+                              color: Colors.grey,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter your name',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                          ),
                         ),
-                        const SizedBox(height: 20.0),
-                       Text(
-                            'Your E-mail',
-                            style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Enter your email',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Text(
-                            'Password',
-                            style: TextStyle(
-                              color: Colors.grey[700],
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        const SizedBox(height: 8.0),
-                        TextField(
-                          obscureText: !_isPasswordVisible,
-                          decoration: InputDecoration(
-                            hintText: 'Enter your password',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            filled: true,
-                            fillColor: Colors.grey[200],
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                _isPasswordVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  _isPasswordVisible = !_isPasswordVisible;
-                                });
-                              },
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 30.0),
-                        Center(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              // Handle Sign-Up logic here
-                            },
-                           style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE7F2E4),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 100, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
-
-                              ),
-                            ),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 100.0, vertical: 15.0),
-                              child: Text(
-                                'Register',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color(0xFF005843),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        Center(
-                          child: TextButton(
-                            onPressed: () {
-                              // Navigate to the Register screen using Navigator.push
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginScreen()),
-                              );
-                            },
-                            child: const Text(
-                              'I have an account',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            
+            ),
           ],
         ),
       ),

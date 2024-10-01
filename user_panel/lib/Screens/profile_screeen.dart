@@ -19,7 +19,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           children: [
             // Top AppBar-like Container
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
               child: Container(
                 height: 60.0,
                 decoration: BoxDecoration(
@@ -34,14 +35,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
                     Expanded(
                       child: Center(
                         child: Text(
@@ -69,7 +64,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage(
-                          'assets/images/logo.png', // Replace with your logo image
+                          'assets/images/profile_screeen.dart', // Replace with your logo image
                         ),
                       ),
                     ),
@@ -109,10 +104,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 100, vertical: 15),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
-                                side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+                                side: const BorderSide(
+                                    color:
+                                        Color(0xFFCEC9C9)), // Set border color
                               ),
                             ),
                             child: const Text(
@@ -133,47 +131,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Color(0xFF2E7D32)),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: Color(0xFF2E7D32)),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Color(0xFF2E7D32)),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Color(0xFF2E7D32)),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: 3, // Set the current index to the Profile tab
-        onTap: (index) {
-          // Handle navigation based on the selected index
-          switch (index) {
-            case 0:
-              // Navigate to Home
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-              break;
-            case 1:
-              // Navigate to Cart
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const CartScreen()));
-              break;
-            case 2:
-              // Navigate to Search
-              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SearchScreen()));
-              break;
-            case 3:
-              // Stay on Profile
-              break;
-          }
-        },
       ),
     );
   }

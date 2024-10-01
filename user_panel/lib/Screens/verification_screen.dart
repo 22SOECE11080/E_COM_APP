@@ -49,7 +49,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     topRight: Radius.circular(50),
                   ),
                 ),
-               child: SingleChildScrollView(
+                child: SingleChildScrollView(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +64,7 @@ class _VerificationScreenState extends State<VerificationScreen> {
                           margin: const EdgeInsets.only(bottom: 20.0),
                         ),
                       ),
-                      const SizedBox( height: 20.0),
+                      const SizedBox(height: 20.0),
                       const Text(
                         'Verification',
                         style: TextStyle(
@@ -122,38 +122,37 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                       ),
                       const SizedBox(height: 40.0),
-                      ElevatedButton(
-                        onPressed: () {
-                          // Logic to verify the entered code
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const NewpasswordScreen(),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Handle login action
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const NewpasswordScreen(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE7F2E4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 100, vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: const BorderSide(
+                                  color: Color(0xFFCEC9C9)), // Set border color
                             ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFE7F2E4),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 100, vertical: 15),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
-
                           ),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 100.0, vertical: 15.0),
-                          child: Text(
-                            'Verify Now',
+                          child: const Text(
+                            'Verify',
                             style: TextStyle(
-                              fontSize: 16,
-                              color: Color(0xFF005843), // Button text color
+                              fontSize: 18,
+                              color: Color(0xFF005843),
                             ),
                           ),
                         ),
-                      ),                    ],
+                      ),
+                    ],
                   ),
                 ),
               ),
