@@ -7,11 +7,11 @@ class CustomBottomNavigationBar extends StatefulWidget {
   final List<Widget> pages;
 
   const CustomBottomNavigationBar({
-    Key? key,
+    super.key,
     required this.selectedIndex,
     required this.onItemTapped,
     required this.pages,
-  }) : super(key: key);
+  });
 
   @override
   _CustomBottomNavigationBarState createState() =>

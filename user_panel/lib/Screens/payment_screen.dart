@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/orderdetail_screen.dart';
+import 'package:user_panel/Screens/product_detail_screen.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -15,11 +16,12 @@ class PaymentPage extends StatelessWidget {
           title: const Text(
             'Payment',
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Color(0xFF2E7D32)), // Changed color to black
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF2E7D32)), // Changed color to black
           ),
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)), // Changed color to black
+            icon: const Icon(Icons.arrow_back_ios,
+                color: Color(0xFF2E7D32)), // Changed color to black
             onPressed: () {
               Navigator.pop(context);
             },
@@ -56,7 +58,8 @@ class PaymentPage extends StatelessWidget {
                   price: '\$85',
                   discount: 'Extra Discount With the Bank Offers.',
                   icon: Icons.credit_card,
-                  originalPrice: '\$90', // Added original price with strike-through
+                  originalPrice:
+                      '\$90', // Added original price with strike-through
                 ),
                 SizedBox(height: 20),
                 PriceDetails(),
@@ -134,7 +137,8 @@ class PaymentOption extends StatelessWidget {
   final String price;
   final String? discount;
   final IconData icon;
-  final String? originalPrice; // Added for displaying original price with strike-through
+  final String?
+      originalPrice; // Added for displaying original price with strike-through
 
   const PaymentOption({
     super.key,
@@ -151,7 +155,7 @@ class PaymentOption extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(
         side: BorderSide(
-          color: isSelected ? Colors.black: Colors.grey, // Light grey border
+          color: isSelected ? Colors.black : Colors.grey, // Light grey border
           width: 1,
         ),
         borderRadius: BorderRadius.circular(10.0),
@@ -188,7 +192,8 @@ class PaymentOption extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 12,
                           color: Colors.red,
-                          decoration: TextDecoration.lineThrough, // Strike-through style
+                          decoration: TextDecoration
+                              .lineThrough, // Strike-through style
                         ),
                       ),
                   ],
@@ -203,7 +208,9 @@ class PaymentOption extends StatelessWidget {
                 ),
                 const Spacer(),
                 Icon(
-                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                  isSelected
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_off,
                   color: isSelected ? const Color(0xFF2E7D32) : Colors.grey,
                 ),
               ],
@@ -245,7 +252,8 @@ class PriceDetails extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        side: BorderSide(color: Colors.grey.shade400), // Changed color to light grey
+        side: BorderSide(
+            color: Colors.grey.shade400), // Changed color to light grey
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: const Padding(
@@ -265,16 +273,26 @@ class PriceDetails extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Total Product Price', style: TextStyle(color: Colors.grey)), // Changed color to grey
-                Text('\$90', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)), // Changed color to black
+                Text('Total Product Price',
+                    style:
+                        TextStyle(color: Colors.grey)), // Changed color to grey
+                Text('\$90',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black)), // Changed color to black
               ],
             ),
             SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Order Total', style: TextStyle(color: Colors.black)), // Changed color to black
-                Text('\$85', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)), // Updated price
+                Text('Order Total',
+                    style: TextStyle(
+                        color: Colors.black)), // Changed color to black
+                Text('\$85',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black)), // Updated price
               ],
             ),
           ],
@@ -319,10 +337,11 @@ class _BottomBarState extends State<BottomBar> {
             }),
             child: ElevatedButton(
               onPressed: () {
-                 Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const OrderDetailScreen()),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProductDetailsPage()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: isHovering
@@ -332,7 +351,8 @@ class _BottomBarState extends State<BottomBar> {
                     const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 elevation: 8, // Elevation for a raised effect
                 shadowColor: Colors.black,
-                            side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
+                side: const BorderSide(
+                    color: Color(0xFFCEC9C9)), // Set border color
               ),
               child: Text(
                 'Place Order',

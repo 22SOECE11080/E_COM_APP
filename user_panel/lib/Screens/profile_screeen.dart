@@ -35,9 +35,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Center(
                         child: Text(
                           'Profile',

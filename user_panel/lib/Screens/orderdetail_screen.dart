@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/cart_screen.dart';
+import 'package:user_panel/Screens/review_screen.dart';
 
 class OrderDetailScreen extends StatelessWidget {
   const OrderDetailScreen({super.key});
@@ -12,7 +14,7 @@ class OrderDetailScreen extends StatelessWidget {
       backgroundColor: Colors.green.shade100,
       body: Column(
         children: [
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           // Top AppBar-like Container
           Padding(
             padding:
@@ -97,8 +99,8 @@ class OrderDetailScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       // Pricing
-                      Row(
-                        children: const [
+                      const Row(
+                        children: [
                           Text(
                             "\$500",
                             style: TextStyle(
@@ -148,7 +150,14 @@ class OrderDetailScreen extends StatelessWidget {
                       // Buy Now Button
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            // Navigate to the Register screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ReviewPage()),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             foregroundColor: Colors.white,
                             backgroundColor: Colors.green, // foreground
@@ -174,7 +183,7 @@ class OrderDetailScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Container(
+                      SizedBox(
                         height: 150,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
@@ -196,7 +205,13 @@ class OrderDetailScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            // Navigate to the Register screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CartScreen()),
+            );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.green,
             padding: const EdgeInsets.symmetric(vertical: 20),

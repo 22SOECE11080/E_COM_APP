@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_panel/Screens/cart_screen.dart';
 
 // Assuming that you have a separate homepage_screen.dart file
 import 'homepage_screen.dart';
@@ -75,7 +74,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'WishList',
@@ -216,7 +215,7 @@ class CartScreen extends StatelessWidget {
                         Navigator.pop(context);
                       },
                     ),
-                    Expanded(
+                    const Expanded(
                       child: Center(
                         child: Text(
                           'MY CART',
@@ -236,9 +235,9 @@ class CartScreen extends StatelessWidget {
             // Cart Items
             Expanded(
               child: ListView(
-                children: [
+                children: const [
                   CartItem(),
-                  const Divider(thickness: 1, color: Colors.green),
+                  Divider(thickness: 1, color: Colors.green),
                   CartItem(),
                 ],
               ),
@@ -251,6 +250,8 @@ class CartScreen extends StatelessWidget {
 }
 
 class CartItem extends StatelessWidget {
+  const CartItem({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Padding(

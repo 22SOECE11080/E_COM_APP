@@ -29,9 +29,9 @@ class ProductPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(
                       12), // Rounded corners for a more modern look
                 ),
-                child: Row(
+                child: const Row(
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Center(
                         child: Text(
                           'Products',

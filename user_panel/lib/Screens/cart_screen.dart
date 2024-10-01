@@ -15,6 +15,7 @@ class _CartScreenState extends State<CartScreen> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,8 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             // Top AppBar-like Container
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
               child: Container(
                 height: 60.0,
                 decoration: BoxDecoration(
@@ -41,6 +43,14 @@ class _CartScreenState extends State<CartScreen> {
                 ),
                 child: Row(
                   children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios,
+                          color: Color(0xFF2E7D32)),
+                      onPressed: () {
+                        Navigator.pop(
+                            context); // This will navigate back to the previous page
+                      },
+                    ),
                     const Expanded(
                       child: Center(
                         child: Text(
@@ -57,7 +67,9 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
             ),
+
             const SizedBox(height: 10),
+            // Cart items list
             Expanded(
               child: ListView.builder(
                 itemCount: 2, // Number of items in cart
@@ -89,7 +101,8 @@ class _CartScreenState extends State<CartScreen> {
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
-                                      color: Color(0xFF2E7D32), // Text color set to black
+                                      color: Color(
+                                          0xFF2E7D32), // Text color set to black
                                     ),
                                   ),
                                   Text(
@@ -145,10 +158,12 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
             ),
+            // Proceed to Buy section
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: const BoxDecoration(
-                color: Colors.white, // White background for the bottom container
+                color:
+                    Colors.white, // White background for the bottom container
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
@@ -178,15 +193,15 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFE7F2E4),
+                      backgroundColor: const Color(0xFFE7F2E4),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24,
                         vertical: 12,
                       ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: const BorderSide(color: Color(0xFFCEC9C9)), // Set border color
-
+                        side: const BorderSide(
+                            color: Color(0xFFCEC9C9)), // Set border color
                       ),
                     ),
                     onPressed: () {

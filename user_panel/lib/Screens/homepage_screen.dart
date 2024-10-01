@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
+import 'package:user_panel/Screens/orderdetail_screen.dart';
 import 'package:user_panel/Screens/product_page.dart';
 import 'package:user_panel/Screens/profile_screeen.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
@@ -95,13 +96,13 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          UserAccountsDrawerHeader(
-            decoration: const BoxDecoration(
+          const UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
               color: Colors.green,
             ),
-            accountName: const Text('Signed in as'),
-            accountEmail: const Text('+91 7777777777'),
-            currentAccountPicture: const CircleAvatar(
+            accountName: Text('Signed in as'),
+            accountEmail: Text('+91 7777777777'),
+            currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
               child: Icon(Icons.person, size: 50, color: Colors.green),
             ),
@@ -169,36 +170,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-
-  // Modern Bottom Navigation Bar
-  Widget _buildModernBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _selectedIndex, // Use the selected index
-      onTap: _onItemTapped, // Handle navigation
-      selectedItemColor: const Color(0xFF2E7D32),
-      unselectedItemColor: Colors.grey,
-      elevation: 10,
-      type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_bag),
-          label: 'Products',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.shopping_cart),
-          label: 'Cart',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Account',
-        ),
-      ],
     );
   }
 }
@@ -349,7 +320,7 @@ class HomeContent extends StatelessWidget {
             ),
             itemCount: 4, // Set the number of items to display
             itemBuilder: (context, index) {
-              return _buildProductCard();
+              return _buildProductCard(context);
             },
           ),
         ],
@@ -357,84 +328,96 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  static _buildProductCard() {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            spreadRadius: 2,
+  static Widget _buildProductCard(context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to the OrderDetailScreen or relevant page when the product card is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                const OrderDetailScreen(), // Replace with your destination screen
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Center(
-                child: Image.asset(
-                  'assets/images/cyclops.png', // Example product image
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.cover,
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/images/cyclops.png', // Example product image
+                    height: 100,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                  decoration: BoxDecoration(
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: const Text(
+                      '15% OFF',
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Elegant",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            const Text(
+              "Flonicamid 50% WG\n500 gm, 250gm",
+              style: TextStyle(color: Colors.grey, fontSize: 12),
+            ),
+            const SizedBox(height: 5),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "\$99",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF2E7D32),
+                  ),
+                ),
+                Text(
+                  "\$500",
+                  style: TextStyle(
+                    fontSize: 14,
                     color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  child: const Text(
-                    '15% OFF',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+                    decoration: TextDecoration.lineThrough,
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          const Text(
-            "Elegant",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 5),
-          const Text(
-            "Flonicamid 50% WG\n500 gm, 250gm",
-            style: TextStyle(color: Colors.grey, fontSize: 12),
-          ),
-          const SizedBox(height: 5),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "\$99",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF2E7D32),
-                ),
-              ),
-              Text(
-                "\$500",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.red,
-                  decoration: TextDecoration.lineThrough,
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
