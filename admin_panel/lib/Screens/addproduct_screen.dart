@@ -150,7 +150,7 @@ class AddProductScreen extends StatelessWidget {
                                 // Handle Add button
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFFE7F2E4),
+                                backgroundColor: const Color(0xFFE7F2E4),
                               ),
                               child: const Text('ADD'),
                             ),

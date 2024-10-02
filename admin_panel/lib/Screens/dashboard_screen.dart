@@ -169,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
-          (states) => Color(0xFFE7F2E4),
+          (states) => const Color(0xFFE7F2E4),
         ),
         border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[
@@ -225,7 +225,7 @@ class DashboardScreen extends StatelessWidget {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
-          (states) => Color(0xFFE7F2E4),
+          (states) => const Color(0xFFE7F2E4),
         ),
         border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[

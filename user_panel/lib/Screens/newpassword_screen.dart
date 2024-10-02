@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/login_screen.dart';
-import 'package:user_panel/Screens/register_screen.dart';
 
 class NewpasswordScreen extends StatefulWidget {
   const NewpasswordScreen({super.key});
