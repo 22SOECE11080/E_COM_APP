@@ -44,41 +44,41 @@ class DashboardScreen extends StatelessWidget {
               child: Image.asset('assets/images/satvakrushi_logo.jpg'),
             ),
             ListTile(
-              leading: const Icon(Icons.dashboard, color: Colors.green),
+              leading: const Icon(Icons.dashboard, color: Color(0xFF2E7D32)),
               title: const Text('Dashboard'),
               onTap: () {},
             ),
             const ExpansionTile(
               leading:
-                  Icon(Icons.production_quantity_limits, color: Colors.green),
+                  Icon(Icons.production_quantity_limits, color:Color(0xFF2E7D32)),
               title: Text('Products'),
               children: [
                 ListTile(title: Text('Product List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.receipt_long, color: Colors.green),
+              leading: Icon(Icons.receipt_long, color:Color(0xFF2E7D32)),
               title: Text('Order List'),
               children: [
                 ListTile(title: Text('Orders')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.shopping_cart, color: Colors.green),
+              leading: Icon(Icons.shopping_cart, color:Color(0xFF2E7D32)),
               title: Text('Current Orders'),
               children: [
                 ListTile(title: Text('Current Orders')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.people, color: Colors.green),
+              leading: Icon(Icons.people, color:Color(0xFF2E7D32)),
               title: Text('Customer'),
               children: [
                 ListTile(title: Text('Customer List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.analytics, color: Colors.green),
+              leading: Icon(Icons.analytics, color: Color(0xFF2E7D32)),
               title: Text('Analytics'),
               children: [
                 ListTile(title: Text('Reports')),
@@ -86,12 +86,12 @@ class DashboardScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.help, color: Colors.green),
+              leading: const Icon(Icons.help, color:Color(0xFF2E7D32)),
               title: const Text('Help'),
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.logout, color: Colors.green),
+              leading: const Icon(Icons.logout, color: Color(0xFF2E7D32)),
               title: const Text('Logout'),
               onTap: () {},
             ),
@@ -169,7 +169,7 @@ class DashboardScreen extends StatelessWidget {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
-          (states) => Colors.green.shade100,
+          (states) => const Color(0xFFE7F2E4),
         ),
         border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[
@@ -225,7 +225,7 @@ class DashboardScreen extends StatelessWidget {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
-          (states) => Colors.green.shade100,
+          (states) => const Color(0xFFE7F2E4),
         ),
         border: TableBorder.all(color: Colors.grey), // Add border to the table
         columns: const <DataColumn>[

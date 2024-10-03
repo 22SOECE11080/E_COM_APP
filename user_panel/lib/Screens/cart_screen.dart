@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/review_screen.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -160,6 +161,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             // Proceed to Buy section
             Container(
+              
               padding: const EdgeInsets.all(16.0),
               decoration: const BoxDecoration(
                 color:
@@ -205,7 +207,11 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     onPressed: () {
-                      // Proceed to Buy action
+                       Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ReviewPage()),
+                              );
                     },
                     child: const Text(
                       'Proceed to Buy (2 Items)',

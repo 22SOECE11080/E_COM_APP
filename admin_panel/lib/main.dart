@@ -1,4 +1,4 @@
-import 'package:admin_panel/Screens/addproduct_screen.dart';
+import 'package:admin_panel/Screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const AddProductScreen(),
+      home: const LoginScreen(),
     );
   }
 }

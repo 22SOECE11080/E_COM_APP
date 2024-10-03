@@ -6,9 +6,9 @@ class AddProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE9F5EC),
+      backgroundColor: const Color(0xFFE7F2E4),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFE9F5EC),
+        backgroundColor: const Color(0xFFE7F2E4),
         elevation: 0,
         title: Center(
           child: TextField(
@@ -46,20 +46,20 @@ class AddProductScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.dashboard, color: Colors.green),
+              leading: const Icon(Icons.dashboard, color: Color(0xFF2E7D32)),
               title: const Text('Dashboard'),
               onTap: () {},
             ),
             const ExpansionTile(
               leading:
-                  Icon(Icons.production_quantity_limits, color: Colors.green),
+                  Icon(Icons.production_quantity_limits, color: Color(0xFF2E7D32)),
               title: Text('Products'),
               children: [
                 ListTile(title: Text('Product List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.receipt_long, color: Colors.green),
+              leading: Icon(Icons.receipt_long, color: Color(0xFF2E7D32)),
               title: Text('Order List'),
               children: [
                 ListTile(title: Text('Orders')),
@@ -67,14 +67,14 @@ class AddProductScreen extends StatelessWidget {
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.people, color: Colors.green),
+              leading: Icon(Icons.people, color: Color(0xFF2E7D32)),
               title: Text('Customer'),
               children: [
                 ListTile(title: Text('Customer List')),
               ],
             ),
             const ExpansionTile(
-              leading: Icon(Icons.analytics, color: Colors.green),
+              leading: Icon(Icons.analytics, color: Color(0xFF2E7D32)),
               title: Text('Analytics'),
               children: [
                 ListTile(title: Text('Reports')),
@@ -82,12 +82,12 @@ class AddProductScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.help, color: Colors.green),
+              leading: const Icon(Icons.help, color: Color(0xFF2E7D32)),
               title: const Text('Help'),
               onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.logout, color: Colors.green),
+              leading: const Icon(Icons.logout, color: Color(0xFF2E7D32)),
               title: const Text('Logout'),
               onTap: () {},
             ),
@@ -150,7 +150,7 @@ class AddProductScreen extends StatelessWidget {
                                 // Handle Add button
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green,
+                                backgroundColor: const Color(0xFFE7F2E4),
                               ),
                               child: const Text('ADD'),
                             ),
@@ -281,7 +281,7 @@ class ProductThumbnailList extends StatelessWidget {
         color: Colors.grey.shade300,
       ),
       title: Text(fileName),
-      trailing: const Icon(Icons.check_circle, color: Colors.green),
+      trailing: const Icon(Icons.check_circle, color: Color(0xFF005843)),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/Screens/cart_screen.dart';
 import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
+import 'package:user_panel/Screens/login_screen.dart';
 import 'package:user_panel/Screens/orderdetail_screen.dart';
 import 'package:user_panel/Screens/product_page.dart';
-import 'package:user_panel/Screens/profile_screeen.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     const HomeContent(),
     const ProductPage(), // Adjust this to your ProductPage or relevant widget
     const CartScreen(), // Adjust this to your Cart or relevant widget
-    const ProfileScreen(), // Create this AccountScreen if it doesn't exist
+   // const ProfileScreen(), // Create this AccountScreen if it doesn't exist
   ];
 
   void _onItemTapped(int index) {
@@ -98,13 +99,13 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           const UserAccountsDrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.green,
+              color: Color(0xFF008054),
             ),
             accountName: Text('Signed in as'),
             accountEmail: Text('+91 7777777777'),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.white,
-              child: Icon(Icons.person, size: 50, color: Colors.green),
+              child: Icon(Icons.person, size: 50, color: Colors.black),
             ),
           ),
           ListTile(
@@ -162,12 +163,18 @@ class _HomePageState extends State<HomePage> {
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Logout'),
-            onTap: () {
-              // Handle logout action
-            },
-          ),
+  leading: const Icon(Icons.logout),
+  title: const Text('Logout'),
+  onTap: () {
+    // Navigate to the LoginScreen when ListTile is tapped
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
+  },
+)
         ],
       ),
     );
