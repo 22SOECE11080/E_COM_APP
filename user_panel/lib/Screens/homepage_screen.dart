@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     const HomeContent(),
     const ProductPage(), // Adjust this to your ProductPage or relevant widget
     const CartScreen(), // Adjust this to your Cart or relevant widget
-   // const ProfileScreen(), // Create this AccountScreen if it doesn't exist
+    const ProfileScreen(), // Create this AccountScreen if it doesn't exist
   ];
 
   void _onItemTapped(int index) {
