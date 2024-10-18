@@ -1,3 +1,4 @@
+import 'package:admin_panel/Screens/appdrawer_screen.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -33,71 +34,7 @@ class DashboardScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Image.asset('assets/images/satvakrushi_logo.jpg'),
-            ),
-            ListTile(
-              leading: const Icon(Icons.dashboard, color: Color(0xFF2E7D32)),
-              title: const Text('Dashboard'),
-              onTap: () {},
-            ),
-            const ExpansionTile(
-              leading:
-                  Icon(Icons.production_quantity_limits, color:Color(0xFF2E7D32)),
-              title: Text('Products'),
-              children: [
-                ListTile(title: Text('Product List')),
-              ],
-            ),
-            const ExpansionTile(
-              leading: Icon(Icons.receipt_long, color:Color(0xFF2E7D32)),
-              title: Text('Order List'),
-              children: [
-                ListTile(title: Text('Orders')),
-              ],
-            ),
-            const ExpansionTile(
-              leading: Icon(Icons.shopping_cart, color:Color(0xFF2E7D32)),
-              title: Text('Current Orders'),
-              children: [
-                ListTile(title: Text('Current Orders')),
-              ],
-            ),
-            const ExpansionTile(
-              leading: Icon(Icons.people, color:Color(0xFF2E7D32)),
-              title: Text('Customer'),
-              children: [
-                ListTile(title: Text('Customer List')),
-              ],
-            ),
-            const ExpansionTile(
-              leading: Icon(Icons.analytics, color: Color(0xFF2E7D32)),
-              title: Text('Analytics'),
-              children: [
-                ListTile(title: Text('Reports')),
-              ],
-            ),
-            const Divider(),
-            ListTile(
-              leading: const Icon(Icons.help, color:Color(0xFF2E7D32)),
-              title: const Text('Help'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout, color: Color(0xFF2E7D32)),
-              title: const Text('Logout'),
-              onTap: () {},
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(), // Use the AppDrawer here
       // Main content
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -163,9 +100,8 @@ class DashboardScreen extends StatelessWidget {
     return Center(
       child: DataTable(
         columnSpacing: 15,
-        dataRowColor: WidgetStateProperty.resolveWith<Color?>((
-          Set<WidgetState> states,
-        ) {
+        dataRowColor: WidgetStateProperty.resolveWith<Color?>(
+            (Set<WidgetState> states) {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
@@ -219,9 +155,8 @@ class DashboardScreen extends StatelessWidget {
     return Center(
       child: DataTable(
         columnSpacing: 15,
-        dataRowColor: WidgetStateProperty.resolveWith<Color?>((
-          Set<WidgetState> states,
-        ) {
+        dataRowColor: WidgetStateProperty.resolveWith<Color?>(
+            (Set<WidgetState> states) {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
