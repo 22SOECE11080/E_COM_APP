@@ -45,11 +45,11 @@ class ProductDetailsPage extends StatelessWidget {
         children: [
           // Order Information Section with Dividers
           Divider(color: Colors.green.shade900, thickness: 2),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Order ID: 3354654654526',
                   style: TextStyle(
@@ -99,9 +99,9 @@ class ProductDetailsPage extends StatelessWidget {
                   height: 80,
                 ),
                 const SizedBox(width: 16),
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Cyclops',
                       style: TextStyle(
@@ -145,13 +145,13 @@ class ProductDetailsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Order Confirmed Status
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.check_circle, color: Colors.green),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Order Confirmed',
                           style: TextStyle(
@@ -175,13 +175,13 @@ class ProductDetailsPage extends StatelessWidget {
                   color: Colors.green,
                 ),
                 // Shipped Status with Tick
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.check_circle, color: Colors.green),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Shipped',
                           style: TextStyle(
@@ -205,13 +205,13 @@ class ProductDetailsPage extends StatelessWidget {
                   color: Colors.green,
                 ),
                 // Delivered Status with Empty Circle
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.radio_button_unchecked, color: Colors.green),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'Delivered',
                           style: TextStyle(
@@ -246,51 +246,51 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
               ],
             ),
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Order Summary',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.green,
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Divider(color: Colors.green),
-                const Row(
+                SizedBox(height: 8),
+                Divider(color: Colors.green),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Discount'),
                     Text('\$5554'),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Row(
+                SizedBox(height: 8),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Discount (20%)'),
                     Text('\$1109.40'),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Row(
+                SizedBox(height: 8),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Delivery'),
                     Text('\$0.00'),
                   ],
                 ),
-                const SizedBox(height: 8),
-                const Row(
+                SizedBox(height: 8),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Tax'),
                     Text('\$221.88'),
                   ],
                 ),
-                const Divider(color: Colors.green),
-                const Row(
+                Divider(color: Colors.green),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(

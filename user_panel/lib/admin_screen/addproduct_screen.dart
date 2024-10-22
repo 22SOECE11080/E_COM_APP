@@ -1,6 +1,9 @@
-import 'package:admin_panel/Screens/appdrawer_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:user_panel/admin_screen/appdrawer_screen.dart';
 
 class AddProductScreen extends StatefulWidget {
   const AddProductScreen({super.key});
@@ -17,38 +20,102 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final TextEditingController _regularPriceController = TextEditingController();
   final TextEditingController _stockQuantityController =
       TextEditingController();
-  final TextEditingController _discountController =
-      TextEditingController(); // Added discount field
+  final TextEditingController _discountController = TextEditingController();
+
+  File? _selectedImage;
+  String? _imageUrl;
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<String?> _uploadImage(File imageFile) async {
+    try {
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      Reference ref =
+          FirebaseStorage.instance.ref().child('product_images/$fileName');
+
+      UploadTask uploadTask = ref.putFile(imageFile);
+
+      uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
+        print(
+            'Progress: ${(snapshot.bytesTransferred / snapshot.totalBytes) * 100} %');
+      });
+
+      TaskSnapshot snapshot = await uploadTask.whenComplete(() => null);
+      String downloadUrl = await snapshot.ref.getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      print('Image upload failed: $e');
+      return null;
+    }
+  }
+
+  Future<void> _pickImage() async {
+    try {
+      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _selectedImage = File(pickedFile.path);
+          print('Selected Image Path: ${_selectedImage!.path}');
+        });
+      } else {
+        print('No image selected.');
+      }
+    } catch (e) {
+      print('Error picking image: $e');
+    }
+  }
 
   Future<void> _addProduct() async {
     try {
+      if (_selectedImage != null) {
+        String? imageUrl = await _uploadImage(_selectedImage!);
+        _imageUrl = imageUrl; // Store the image URL for display
+      }
+
+      // Save product details to Firestore
       await FirebaseFirestore.instance.collection('products').add({
         'name': _nameController.text,
         'description': _descriptionController.text,
         'category': _categoryController.text,
         'brand': _brandController.text,
-        'regularPrice': double.tryParse(_regularPriceController.text) ?? 0,
+        'Price': double.tryParse(_regularPriceController.text) ?? 0,
         'stockQuantity': int.tryParse(_stockQuantityController.text) ?? 0,
-        'discount':
-            double.tryParse(_discountController.text) ?? 0, // Capture discount
+        'discount': double.tryParse(_discountController.text) ?? 0,
+        'imageUrl': _imageUrl, // Save the image URL here
+        'createdAt': Timestamp.now(),
+        'updatedAt': Timestamp.now(),
       });
-      // Optionally clear the text fields
-      _nameController.clear();
-      _descriptionController.clear();
-      _categoryController.clear();
-      _brandController.clear();
-      _regularPriceController.clear();
-      _stockQuantityController.clear();
-      _discountController.clear();
+
+      _clearFields();
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Product added successfully!')),
+        const SnackBar(
+          content: Text('Product added successfully!'),
+          backgroundColor: Colors.green,
+        ),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to add product: $e')),
+        SnackBar(
+          content: Text('Failed to add product: $e'),
+          backgroundColor: Colors.red,
+        ),
       );
     }
+  }
+
+  void _clearFields() {
+    _nameController.clear();
+    _descriptionController.clear();
+    _categoryController.clear();
+    _brandController.clear();
+    _regularPriceController.clear();
+    _stockQuantityController.clear();
+    _discountController.clear();
+    setState(() {
+      _selectedImage = null;
+      _imageUrl = null;
+    });
   }
 
   @override
@@ -138,7 +205,36 @@ class _AddProductScreenState extends State<AddProductScreen> {
                         ],
                       ),
                       _buildTextField('Discount', _discountController,
-                          'Type discount here'), // Added discount field
+                          'Type discount here'),
+                      const SizedBox(height: 20),
+                      // Show selected image
+                      // Show selected image
+                      _selectedImage != null
+                          ? _imageUrl != null
+                              ? Image.network(_imageUrl!,
+                                  height:
+                                      150) // Display the uploaded image using the URL
+                              : Container(
+                                  height: 150,
+                                  width: double.infinity,
+                                  color: Colors.grey.shade200,
+                                  child: const Center(
+                                    child: Text('Uploading image...'),
+                                  ),
+                                )
+                          : Container(
+                              height: 150,
+                              width: double.infinity,
+                              color: Colors.grey.shade200,
+                              child: const Center(
+                                child: Text('No image selected'),
+                              ),
+                            ),
+                      const SizedBox(height: 10),
+                      ElevatedButton(
+                        onPressed: _pickImage, // Image picker button
+                        child: const Text('Select Image'),
+                      ),
                       const SizedBox(height: 20),
                       Row(
                         children: [
@@ -155,7 +251,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           Expanded(
                             child: ElevatedButton(
                               onPressed: () {
-                                // Handle Cancel button
                                 Navigator.pop(context); // Go back
                               },
                               style: ElevatedButton.styleFrom(
@@ -166,33 +261,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Product Gallery',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      DottedBorderBox(),
-                      SizedBox(height: 10),
-                      ProductThumbnailList(),
                     ],
                   ),
                 ),
@@ -228,60 +296,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
         ),
         const SizedBox(height: 15),
       ],
-    );
-  }
-}
-
-class DottedBorderBox extends StatelessWidget {
-  const DottedBorderBox({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 150,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey, style: BorderStyle.solid),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.image, size: 40, color: Colors.grey),
-            SizedBox(height: 5),
-            Text('Drop your image here, or browse'),
-            Text('Jpeg, png are allowed'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProductThumbnailList extends StatelessWidget {
-  const ProductThumbnailList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildThumbnail('Product thumbnail.png'),
-        _buildThumbnail('Product thumbnail.png'),
-        _buildThumbnail('Product thumbnail.png'),
-      ],
-    );
-  }
-
-  Widget _buildThumbnail(String fileName) {
-    return ListTile(
-      leading: Container(
-        width: 40,
-        height: 40,
-        color: Colors.grey.shade300,
-      ),
-      title: Text(fileName),
-      trailing: const Icon(Icons.check_circle, color: Color(0xFF005843)),
     );
   }
 }

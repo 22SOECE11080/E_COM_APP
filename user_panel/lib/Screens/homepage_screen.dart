@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/cart_screen.dart';
 import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
@@ -7,7 +8,7 @@ import 'package:user_panel/Screens/product_page.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required String userId});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,8 +21,9 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const HomeContent(),
     const ProductPage(), // Adjust this to your ProductPage or relevant widget
-    const CartScreen(), // Adjust this to your Cart or relevant widget
-   // const ProfileScreen(), // Create this AccountScreen if it doesn't exist
+    const CartScreen(
+      cartItems: [],
+    ), // Adjust this to your Cart or relevant widget
   ];
 
   void _onItemTapped(int index) {
@@ -163,18 +165,18 @@ class _HomePageState extends State<HomePage> {
           ),
           const Divider(),
           ListTile(
-  leading: const Icon(Icons.logout),
-  title: const Text('Logout'),
-  onTap: () {
-    // Navigate to the LoginScreen when ListTile is tapped
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginScreen(),
-      ),
-    );
-  },
-)
+            leading: const Icon(Icons.logout),
+            title: const Text('Logout'),
+            onTap: () {
+              // Navigate to the LoginScreen when ListTile is tapped
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -193,7 +195,7 @@ class HomeContent extends StatelessWidget {
         children: [
           _buildBannerSection(),
           _buildCategorySection(),
-          _buildProductGrid("Trending"),
+          _buildProductGrid("Trending"), // Fetch dynamic products here
         ],
       ),
     );
@@ -300,7 +302,7 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  // Product Grid
+  // Product Grid (Fetch from Firestore)
   static Widget _buildProductGrid(String title) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -316,18 +318,39 @@ class HomeContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          GridView.builder(
-            physics: const NeverScrollableScrollPhysics(), // Prevent scrolling
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 0.75,
-            ),
-            itemCount: 4, // Set the number of items to display
-            itemBuilder: (context, index) {
-              return _buildProductCard(context);
+
+          // Fetch products from Firestore using StreamBuilder
+          StreamBuilder(
+            stream:
+                FirebaseFirestore.instance.collection('products').snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
+              if (!snapshot.hasData) {
+                return const Text('No products found');
+              }
+
+              final products = snapshot.data?.docs ?? [];
+
+              return GridView.builder(
+                physics:
+                    const NeverScrollableScrollPhysics(), // Prevent scrolling
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.75,
+                ),
+                itemCount: products
+                    .length, // Set the number of items based on Firestore data
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return _buildProductCard(context, product);
+                },
+              );
             },
           ),
         ],
@@ -335,15 +358,25 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  static Widget _buildProductCard(context) {
+  static Widget _buildProductCard(context, DocumentSnapshot product) {
+    final String productName =
+        product['name']; // Ensure the field matches Firestore
+    final double productPrice = product['Price'];
+    final String productDescription = product['description'];
+    final int productDiscount = product['discount'] ?? 0;
+    final String productImage = product['imageUrl'];
+
     return GestureDetector(
       onTap: () {
-        // Navigate to the OrderDetailScreen or relevant page when the product card is tapped
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                const OrderDetailScreen(), // Replace with your destination screen
+            builder: (context) => OrderDetailScreen(
+              productName: productName,
+              productDescription: productDescription,
+              productPrice: productPrice,
+              productImage: productImage,
+            ),
           ),
         );
       },
@@ -366,61 +399,64 @@ class HomeContent extends StatelessWidget {
             Stack(
               children: [
                 Center(
-                  child: Image.asset(
-                    'assets/images/cyclops.png', // Example product image
+                  child: Image.network(
+                    productImage,
                     height: 100,
                     width: 100,
                     fit: BoxFit.cover,
                   ),
                 ),
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Text(
-                      '15% OFF',
-                      style: TextStyle(color: Colors.white, fontSize: 12),
+                if (productDiscount > 0)
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Text(
+                        '$productDiscount% OFF',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12),
+                      ),
                     ),
                   ),
-                ),
               ],
             ),
             const SizedBox(height: 10),
-            const Text(
-              "Elegant",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Text(
+              productName,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
             const Text(
-              "Flonicamid 50% WG\n500 gm, 250gm",
+              "Product Description", // Adjust as per your data
               style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
             const SizedBox(height: 5),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$99",
-                  style: TextStyle(
+                  "\$$productPrice",
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF2E7D32),
                   ),
                 ),
-                Text(
-                  "\$500",
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.red,
-                    decoration: TextDecoration.lineThrough,
+                if (productDiscount > 0)
+                  Text(
+                    "\$${(productPrice / (1 - (productDiscount / 100))).toStringAsFixed(2)}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.red,
+                      decoration: TextDecoration.lineThrough,
+                    ),
                   ),
-                ),
               ],
             ),
           ],
