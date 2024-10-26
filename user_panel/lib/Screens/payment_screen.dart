@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_panel/Screens/orderdetail_screen.dart';
 import 'package:user_panel/Screens/product_detail_screen.dart';
 
 class PaymentPage extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:admin_panel/Screens/appdrawer_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:user_panel/admin_screen/appdrawer_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -100,8 +100,8 @@ class DashboardScreen extends StatelessWidget {
     return Center(
       child: DataTable(
         columnSpacing: 15,
-        dataRowColor: WidgetStateProperty.resolveWith<Color?>(
-            (Set<WidgetState> states) {
+        dataRowColor:
+            WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(
@@ -155,8 +155,8 @@ class DashboardScreen extends StatelessWidget {
     return Center(
       child: DataTable(
         columnSpacing: 15,
-        dataRowColor: WidgetStateProperty.resolveWith<Color?>(
-            (Set<WidgetState> states) {
+        dataRowColor:
+            WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
           return Colors.white; // Set body rows to white
         }),
         headingRowColor: WidgetStateColor.resolveWith(

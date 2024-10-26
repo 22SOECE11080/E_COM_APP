@@ -8,7 +8,7 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text('Products Screen')),
     );
   }
@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(child: Text('Profile Screen')),
     );
   }
@@ -44,7 +44,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
       case 0:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage(userId: '',)),
         );
         break;
       case 1:
@@ -56,7 +56,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
       case 2:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const CartScreen()),
+          MaterialPageRoute(builder: (context) => const CartScreen(cartItems: [],)),
         );
         break;
       case 3:
@@ -160,7 +160,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                                   // Handle shopping cart button press
                                   Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (context) => const CartScreen()),
+                                    MaterialPageRoute(builder: (context) => const CartScreen(cartItems: [],)),
                                   );
                                 },
                               ),
