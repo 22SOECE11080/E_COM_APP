@@ -1,6 +1,10 @@
+import 'dart:io'; // To handle file paths
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart'; // For image storage
+import 'package:image_picker/image_picker.dart'; // For image picking
+import 'package:permission_handler/permission_handler.dart'; // For permissions handling
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,20 +14,24 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool _isPasswordVisible = false;
+  bool _isPasswordVisible = false; // To toggle password visibility
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController =
+      TextEditingController(); // Predefined password will be here
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   String? userId;
+  String? _imageUrl; // To store the profile image URL
+  File? _imageFile; // To store the selected image file
 
   @override
   void initState() {
     super.initState();
-    _fetchUserData();
+    _fetchUserData(); // Fetch user data on screen load
   }
 
   Future<void> _fetchUserData() async {
@@ -43,7 +51,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _emailController.text = userData['email'] ?? '';
             _phoneController.text = userData['phone']?.toString() ?? '';
             _passwordController.text =
-                userData['password'] ?? ''; // Fetching password
+                userData['password'] ?? ''; // Predefined password
+            _imageUrl =
+                userData['profileImage'] ?? ''; // Fetch profile image URL
           });
         }
       }
@@ -57,10 +67,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         'email': _emailController.text,
         'phone': int.tryParse(_phoneController.text) ?? 0,
         'password': _passwordController.text, // Update password
+        'profileImage': _imageUrl ?? '', // Update profile image URL
       });
 
       if (_passwordController.text.isNotEmpty) {
-        _updatePassword(_passwordController.text);
+        _updatePassword(
+            _passwordController.text); // Update password in Firebase Auth
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -82,6 +94,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SnackBar(content: Text('Error updating password')),
         );
       }
+    }
+  }
+
+  // Function to pick an image from the gallery
+  Future<void> _pickImage() async {
+    // Request storage permission before accessing gallery
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      // Request permission if not granted
+      status = await Permission.storage.request();
+    }
+
+    if (status.isGranted) {
+      try {
+        final pickedFile = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          maxWidth: 600, // Optional: Adjust width
+          maxHeight: 600, // Optional: Adjust height
+        );
+
+        if (pickedFile != null) {
+          setState(() {
+            _imageFile = File(pickedFile.path);
+          });
+          await _uploadImage();
+        } else {
+          // User canceled the picker
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No image selected.')),
+          );
+        }
+      } catch (e) {
+        // Handle any exceptions during image picking
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error picking image: $e')),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Storage permission denied.')),
+      );
+    }
+  }
+
+  // Function to upload image to Firebase Storage and get the download URL
+  Future<void> _uploadImage() async {
+    if (_imageFile != null && userId != null) {
+      final storageRef = _storage.ref().child('profile_images/$userId.jpg');
+      try {
+        // Upload the file
+        await storageRef.putFile(_imageFile!);
+
+        // Get the download URL
+        String downloadUrl = await storageRef.getDownloadURL();
+
+        setState(() {
+          _imageUrl = downloadUrl; // Set the new image URL
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Image uploaded successfully')),
+        );
+      } catch (e) {
+        // Handle any errors during the upload process
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error uploading image: $e')),
+        );
+      }
+    } else {
+      // No image selected
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select an image first.')),
+      );
     }
   }
 
@@ -133,11 +218,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   children: [
                     const SizedBox(height: 20),
-                    const Center(
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundImage: AssetImage(
-                          'assets/images/profile_screeen.dart',
+                    Center(
+                      child: GestureDetector(
+                        onTap: _pickImage, // Pick image on tap
+                        child: CircleAvatar(
+                          radius: 60,
+                          backgroundImage: _imageUrl != null &&
+                                  _imageUrl!.isNotEmpty
+                              ? NetworkImage(
+                                  _imageUrl!) // Display uploaded image
+                              : const AssetImage(
+                                      'assets/images/default_profile.png') // Fallback image
+                                  as ImageProvider,
                         ),
                       ),
                     ),
@@ -167,7 +259,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: Icons.phone,
                           ),
                           const SizedBox(height: 20),
-                          buildPasswordField(),
+                          buildPasswordField(), // Password field
                           const SizedBox(height: 30),
                           ElevatedButton(
                             onPressed: _updateUserData,
@@ -203,6 +295,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  // Reusable text field widget
   Widget buildTextField({
     required TextEditingController controller,
     required String labelText,
@@ -214,28 +307,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-        prefixIcon: Icon(icon, color: const Color(0xFF2E7D32)),
+        prefixIcon: Icon(icon),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        filled: true,
-        fillColor: Colors.white,
       ),
     );
   }
 
+  // Password text field with visibility toggle
   Widget buildPasswordField() {
     return TextField(
       controller: _passwordController,
       obscureText: !_isPasswordVisible,
       decoration: InputDecoration(
-        labelText: 'New Password', // Label text for password
-        hintText: 'Enter a new password',
-        prefixIcon: const Icon(Icons.lock, color: Color(0xFF2E7D32)),
+        labelText: 'Password',
+        prefixIcon: const Icon(Icons.lock),
         suffixIcon: IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-            color: const Color(0xFF2E7D32),
           ),
           onPressed: () {
             setState(() {
@@ -246,8 +336,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        filled: true,
-        fillColor: Colors.white,
       ),
     );
   }

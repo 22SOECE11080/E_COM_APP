@@ -32,9 +32,8 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+        sourceCompatibility = '11'
+        targetCompatibility = '11'
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -62,3 +61,4 @@ flutter {
 }
 
 apply plugin: 'com.google.gms.google-services'
+}

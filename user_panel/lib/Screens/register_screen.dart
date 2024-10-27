@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Add Firebase Auth
+import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:user_panel/Screens/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -13,8 +13,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _isPasswordVisible = false;
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController =
-      TextEditingController(); // Added email field
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -33,7 +32,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         color: const Color(0xFFE7F2E4),
         child: Column(
           children: [
-            // Logo section
             Container(
               height: screenHeight * 0.3,
               width: screenWidth,
@@ -46,7 +44,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 1000.0,
               ),
             ),
-            // Form section
             Expanded(
               child: Container(
                 width: screenWidth,
@@ -83,43 +80,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                       const SizedBox(height: 20.0),
-                      // Name input
                       _buildTextField('Name', _nameController, false),
                       const SizedBox(height: 20.0),
-                      // Email input
                       _buildTextField('Email', _emailController, false),
                       const SizedBox(height: 20.0),
-                      // Phone input
                       _buildTextField('Phone Number', _phoneController, false),
                       const SizedBox(height: 20.0),
-                      // Password input
                       _buildTextField('Password', _passwordController, true),
                       const SizedBox(height: 30.0),
-                      // Register button
                       Center(
                         child: ElevatedButton(
                           onPressed: () async {
                             bool isValid = true;
 
-                            // Validation for email
                             if (_emailController.text.trim().isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content:
-                                      Text("Please fill out the Email field"),
-                                  backgroundColor: Colors.red,
+                                  content: Text("Please fill out the Email field"),
+                                  backgroundColor: Colors.red, // Red for error
                                 ),
                               );
                               isValid = false;
                             }
 
-                            // Validation for Name, Phone, and Password
                             if (_nameController.text.trim().isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content:
-                                      Text("Please fill out the Name field"),
-                                  backgroundColor: Colors.red,
+                                  content: Text("Please fill out the Name field"),
+                                  backgroundColor: Colors.red, // Red for error
                                 ),
                               );
                               isValid = false;
@@ -128,9 +116,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (_phoneController.text.trim().isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content:
-                                      Text("Please fill out the Phone field"),
-                                  backgroundColor: Colors.red,
+                                  content: Text("Please fill out the Phone field"),
+                                  backgroundColor: Colors.red, // Red for error
                                 ),
                               );
                               isValid = false;
@@ -139,9 +126,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (_passwordController.text.trim().isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text(
-                                      "Please fill out the Password field"),
-                                  backgroundColor: Colors.red,
+                                  content: Text("Please fill out the Password field"),
+                                  backgroundColor: Colors.red, // Red for error
                                 ),
                               );
                               isValid = false;
@@ -149,14 +135,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                             if (isValid) {
                               try {
-                                // Firebase Authentication: Create a new user
                                 UserCredential userCredential =
                                     await _auth.createUserWithEmailAndPassword(
                                   email: _emailController.text.trim(),
                                   password: _passwordController.text.trim(),
                                 );
 
-                                // Store additional user info in Firestore
                                 await db
                                     .collection('users')
                                     .doc(userCredential.user?.uid)
@@ -164,11 +148,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   'name': _nameController.text.trim(),
                                   'phone': _phoneController.text.trim(),
                                   'email': _emailController.text.trim(),
-                                  'passowrd': _passwordController.text.trim(),
+                                  'password': _passwordController.text.trim(),
                                   'createdAt': Timestamp.now(),
                                 });
 
-                                // Clear the fields
                                 setState(() {
                                   _nameController.clear();
                                   _emailController.clear();
@@ -179,11 +162,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                     content: Text("Registration successful"),
-                                    backgroundColor: Colors.green,
+                                    backgroundColor: Colors.green, // Green for success
                                   ),
                                 );
 
-                                // Navigate to login screen
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
@@ -191,11 +173,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           const LoginScreen()),
                                 );
                               } catch (e) {
-                                // Handle errors
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text("Failed to register: $e"),
-                                    backgroundColor: Colors.red,
+                                    backgroundColor: Colors.red, // Red for error
                                   ),
                                 );
                               }

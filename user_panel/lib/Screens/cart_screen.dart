@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:user_panel/Screens/review_screen.dart';
 
 class CartItem {
@@ -15,7 +16,6 @@ class CartItem {
     this.quantity = 1,
   });
 
-  // Create a factory constructor to build CartItem from Firestore document
   factory CartItem.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return CartItem(
@@ -26,7 +26,6 @@ class CartItem {
     );
   }
 
-  // Convert CartItem to Map to update in Firestore if needed
   Map<String, dynamic> toMap() {
     return {
       'productName': productName,
@@ -46,8 +45,42 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   List<CartItem> cartItems = [];
+  final userId = FirebaseAuth.instance.currentUser?.uid;
+  bool isLoading = true; // Added loading state
 
-  // Function to update quantity in the local list and Firestore
+  @override
+  void initState() {
+    super.initState();
+    fetchCartItems();
+  }
+
+  Future<void> fetchCartItems() async {
+    if (userId != null) {
+      try {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('cart')
+            .where('userId', isEqualTo: userId)
+            .get();
+
+        setState(() {
+          cartItems = querySnapshot.docs
+              .map((doc) => CartItem.fromFirestore(doc))
+              .toList();
+          isLoading = false; // Data fetched, stop loading
+        });
+      } catch (e) {
+        print('Error fetching cart items: $e');
+        setState(() {
+          isLoading = false; // Stop loading even if there’s an error
+        });
+      }
+    } else {
+      setState(() {
+        isLoading = false; // Stop loading if no user is found
+      });
+    }
+  }
+
   void updateQuantity(int index, bool isIncrement) async {
     setState(() {
       if (isIncrement) {
@@ -59,35 +92,15 @@ class _CartScreenState extends State<CartScreen> {
       }
     });
 
-    // Update the Firestore document for the cart item
-    final docId =
-        cartItems[index].productName; // Assuming product name is unique
+    final docId = cartItems[index].productName; // Make sure this is unique
     await FirebaseFirestore.instance.collection('cart').doc(docId).update({
       'quantity': cartItems[index].quantity,
     });
   }
 
-  // Function to calculate total price
   double getTotalPrice() {
     return cartItems.fold(
         0.0, (total, item) => total + (item.productPrice * item.quantity));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchCartItems(); // Fetch cart items when the screen is loaded
-  }
-
-  // Function to fetch cart items from Firestore
-  Future<void> fetchCartItems() async {
-    final querySnapshot =
-        await FirebaseFirestore.instance.collection('cart').get();
-
-    setState(() {
-      cartItems =
-          querySnapshot.docs.map((doc) => CartItem.fromFirestore(doc)).toList();
-    });
   }
 
   @override
@@ -143,97 +156,97 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(height: 10),
             // Cart Items List
             Expanded(
-              child: cartItems.isEmpty
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : ListView.builder(
-                      itemCount: cartItems.length,
-                      itemBuilder: (context, index) {
-                        final item = cartItems[index];
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 3,
-                            child: Padding(
+              child: isLoading // Check if loading
+                  ? const Center(child: CircularProgressIndicator())
+                  : cartItems.isEmpty
+                      ? const Center(
+                          child: Text(
+                              "Your cart is empty.")) // Show message if cart is empty
+                      : ListView.builder(
+                          itemCount: cartItems.length,
+                          itemBuilder: (context, index) {
+                            final item = cartItems[index];
+                            return Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    item.productImage, // Product image
-                                    width: 50,
-                                    height: 50,
-                                  ),
-                                  const SizedBox(width: 15),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          item.productName,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
-                                            color: Color(0xFF2E7D32),
-                                          ),
-                                        ),
-                                        const Text(
-                                          '1 L, 500 ml.',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Column(
+                              child: Card(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                elevation: 3,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
                                     children: [
-                                      Text(
-                                        '\$${item.productPrice}',
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Color(0xFF2E7D32),
+                                      Image.asset(
+                                        item.productImage,
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                      const SizedBox(width: 15),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              item.productName,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
+                                                color: Color(0xFF2E7D32),
+                                              ),
+                                            ),
+                                            const Text(
+                                              '1 L, 500 ml.',
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      const SizedBox(height: 8),
-                                      Row(
+                                      Column(
                                         children: [
-                                          IconButton(
-                                            icon: const Icon(
-                                                Icons.remove_circle_outline,
-                                                color: Colors.red),
-                                            onPressed: () {
-                                              updateQuantity(index,
-                                                  false); // Decrease quantity
-                                            },
+                                          Text(
+                                            '\$${item.productPrice}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 18,
+                                              color: Color(0xFF2E7D32),
+                                            ),
                                           ),
-                                          Text('${item.quantity}'),
-                                          IconButton(
-                                            icon: const Icon(
-                                                Icons.add_circle_outline,
-                                                color: Color(0xFF2E7D32)),
-                                            onPressed: () {
-                                              updateQuantity(index,
-                                                  true); // Increase quantity
-                                            },
+                                          const SizedBox(height: 8),
+                                          Row(
+                                            children: [
+                                              IconButton(
+                                                icon: const Icon(
+                                                    Icons.remove_circle_outline,
+                                                    color: Colors.red),
+                                                onPressed: () {
+                                                  updateQuantity(index, false);
+                                                },
+                                              ),
+                                              Text('${item.quantity}'),
+                                              IconButton(
+                                                icon: const Icon(
+                                                    Icons.add_circle_outline,
+                                                    color: Color(0xFF2E7D32)),
+                                                onPressed: () {
+                                                  updateQuantity(index, true);
+                                                },
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
                                     ],
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                            );
+                          },
+                        ),
             ),
             // Total Price and Proceed to Buy
             Container(
@@ -280,11 +293,11 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     onPressed: () {
-                      // Navigate to the Review Page
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ReviewPage(),
+                          builder: (context) =>
+                              ReviewPage(cartItems: cartItems),
                         ),
                       );
                     },
