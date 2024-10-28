@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const HomeContent(),
     const ProductPage(), // Adjust this to your ProductPage or relevant widget
-    const CartScreen(), // Adjust this to your Cart or relevant widget
+    const CartScreen(cartItems: [],), // Adjust this to your Cart or relevant widget
    // const ProfileScreen(), // Create this AccountScreen if it doesn't exist
   ];
 
