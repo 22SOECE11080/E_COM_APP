@@ -38,7 +38,7 @@ class _PaymentPageState extends State<PaymentPage> {
   void _handlePaymentError(PaymentFailureResponse response) {
     // Payment failed
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Payment failed. Please try again.")),
+      const SnackBar(content: Text("Payment failed. Please try again.")),
     );
   }
 
@@ -320,12 +320,12 @@ class PriceDetails extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Shipping Charge',
+                Text('Shipping Charge',
                     style: TextStyle(color: Colors.grey)),
-                const Text('\$5.00',
+                Text('\$5.00',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,

@@ -5,7 +5,6 @@ import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
 import 'package:user_panel/Screens/login_screen.dart';
 import 'package:user_panel/Screens/product_detail_screen.dart';
 import 'package:user_panel/Screens/product_page.dart';
-import 'package:user_panel/Screens/profile_screeen.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
 
 class HomePage extends StatefulWidget {
