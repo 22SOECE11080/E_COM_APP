@@ -1,29 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/cart_screen.dart';
+import 'package:user_panel/Screens/product_page.dart';
+import 'package:user_panel/Screens/profile_screeen.dart';
 import 'homepage_screen.dart';
 
-// Assuming that you have other screens (you can replace with actual imports)
-class ProductsScreen extends StatelessWidget {
-  const ProductsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Products Screen')),
-    );
-  }
-}
-
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Profile Screen')),
-    );
-  }
-}
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -50,7 +30,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
       case 1:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const ProductsScreen()),
+          MaterialPageRoute(builder: (context) => const ProductPage()),
         );
         break;
       case 2:

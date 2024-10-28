@@ -1,229 +1,284 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:user_panel/Screens/cart_screen.dart';
-import 'package:user_panel/Screens/review_screen.dart';
-
-// CartItem model to hold cart details
-class CartItem {
-  final String productName;
-  final double productPrice;
-  final String productImage;
-  late final int quantity;
-
-  CartItem({
-    required this.productName,
-    required this.productPrice,
-    required this.productImage,
-    this.quantity = 1, // Default quantity is 1
-  });
-
-  // Convert CartItem to a Map to store in Firestore
-  Map<String, dynamic> toMap() {
-    return {
-      'productName': productName,
-      'productPrice': productPrice,
-      'productImage': productImage,
-      'quantity': quantity,
-    };
-  }
-}
 
 class OrderDetailScreen extends StatelessWidget {
-  final String productName;
-  final String productDescription;
-  final double productPrice;
-  final String productImage;
-
-  const OrderDetailScreen({
-    super.key,
-    required this.productName,
-    required this.productDescription,
-    required this.productPrice,
-    required this.productImage,
-  });
+  const OrderDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      backgroundColor: const Color(0xFFE7F2E4),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFE7F2E4),
-        elevation: 0,
-        title: Text(
-          productName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF2E7D32),
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF2E7D32)),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        centerTitle: true,
-      ),
-      body: Column(
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product Image Section
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: screenHeight * 0.35,
-                width: screenWidth,
-                color: const Color(0xFFE7F2E4),
-                child: Image.asset(
-                  productImage,
-                  height: 200,
+          // Order Information Section with Dividers
+          Divider(color: Colors.green.shade900, thickness: 2),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Order ID: 3354654654526',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 8),
+                Text('Payment Method: Cash on Delivery'),
+                SizedBox(height: 8),
+                Text('Order date: Feb 16, 2022'),
+              ],
+            ),
           ),
-          // Details and Price Section
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16.0),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+          Divider(color: Colors.green.shade900, thickness: 2),
+
+          const SizedBox(height: 16),
+
+          // Product Details Section
+          const Text(
+            'Product Details',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.green,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
                 ),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
+              ],
+            ),
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Image.asset(
+                  'assets/images/first.png', // Ensure this path is correct
+                  width: 80,
+                  height: 80,
+                ),
+                const SizedBox(width: 16),
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productName,
-                      style: const TextStyle(
-                        fontSize: 28,
+                      'Cyclops',
+                      style: TextStyle(
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF2E7D32),
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Row(
+                    SizedBox(height: 8),
+                    Text('Qty: 10'),
+                    Text(
+                      '\$99',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 4),
+                    Text('All Issue Easy to Returns'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Order Status Section Container
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Order Confirmed Status
+                const Row(
+                  children: [
+                    Icon(Icons.check_circle, color: Colors.green),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "\$500",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                            decoration: TextDecoration.lineThrough,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
                         Text(
-                          "\$$productPrice",
-                          style: const TextStyle(
-                            fontSize: 24,
-                            color: Color(0xFF2E7D32),
+                          'Order Confirmed',
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            color: Colors.green,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          "1% off",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.red,
-                          ),
+                        Text(
+                          'Your order has been placed.',
+                          style: TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      productDescription,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const ReviewPage(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: const Color(0xFF005843),
-                          backgroundColor: const Color(0xFFE7F2E4),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 60,
-                            vertical: 15,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: const BorderSide(
-                              color: Color(0xFFCEC9C9),
-                            ),
-                          ),
-                        ),
-                        child: const Text(
-                          "Buy Now",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
                   ],
                 ),
-              ),
+                // Connecting Line
+                Container(
+                  margin: const EdgeInsets.only(left: 14),
+                  height: 40,
+                  width: 2,
+                  color: Colors.green,
+                ),
+                // Shipped Status with Tick
+                const Row(
+                  children: [
+                    Icon(Icons.check_circle, color: Colors.green),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Shipped',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          'Expected By Feb 18',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                // Connecting Line
+                Container(
+                  margin: const EdgeInsets.only(left: 14),
+                  height: 40,
+                  width: 2,
+                  color: Colors.green,
+                ),
+                // Delivered Status with Empty Circle
+                const Row(
+                  children: [
+                    Icon(Icons.radio_button_unchecked, color: Colors.green),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Delivered',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          'Not Delivered Yet',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Order Summary Section
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Order Summary',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Divider(color: Colors.green),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Discount'),
+                    Text('\$5554'),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Discount (20%)'),
+                    Text('\$1109.40'),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Delivery'),
+                    Text('\$0.00'),
+                  ],
+                ),
+                SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Tax'),
+                    Text('\$221.88'),
+                  ],
+                ),
+                Divider(color: Colors.green),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '\$0.00',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ElevatedButton(
-          onPressed: () async {
-            // Create CartItem object
-            CartItem cartItem = CartItem(
-              productName: productName,
-              productPrice: productPrice,
-              productImage: productImage,
-            );
-
-            // Add the CartItem to Firestore under "cart" collection
-            await FirebaseFirestore.instance
-                .collection('cart')
-                .add(cartItem.toMap());
-
-            // Navigate to CartScreen
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CartScreen(cartItems: [],),
-              ),
-            );
-
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFE7F2E4),
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-              side: const BorderSide(
-                color: Color(0xFFCEC9C9),
-              ),
-            ),
-          ),
-          child: const Text(
-            "Add to Cart",
-            style: TextStyle(fontSize: 18, color: Color(0xFF005843)),
-          ),
-        ),
       ),
     );
   }

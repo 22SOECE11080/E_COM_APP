@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:user_panel/Screens/cart_screen.dart';
 import 'package:user_panel/Screens/custom_bottom_navigation_bar.dart';
 import 'package:user_panel/Screens/login_screen.dart';
-import 'package:user_panel/Screens/orderdetail_screen.dart';
+import 'package:user_panel/Screens/product_detail_screen.dart';
 import 'package:user_panel/Screens/product_page.dart';
+import 'package:user_panel/Screens/profile_screeen.dart';
 import 'package:user_panel/Screens/wishlist_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,8 +22,9 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     const HomeContent(),
     const ProductPage(), // Adjust this to your ProductPage or relevant widget
-    const CartScreen(cartItems: [],), // Adjust this to your Cart or relevant widget
-   // const ProfileScreen(), // Create this AccountScreen if it doesn't exist
+    const CartScreen(
+      cartItems: [],
+    ), // Adjust this to your Cart or relevant widget
   ];
 
   void _onItemTapped(int index) {
@@ -370,7 +372,7 @@ class HomeContent extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => OrderDetailScreen(
+            builder: (context) => ProductDetailScreen(
               productName: productName,
               productDescription: productDescription,
               productPrice: productPrice,
