@@ -34,6 +34,7 @@ android {
     compileOptions {
         sourceCompatibility = '11'
         targetCompatibility = '11'
+    }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -60,5 +61,9 @@ flutter {
     source = "../.."
 }
 
-apply plugin: 'com.google.gms.google-services'
+dependencies {
+    // Add Razorpay dependency
+    implementation 'com.razorpay:checkout:1.6.12' // Or the latest version
 }
+
+apply plugin: 'com.google.gms.google-services'

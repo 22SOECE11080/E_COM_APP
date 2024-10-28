@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:user_panel/admin_screen/orderdetails_screen.dart';
+import 'dart:html' as html; // Import for web functionality
 
 class PaymentPage extends StatefulWidget {
   final double orderTotal;
@@ -18,16 +19,25 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   void initState() {
     super.initState();
-    _razorpay = Razorpay();
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+
+    // Initialize Razorpay only for mobile platforms
+    if (isMobile()) {
+      _razorpay = Razorpay();
+      _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+      _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+      _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    }
   }
 
   @override
   void dispose() {
-    _razorpay?.clear(); // Removes all listeners
+    _razorpay?.clear(); // Removes all listeners for mobile
     super.dispose();
+  }
+
+  bool isMobile() {
+    return (Theme.of(context).platform == TargetPlatform.android ||
+        Theme.of(context).platform == TargetPlatform.iOS);
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
@@ -38,7 +48,7 @@ class _PaymentPageState extends State<PaymentPage> {
   void _handlePaymentError(PaymentFailureResponse response) {
     // Payment failed
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Payment failed. Please try again.")),
+      const SnackBar(content: Text("Payment failed. Please try again.")),
     );
   }
 
@@ -59,10 +69,42 @@ class _PaymentPageState extends State<PaymentPage> {
     };
 
     try {
-      _razorpay?.open(options);
+      if (isMobile()) {
+        _razorpay?.open(options);
+      } else {
+        _startWebPayment(options); // For web payment
+      }
     } catch (e) {
       debugPrint('Error: $e');
     }
+  }
+
+  void _startWebPayment(Map<String, dynamic> options) {
+    final html.FormElement form = html.FormElement();
+    form.method = 'POST';
+    form.action = 'https://api.razorpay.com/v1/orders'; // Razorpay order API
+
+    // Create hidden input fields
+    final amountInput = html.InputElement(type: 'hidden')
+      ..name = 'amount'
+      ..value = (options['amount']).toString();
+
+    final currencyInput = html.InputElement(type: 'hidden')
+      ..name = 'currency'
+      ..value = 'INR';
+
+    final paymentCaptureInput = html.InputElement(type: 'hidden')
+      ..name = 'payment_capture'
+      ..value = '1';
+
+    // Append inputs to the form
+    form.append(amountInput);
+    form.append(currencyInput);
+    form.append(paymentCaptureInput);
+
+    // Add the form to the document body and submit
+    html.document.body!.append(form);
+    form.submit();
   }
 
   void _navigateToOrderDetails() {
@@ -159,7 +201,6 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 }
-
 class StepIndicator extends StatelessWidget {
   const StepIndicator({super.key});
 
@@ -320,12 +361,12 @@ class PriceDetails extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 10),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Shipping Charge',
+                Text('Shipping Charge',
                     style: TextStyle(color: Colors.grey)),
-                const Text('\$5.00',
+                Text('\$5.00',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
