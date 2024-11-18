@@ -17,16 +17,27 @@ class _PaymentPageState extends State<PaymentPage> {
   String _selectedPaymentMethod = 'Cash On Delivery';
 
   @override
+  bool _isMobilePlatform = false;
+
+  @override
   void initState() {
     super.initState();
 
     // Initialize Razorpay only for mobile platforms
-    if (isMobile()) {
-      _razorpay = Razorpay();
-      _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-      _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-      _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        _isMobilePlatform =
+            (Theme.of(context).platform == TargetPlatform.android ||
+                Theme.of(context).platform == TargetPlatform.iOS);
+
+        if (_isMobilePlatform) {
+          _razorpay = Razorpay();
+          _razorpay?.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+          _razorpay?.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+          _razorpay?.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+        }
+      });
+    });
   }
 
   @override
@@ -69,7 +80,7 @@ class _PaymentPageState extends State<PaymentPage> {
     };
 
     try {
-      if (isMobile()) {
+      if (_isMobilePlatform) {
         _razorpay?.open(options);
       } else {
         _startWebPayment(options); // For web payment
@@ -201,6 +212,7 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 }
+
 class StepIndicator extends StatelessWidget {
   const StepIndicator({super.key});
 
@@ -364,8 +376,7 @@ class PriceDetails extends StatelessWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Shipping Charge',
-                    style: TextStyle(color: Colors.grey)),
+                Text('Shipping Charge', style: TextStyle(color: Colors.grey)),
                 Text('\$5.00',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
