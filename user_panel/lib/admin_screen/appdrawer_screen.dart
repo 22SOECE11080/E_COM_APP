@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_panel/admin_screen/addproduct_screen.dart';
 import 'package:user_panel/admin_screen/customer_screen.dart';
 import 'package:user_panel/admin_screen/dashboard_screen.dart';
+import 'package:user_panel/admin_screen/login_screen.dart';
 import 'package:user_panel/admin_screen/orderlist_screen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -122,6 +123,12 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.logout, color: Color(0xFF2E7D32)),
             title: const Text('Logout'),
             onTap: () {
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const LoginScreen(),
+                )
+                );
               // Handle logout action
             },
           ),
