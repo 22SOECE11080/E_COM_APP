@@ -1,8 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:user_panel/admin_screen/appdrawer_screen.dart';
 
-class CustomerScreen extends StatelessWidget {
+// Define a Customer model
+class Customer {
+  String name;
+  String contact;
+  String email;
+  String address;
+
+  Customer({
+    required this.name,
+    required this.contact,
+    required this.email,
+    required this.address,
+  });
+}
+
+class CustomerScreen extends StatefulWidget {
   const CustomerScreen({super.key});
+
+  @override
+  _CustomerScreenState createState() => _CustomerScreenState();
+}
+
+class _CustomerScreenState extends State<CustomerScreen> {
+  // List of customers
+  List<Customer> customers = [
+    Customer(
+        name: 'John Doe',
+        contact: '+91-9876543210',
+        email: 'john.doe@example.com',
+        address: 'New Delhi, India'),
+    Customer(
+        name: 'Jane Smith',
+        contact: '+91-9876543211',
+        email: 'jane.smith@example.com',
+        address: 'Mumbai, India'),
+    Customer(
+        name: 'Alice Johnson',
+        contact: '+91-9876543212',
+        email: 'alice.johnson@example.com',
+        address: 'Bangalore, India'),
+    Customer(
+        name: 'Bob Brown',
+        contact: '+91-9876543213',
+        email: 'bob.brown@example.com',
+        address: 'Chennai, India'),
+    Customer(
+        name: 'Charlie Green',
+        contact: '+91-9876543214',
+        email: 'charlie.green@example.com',
+        address: 'Hyderabad, India'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -53,40 +102,17 @@ class CustomerScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  _buildTableSection('', _buildCustomerDataTable()),
+                  _buildCustomerDataTable(),
                 ],
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          // Add new customer action
-        },
-        label: const Text('Add Customer'),
-        icon: const Icon(Icons.add),
-        backgroundColor: Colors.green,
-      ),
     );
   }
 
-  // Widget to build each table section
-  Widget _buildTableSection(String title, Widget table) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        table,
-      ],
-    );
-  }
-
-  // Updated Customer Data Table with dashboard-style design
+  // Build the Data Table dynamically
   Widget _buildCustomerDataTable() {
     return Center(
       child: Container(
@@ -103,106 +129,38 @@ class CustomerScreen extends StatelessWidget {
           ],
         ),
         child: DataTable(
-          // headingRowColor:
-          //     WidgetStateProperty.all(Colors.green), // Header background color
-          // headingTextStyle: const TextStyle(
-          //   color: Colors.white, // Header text color
-          //   fontWeight: FontWeight.bold,
-          // ),
-          // dataRowColor: WidgetStateProperty.all(
-          //     Colors.white), // Body rows background color
-          // headingRowHeight: 50.0, // Adjust row height for better visuals
-          // columnSpacing: 30.0, // Spacing between columns
-          // decoration: BoxDecoration(
-          //   border: Border.all(color: Colors.green), // Border around the table
-          //   borderRadius: BorderRadius.circular(8),
-          // ),
           columnSpacing: 15,
-          dataRowColor: WidgetStateProperty.resolveWith<Color?>((
-            Set<WidgetState> states,
-          ) {
-            return Colors.white; // Set body rows to white
-          }),
-          headingRowColor: WidgetStateColor.resolveWith(
-            (states) => Colors.green.shade100,
-          ),
+          headingRowColor:
+              MaterialStateColor.resolveWith((states) => Colors.green.shade100),
           border: TableBorder.all(color: Colors.grey),
           columns: const <DataColumn>[
-            DataColumn(
-              label: Text(
-                'Customer Name',
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'Contact',
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'Email',
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'Address',
-              ),
-            ),
-            DataColumn(
-              label: Text(
-                'Actions',
-              ),
-            ),
+            DataColumn(label: Text('Customer Name')),
+            DataColumn(label: Text('Contact')),
+            DataColumn(label: Text('Email')),
+            DataColumn(label: Text('Address')),
+            DataColumn(label: Text('Actions')),
           ],
-          rows: <DataRow>[
-            DataRow(cells: <DataCell>[
-              const DataCell(Text('John Doe')),
-              const DataCell(Text('+91-9876543210')),
-              const DataCell(Text('john.doe@example.com')),
-              const DataCell(Text('New Delhi, India')),
-              DataCell(_buildActionButtons()),
-            ]),
-            DataRow(cells: <DataCell>[
-              const DataCell(Text('Jane Smith')),
-              const DataCell(Text('+91-9876543211')),
-              const DataCell(Text('jane.smith@example.com')),
-              const DataCell(Text('Mumbai, India')),
-              DataCell(_buildActionButtons()),
-            ]),
-            DataRow(cells: <DataCell>[
-              const DataCell(Text('Alice Johnson')),
-              const DataCell(Text('+91-9876543212')),
-              const DataCell(Text('alice.johnson@example.com')),
-              const DataCell(Text('Bangalore, India')),
-              DataCell(_buildActionButtons()),
-            ]),
-            DataRow(cells: <DataCell>[
-              const DataCell(Text('Bob Brown')),
-              const DataCell(Text('+91-9876543213')),
-              const DataCell(Text('bob.brown@example.com')),
-              const DataCell(Text('Chennai, India')),
-              DataCell(_buildActionButtons()),
-            ]),
-            DataRow(cells: <DataCell>[
-              const DataCell(Text('Charlie Green')),
-              const DataCell(Text('+91-9876543214')),
-              const DataCell(Text('charlie.green@example.com')),
-              const DataCell(Text('Hyderabad, India')),
-              DataCell(_buildActionButtons()),
-            ]),
-          ],
+          rows: customers.map((customer) {
+            return DataRow(cells: [
+              DataCell(Text(customer.name)),
+              DataCell(Text(customer.contact)),
+              DataCell(Text(customer.email)),
+              DataCell(Text(customer.address)),
+              DataCell(_buildActionButtons(customer)),
+            ]);
+          }).toList(),
         ),
       ),
     );
   }
 
-  // Widget to build action buttons
-  Widget _buildActionButtons() {
+  // Build action buttons for each row
+  Widget _buildActionButtons(Customer customer) {
     return Row(
       children: [
         ElevatedButton(
           onPressed: () {
-            // Edit customer action
+            _editCustomer(customer);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.lightBlue,
@@ -212,7 +170,7 @@ class CustomerScreen extends StatelessWidget {
         const SizedBox(width: 10),
         ElevatedButton(
           onPressed: () {
-            // Delete customer action
+            _deleteCustomer(customer);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.redAccent,
@@ -220,6 +178,75 @@ class CustomerScreen extends StatelessWidget {
           child: const Text('Delete'),
         ),
       ],
+    );
+  }
+
+  // Edit customer details
+  void _editCustomer(Customer customer) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        final nameController = TextEditingController(text: customer.name);
+        final contactController = TextEditingController(text: customer.contact);
+        final emailController = TextEditingController(text: customer.email);
+        final addressController = TextEditingController(text: customer.address);
+
+        return AlertDialog(
+          title: const Text('Edit Customer'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: contactController,
+                decoration: const InputDecoration(labelText: 'Contact'),
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+              ),
+              TextField(
+                controller: addressController,
+                decoration: const InputDecoration(labelText: 'Address'),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  customer.name = nameController.text;
+                  customer.contact = contactController.text;
+                  customer.email = emailController.text;
+                  customer.address = addressController.text;
+                });
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Delete customer
+  void _deleteCustomer(Customer customer) {
+    setState(() {
+      customers.remove(customer);
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${customer.name} has been deleted')),
     );
   }
 }

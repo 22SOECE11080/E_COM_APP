@@ -188,9 +188,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(
-                                0xFFB8DABA), // Button color similar to the image
+                                0xFFE7F2E4), // Button color similar to the image
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
+                              side: const BorderSide(color: Color(0xFFCEC9C9)),
+
                             ),
                             padding: const EdgeInsets.symmetric(
                                 vertical: 14.0, horizontal: 60.0),

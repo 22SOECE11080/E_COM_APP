@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_panel/admin_screen/addproduct_screen.dart';
 import 'package:user_panel/admin_screen/appdrawer_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -70,6 +71,10 @@ class DashboardScreen extends StatelessWidget {
       // Floating action button for "Create new"
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
+          Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AddProductScreen()),
+    );
           // Add new item action
         },
         label: const Text('Create new'),
